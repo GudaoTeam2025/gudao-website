@@ -1,1 +1,1 @@
-window.GUDAO_EVENTS=[{date:"待公布",name:"孤島近期活動",description:"活動資訊將公告於 Instagram",image:"images/events/event-001.jpg"},{date:"待公布",name:"龍舌蘭交流活動",description:"活動資訊將公告於 Instagram",image:"images/events/event-002.jpg"}];
+window.GUDAO_EVENTS=[{date:"進行中",name:"孤島新品販售",description:"活動資訊將公告於 Instagram",image:"images/events/event-001.jpg"},{date:"進行中",name:"燈島巡迴-士林捲捲站",description:"活動資訊將公告於 Instagram",image:"images/events/event-002.jpg"}];
