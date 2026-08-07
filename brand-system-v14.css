@@ -534,3 +534,9 @@ footer img {
     display: block;
   }
 }
+/* 關閉等高線輔助圖形 */
+.hero::before,
+.page-hero::before,
+footer::before {
+  display: none !important;
+}
