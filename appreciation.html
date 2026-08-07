@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#262C31">
+  <title>孤島賞析｜孤島 GUDAO</title>
+  <link rel="stylesheet" href="style.css?v=12">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="assets/brand/logo.png" alt="孤島標誌">
+      <span>孤島 GUDAO</span>
+    </a>
+
+    <button class="menu" type="button" aria-label="開啟選單" aria-expanded="false">☰</button>
+
+    <nav aria-label="主要導覽">
+      <a href="index.html">首頁</a>
+      <a href="stock.html">現貨販售</a>
+      <a href="event.html">近期活動</a>
+      <a class="active" href="appreciation.html">孤島賞析</a>
+      <a class="ig" href="https://www.instagram.com/gudao.team/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero appreciation-hero">
+      <p class="label">GUDAO APPRECIATION</p>
+      <h1>孤島賞析</h1>
+      <p>記錄龍舌蘭個體的線條、質地與培育變化。</p>
+    </section>
+
+    <section class="wrap section">
+      <div class="toolbar appreciation-toolbar">
+        <p>賞析圖片採 9:16 直式完整顯示，不裁切圖片中的文字、Logo 與細節。</p>
+        <div id="appreciation-filters" class="filter-group" aria-label="賞析篩選"></div>
+      </div>
+
+      <div id="appreciation-grid" class="card-grid appreciation-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/brand/logo.png" alt="孤島標誌">
+    <div>
+      <b>PASSION TO THE ISLAND</b>
+      <p>© 2026 GUDAO TEAM</p>
+    </div>
+  </footer>
+
+  <script src="appreciations.js?v=12"></script>
+  <script>
+    const menuButton = document.querySelector('.menu');
+    const navigation = document.querySelector('.site-header nav');
+
+    menuButton?.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    const grid = document.querySelector('#appreciation-grid');
+    const filters = document.querySelector('#appreciation-filters');
+
+    function renderAppreciations(category = '全部') {
+      const items = category === '全部'
+        ? window.GUDAO_APPRECIATIONS
+        : window.GUDAO_APPRECIATIONS.filter(item => item.category === category);
+
+      grid.innerHTML = items.map(item => `
+        <article class="card appreciation-card">
+          <div class="poster">
+            <img
+              src="${item.image}"
+              alt="${item.name}"
+              loading="lazy"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+            >
+            <div class="poster-fallback">GUDAO<br>APPRECIATION</div>
+            <span>${item.category}</span>
+          </div>
+
+          <div class="card-body">
+            <small>${item.code}</small>
+            <h2>${item.name}</h2>
+            <p>${item.description}</p>
+
+            <dl class="appreciation-meta">
+              <div><dt>培育</dt><dd>${item.cultivation}</dd></div>
+              <div><dt>紀錄</dt><dd>${item.record}</dd></div>
+            </dl>
+
+            <a href="${item.instagram}" target="_blank" rel="noopener noreferrer">
+              INSTAGRAM 查看更多 ↗
+            </a>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    const categories = ['全部', ...new Set(window.GUDAO_APPRECIATIONS.map(item => item.category))];
+
+    filters.innerHTML = categories.map((category, index) => `
+      <button class="${index === 0 ? 'active' : ''}" data-category="${category}">
+        ${category}
+      </button>
+    `).join('');
+
+    filters.addEventListener('click', event => {
+      if (!event.target.matches('button')) return;
+      filters.querySelectorAll('button').forEach(button => button.classList.remove('active'));
+      event.target.classList.add('active');
+      renderAppreciations(event.target.dataset.category);
+    });
+
+    renderAppreciations();
+  </script>
+</body>
+</html>

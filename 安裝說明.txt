@@ -1,0 +1,13 @@
+孤島賞析頁安裝方式
+
+1. 將 appreciation.html 上傳到網站根目錄。
+2. 將 appreciations.js 上傳到網站根目錄。
+3. 將 images/appreciation 資料夾上傳到 images 裡。
+4. 打開 appreciation-style.css，將全部內容貼到現有 style.css 最下方。
+5. 在 index.html、stock.html、event.html 的導覽列加入：
+   <a href="appreciation.html">孤島賞析</a>
+6. 將各 HTML 的 CSS 版本號提高，例如 style.css?v=12。
+7. 上傳賞析圖片到 images/appreciation，再修改 appreciations.js。
+
+頁面網址：
+https://gudaoteam2025.github.io/gudao-website/appreciation.html
