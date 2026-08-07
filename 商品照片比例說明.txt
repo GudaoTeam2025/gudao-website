@@ -1,0 +1,5 @@
+商品照片模板已設定為 9:16 直式比例。
+建議尺寸：1080 x 1920 px。
+顯示模式：完整顯示（object-fit: contain），不會裁掉圖片中的標題、價格、Logo 或上下內容。
+照片路徑：images/products/agave-001.jpg、agave-002.jpg……
+替換照片時保持相同檔名，直接於 GitHub 覆蓋即可。
