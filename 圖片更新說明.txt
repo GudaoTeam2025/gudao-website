@@ -1,0 +1,13 @@
+【所有圖片都可直接替換】
+1. 首頁主視覺：images/home/hero.jpg（建議橫式 1920x1080）
+2. 首頁現貨區：images/home/stock-feature.jpg（建議直式或方形）
+3. 首頁活動區：images/home/event-feature.jpg
+4. 首頁品牌故事 PNG：images/home/story.png（支援透明 PNG）
+5. 活動頁主視覺：images/events/hero.jpg
+6. 活動圖片：images/events/event-001.jpg、event-002.png
+7. 商品圖片：images/products/agave-001.jpg、agave-002.jpg...
+
+更新方式：保持檔名相同，在 GitHub 上傳同名新圖片覆蓋，不必修改 HTML。
+新增商品：上傳圖片後，只修改 products.js。
+新增活動：上傳圖片後，只修改 site-data.js 的 GUDAO_EVENTS。
+全站 Instagram 已設定為：https://www.instagram.com/gudao.team/

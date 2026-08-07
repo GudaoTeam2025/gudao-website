@@ -5,65 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="孤島Team目前可購買的龍舌蘭現貨植株。">
   <title>現貨販售｜孤島Team</title>
-  <link rel="stylesheet" href="style.css?v=20260807-2">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
-<body>
-  <header class="page-header">
-    <div class="hero-inner">
-      <p class="eyebrow">AVAILABLE NOW</p>
-      <h1>現貨販售</h1>
-      <p class="subtitle">挑選目前可購買的龍舌蘭個體</p>
-      <nav aria-label="主要導覽">
-        <a href="index.html">首頁</a>
-        <a class="active" href="stock.html">現貨販售</a>
-        <a href="event.html">近期活動</a>
-      </nav>
+<body class="stock-page">
+  <header class="stock-hero">
+    <a class="stock-brand" href="index.html">孤島Team</a>
+    <nav class="stock-nav" aria-label="主要導覽">
+      <a href="index.html">首頁</a>
+      <a class="active" href="stock.html">現貨販售</a>
+      <a href="event.html">近期活動</a>
+    </nav>
+    <div class="stock-title">
+      <p>AVAILABLE NOW</p>
+      <h1>現貨個體</h1>
+      <span>每一株，都是時間與光的作品。</span>
     </div>
   </header>
 
-  <main class="container">
-    <div class="notice">
-      <strong>購買方式</strong>
-      <p>挑選喜歡的植株後，請點選「Instagram 私訊購買」。實際庫存、植株狀態及交付方式以私訊確認為準。</p>
+  <main class="stock-main">
+    <div class="stock-intro">
+      <p>挑選喜歡的個體後，可透過 Instagram 私訊詢問。實際庫存與植株狀態以私訊確認為準。</p>
+      <div class="stock-filter" id="stock-filter" aria-label="現貨篩選">
+        <button class="active" data-filter="全部">全部</button>
+        <button data-filter="現貨">現貨</button>
+        <button data-filter="已售出">已售出</button>
+      </div>
     </div>
 
-    <section class="product-grid" aria-label="現貨植株">
-      <article class="product-card">
-        <div class="image-placeholder">植株照片 01</div>
-        <div class="product-body">
-          <span class="status available">現貨</span>
-          <h2>龍舌蘭個體 A</h2>
-          <p>在這裡填寫品種、尺寸、培育狀況與特色。</p>
-          <p class="price">NT$ 請私訊</p>
-          <a class="button" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram 私訊購買</a>
-        </div>
-      </article>
-
-      <article class="product-card">
-        <div class="image-placeholder">植株照片 02</div>
-        <div class="product-body">
-          <span class="status available">現貨</span>
-          <h2>龍舌蘭個體 B</h2>
-          <p>在這裡填寫品種、尺寸、培育狀況與特色。</p>
-          <p class="price">NT$ 請私訊</p>
-          <a class="button" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram 私訊購買</a>
-        </div>
-      </article>
-
-      <article class="product-card">
-        <div class="image-placeholder">植株照片 03</div>
-        <div class="product-body">
-          <span class="status sold">已售出</span>
-          <h2>龍舌蘭個體 C</h2>
-          <p>已售出的植株可保留展示，讓玩家了解孤島過往的培育個體。</p>
-          <p class="price">已售出</p>
-        </div>
-      </article>
-    </section>
+    <section id="product-grid" class="premium-product-grid" aria-live="polite"></section>
   </main>
 
-  <footer>
-    <p>© 2026 孤島Team</p>
-  </footer>
-</body>
+  <footer class="stock-footer">© 2026 GUDAO TEAM</footer>
+
+  <script src="products.js?v=5"></script>
+  <script>
+    const grid = document.querySelector('#product-grid');
+    const filter = document.querySelector('#stock-filter');
+
+    function renderProducts(status = '全部') {
+      const rows = status === '全部'
+        ? window.GUDAO_PRODUCTS
+        : window.GUDAO_PRODUCTS.filter(item => item.status === status);
+
+      grid.innerHTML = rows.map(item => `
+        <article class="premium-product-card">
+          <div class="product-image-wrap">
+            <img src="${item.image}" alt="${item.name}" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="photo-fallback">PHOTO<br>${item.code}</div>
+            <span class="product-status ${item.status === '現貨' ? 'is-available' : 'is-sold'}">${item.status}</span>
+          </div>
+          <div class="premium-product-body">
+            <p class="product-code">${item.code}</p>
+            <h2>${item.name}</h2>
+            <p>${item.description}</p>
+            <div class="product-meta">
+              <span>${item.size}</span>
+              <strong>${item.price}</strong>
+            </div>
+            ${item.status === '現貨'
+              ? `<a class="product-contact" href="${item.instagram}" target="_blank" rel="noopener noreferrer">Instagram 私訊購買 <b>↗</b></a>`
+              : `<span class="product-contact disabled">此個體已售出</span>`}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    filter.addEventListener('click', event => {
+      if (!event.target.matches('button')) return;
+      filter.querySelectorAll('button').forEach(button => button.classList.remove('active'));
+      event.target.classList.add('active');
+      renderProducts(event.target.dataset.filter);
+    });
+
+    renderProducts();
+  </script>
+<script src="site-data.js?v=5"></script></body>
 </html>
