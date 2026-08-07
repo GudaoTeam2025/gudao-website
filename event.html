@@ -2,35 +2,57 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="孤島Team近期市集、展覽與龍舌蘭交流活動。">
   <title>近期活動｜孤島Team</title>
-  style.css
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <header class="hero">
-    <h1>孤島近期活動</h1>
-    <p>市集、展覽與植物交流資訊</p>
-
-    <nav>
-      index.html首頁</a>
-      stock.html現貨販售</a>
-      event.html近期活動</a>
-    </nav>
+  <header class="page-header">
+    <div class="hero-inner">
+      <p class="eyebrow">EVENTS</p>
+      <h1>近期活動</h1>
+      <p class="subtitle">市集・展覽・龍舌蘭交流</p>
+      <nav aria-label="主要導覽">
+        <a href="index.html">首頁</a>
+        <a href="stock.html">現貨販售</a>
+        <a class="active" href="event.html">近期活動</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section>
+  <main class="container">
+    <section class="card">
+      <p class="section-label">UPCOMING</p>
       <h2>活動籌備中</h2>
-      <p>近期活動資訊將公布於此，歡迎追蹤孤島 Instagram。</p>
+      <p>近期活動資訊會更新在這裡，也可以前往孤島 Instagram 查看最新消息。</p>
+      <a class="button" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">前往 Instagram</a>
+    </section>
+
+    <section class="card">
+      <p class="section-label">CALENDAR</p>
+      <h2>活動安排</h2>
+      <div class="event-list">
+        <article class="event-item">
+          <div class="event-date"><span>日期</span><strong>待公布</strong></div>
+          <div>
+            <h3>活動名稱</h3>
+            <p>在這裡填寫活動地點、時間、內容與參加方式。</p>
+          </div>
+        </article>
+        <article class="event-item">
+          <div class="event-date"><span>日期</span><strong>待公布</strong></div>
+          <div>
+            <h3>活動名稱</h3>
+            <p>可以複製這個活動區塊，繼續新增其他活動。</p>
+          </div>
+        </article>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>© 孤島Team</p>
+    <p>© 2026 孤島Team</p>
   </footer>
 </body>
 </html>
