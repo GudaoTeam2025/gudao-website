@@ -1,0 +1,8 @@
+品牌色：#262C31 岩石灰、#EBEBE9 砂石白、#FF8510 亮橙黃、#345339 深綠、#823B35 深紅、黑、白。
+中文字型：源石黑體丹（GenSekiGothicTC）；英文標題：Khand Bold；英文內文：Hind Regular。
+Logo 與 Slogan 均使用 object-fit: contain，保持原始比例，不裁切、不拉伸。
+首頁品牌圖片：assets/brand/logo.jpg、assets/brand/slogan.png。直接以相同檔名覆蓋即可。
+商品圖片：images/products/agave-001.jpg...，9:16，建議 1080x1920。
+活動圖片：images/events/event-001.jpg 或 .png...，9:16，建議 1080x1920。
+新增商品請修改 products.js；新增活動請修改 events.js。
+全站 Instagram：https://www.instagram.com/gudao.team/

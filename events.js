@@ -1,0 +1,1 @@
+window.GUDAO_EVENTS=[{date:"待公布",name:"孤島近期活動",description:"活動資訊將公告於 Instagram。",image:"images/events/event-001.jpg"},{date:"待公布",name:"龍舌蘭交流活動",description:"上傳 9:16 圖片後修改這筆資料。",image:"images/events/event-002.png"}];
