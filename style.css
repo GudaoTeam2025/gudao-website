@@ -620,3 +620,46 @@ footer p {
     flex: 0 0 auto;
   }
 }
+
+
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.actions a,
+.actions a.outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  padding: 13px 22px;
+  border: 1px solid var(--orange);
+  background: var(--orange);
+  color: var(--rock);
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.actions a:hover,
+.actions a.outline:hover {
+  background: transparent;
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 820px) {
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .actions a,
+  .actions a.outline {
+    width: 100%;
+  }
+}
