@@ -6,3 +6,5 @@ Logo 與 Slogan 均使用 object-fit: contain，保持原始比例，不裁切�
 活動圖片：images/events/event-001.jpg 或 .png...，9:16，建議 1080x1920。
 新增商品請修改 products.js；新增活動請修改 events.js。
 全站 Instagram：https://www.instagram.com/gudao.team/
+
+V8 更新：全站 Logo 已改用 assets/brand/logo.png。替換 Logo 時維持 PNG 格式及相同檔名即可。Logo 使用 contain，不裁切、不拉伸，且背景區域使用品牌砂石白 #EBEBE9。
