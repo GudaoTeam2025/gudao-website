@@ -15,3 +15,18 @@ footer img {
   height: auto;
   mix-blend-mode: normal;
 }
+
+
+/* V9 replaceable homepage visual */
+.hero-art {
+  background: var(--sand);
+  padding: clamp(24px, 5vw, 72px);
+}
+.hero-visual {
+  display: block;
+  width: min(88%, 720px);
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+  background: transparent;
+}
