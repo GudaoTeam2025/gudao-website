@@ -1,0 +1,536 @@
+/* GUDAO Design System v14
+   Add AFTER style.css so this file can refine the existing site without overwriting prior HTML work. */
+
+:root {
+  --g-rock: #262C31;
+  --g-sand: #EBEBE9;
+  --g-orange: #FF8510;
+  --g-green: #345339;
+  --g-red: #823B35;
+  --g-black: #000000;
+  --g-white: #FFFFFF;
+
+  --g-text-on-dark: #F5F5F2;
+  --g-text-muted-dark: rgba(255, 255, 255, 0.72);
+  --g-text-on-light: #262C31;
+  --g-line-dark: rgba(255, 255, 255, 0.16);
+  --g-line-light: rgba(38, 44, 49, 0.16);
+
+  --g-space-1: 0.5rem;
+  --g-space-2: 0.75rem;
+  --g-space-3: 1rem;
+  --g-space-4: 1.5rem;
+  --g-space-5: 2rem;
+  --g-space-6: 3rem;
+  --g-space-7: 4.5rem;
+  --g-space-8: 7rem;
+
+  --g-content: 1240px;
+  --g-reading: 720px;
+  --g-radius: 0px;
+  --g-shadow: 0 18px 50px rgba(0, 0, 0, 0.14);
+}
+
+/* Typography follows the brand manual */
+html {
+  color-scheme: light;
+}
+
+body {
+  font-family: "Hind", "GenSekiGothicTC", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.label,
+.brand,
+.actions a,
+.site-header nav a,
+button,
+.card-body small,
+.pad small,
+.poster span {
+  font-family: "Khand", "GenSekiGothicTC", sans-serif;
+  font-weight: 700;
+}
+
+p,
+li,
+dd {
+  font-size: max(1rem, 16px);
+}
+
+.label {
+  margin: 0 0 var(--g-space-2);
+  color: var(--g-orange);
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+}
+
+/* Accessible keyboard focus */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--g-orange);
+  outline-offset: 4px;
+}
+
+/* Header: logo in a corner, required clear space, no visual distortion */
+.site-header {
+  min-height: 88px;
+  height: auto;
+  padding: 14px clamp(20px, 4vw, 60px);
+  background: var(--g-rock);
+  border-bottom: 2px solid var(--g-orange);
+}
+
+.brand {
+  gap: 14px;
+  letter-spacing: 0.02em;
+}
+
+.brand img {
+  width: 56px;
+  height: 56px;
+  min-width: 50px;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.site-header nav {
+  gap: clamp(16px, 2.2vw, 30px);
+}
+
+.site-header nav a {
+  position: relative;
+  padding: 10px 0;
+  color: var(--g-white);
+  letter-spacing: 0.02em;
+}
+
+.site-header nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  left: 0;
+  height: 2px;
+  background: var(--g-orange);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 180ms ease;
+}
+
+.site-header nav a:hover::after,
+.site-header nav a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.site-header nav a.active,
+.site-header .ig {
+  color: var(--g-orange);
+}
+
+/* Contour-line visual language inspired by the manual's auxiliary graphic */
+.hero,
+.page-hero,
+footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero::before,
+.page-hero::before,
+footer::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: min(52vw, 720px);
+  aspect-ratio: 1;
+  top: -35%;
+  right: -10%;
+  opacity: 0.16;
+  background:
+    repeating-radial-gradient(
+      ellipse at 50% 50%,
+      transparent 0 24px,
+      var(--g-white) 25px 26px,
+      transparent 27px 44px
+    );
+  transform: rotate(-18deg) scaleX(0.72);
+  pointer-events: none;
+}
+
+/* Home hero */
+body:has(.hero),
+body:has(.hero) main {
+  background: var(--g-rock);
+  color: var(--g-text-on-dark);
+}
+
+.hero {
+  min-height: calc(100svh - 88px);
+  grid-template-columns: minmax(320px, 0.95fr) minmax(420px, 1.05fr);
+  background: var(--g-rock);
+  border-bottom: 1px solid var(--g-line-dark);
+}
+
+.hero-art {
+  min-height: 680px;
+  padding: clamp(34px, 6vw, 90px);
+  background: var(--g-rock) !important;
+  border-right: 1px solid var(--g-line-dark);
+}
+
+.hero-visual {
+  width: min(86%, 640px);
+  max-height: 72vh;
+  object-fit: contain;
+}
+
+.hero-copy {
+  max-width: 820px;
+  padding: clamp(48px, 7vw, 110px);
+}
+
+.hero h1 {
+  max-width: 780px;
+  margin: var(--g-space-2) 0 var(--g-space-4);
+  font-size: clamp(3.2rem, 7vw, 6.8rem);
+  line-height: 1.04;
+  letter-spacing: 0.01em;
+}
+
+.hero-copy > p:not(.label) {
+  max-width: var(--g-reading);
+  margin: 0;
+  color: var(--g-text-muted-dark);
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.65;
+}
+
+/* Unified primary actions */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: var(--g-space-5);
+}
+
+.actions a,
+.actions a.outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 126px;
+  min-height: 50px;
+  padding: 12px 22px;
+  border: 1px solid var(--g-orange);
+  background: var(--g-orange);
+  color: var(--g-rock);
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.actions a:hover,
+.actions a.outline:hover {
+  background: transparent;
+  color: var(--g-white);
+  transform: translateY(-2px);
+}
+
+.stripe {
+  padding: 18px clamp(20px, 4vw, 60px);
+  background: var(--g-black);
+  border-block: 1px solid var(--g-line-dark);
+  font-size: clamp(1.15rem, 2vw, 1.75rem);
+  letter-spacing: 0.08em;
+}
+
+.wrap {
+  width: min(calc(100% - 40px), var(--g-content));
+}
+
+.home-grid {
+  gap: 20px;
+  padding-block: var(--g-space-8);
+}
+
+.feature {
+  position: relative;
+  min-height: 360px;
+  padding: clamp(32px, 4vw, 56px);
+  background: transparent !important;
+  border: 1px solid var(--g-line-dark);
+  border-top: 4px solid var(--g-orange);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  border-color: var(--g-orange);
+}
+
+.feature h2 {
+  margin: 4px 0 14px;
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  line-height: 1.05;
+}
+
+.feature p {
+  max-width: 40ch;
+  color: var(--g-text-muted-dark);
+}
+
+.feature a {
+  margin-top: var(--g-space-3);
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--g-orange);
+  letter-spacing: 0.04em;
+}
+
+.brand-story {
+  gap: clamp(40px, 8vw, 110px);
+  padding-block: var(--g-space-8);
+  border-top: 1px solid var(--g-line-dark);
+}
+
+.brand-story h2 {
+  margin: var(--g-space-2) 0 var(--g-space-4);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+}
+
+.brand-story img {
+  width: min(100%, 560px);
+  justify-self: center;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+
+/* Inner page heroes */
+.page-hero {
+  min-height: 410px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(60px, 8vw, 110px) clamp(20px, 7vw, 110px);
+  background: var(--g-green);
+  border-bottom: 8px solid var(--g-orange);
+}
+
+.page-hero.red {
+  background: var(--g-red);
+}
+
+.appreciation-hero {
+  background: var(--g-rock);
+}
+
+.page-hero h1 {
+  max-width: var(--g-content);
+  margin: 0;
+  font-size: clamp(3.6rem, 8vw, 6rem);
+  line-height: 1;
+}
+
+.page-hero > p:not(.label) {
+  max-width: 56ch;
+  margin: var(--g-space-3) 0 0;
+  color: var(--g-text-on-dark);
+  font-size: 1.1rem;
+}
+
+.section {
+  padding-block: var(--g-space-7) var(--g-space-8);
+}
+
+.toolbar {
+  padding-bottom: var(--g-space-4);
+  border-bottom: 1px solid var(--g-line-light);
+}
+
+button {
+  min-height: 42px;
+  cursor: pointer;
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+button:hover,
+button.active {
+  border-color: var(--g-rock);
+  background: var(--g-rock);
+  color: var(--g-white);
+}
+
+/* Cards and 9:16 imagery */
+.card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 28px);
+}
+
+.card {
+  background: var(--g-white);
+  border-top: 5px solid var(--g-orange);
+  box-shadow: var(--g-shadow);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 62px rgba(0, 0, 0, 0.18);
+}
+
+.poster,
+.media,
+.appreciation-card .poster {
+  aspect-ratio: 9 / 16;
+  background: var(--g-rock);
+}
+
+.poster img,
+.media img,
+.appreciation-card .poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--g-rock);
+}
+
+.poster span,
+.appreciation-card .poster span {
+  top: 16px;
+  left: 16px;
+  padding: 7px 12px;
+  background: var(--g-orange);
+  color: var(--g-rock);
+  letter-spacing: 0.04em;
+}
+
+.card-body,
+.pad {
+  padding: clamp(20px, 2vw, 28px);
+}
+
+.card-body small,
+.pad small {
+  color: var(--g-red);
+  letter-spacing: 0.1em;
+}
+
+.card-body h2,
+.pad h3 {
+  margin: 8px 0 12px;
+  color: var(--g-rock);
+  font-size: clamp(1.55rem, 2.6vw, 2rem);
+  line-height: 1.15;
+}
+
+.card-body p,
+.pad p {
+  color: #4A5055;
+  line-height: 1.65;
+}
+
+.card-body > a,
+.pad > a {
+  color: var(--g-green);
+  border-bottom-color: var(--g-orange);
+}
+
+/* Footer */
+footer {
+  min-height: 150px;
+  padding: var(--g-space-5) clamp(20px, 5vw, 72px);
+  background: var(--g-rock);
+  border-top: 3px solid var(--g-orange);
+}
+
+footer img {
+  width: 76px;
+  height: 76px;
+  min-width: 50px;
+  border-radius: 0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (max-width: 980px) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .site-header {
+    min-height: 78px;
+    padding: 11px 20px;
+  }
+
+  .site-header nav {
+    top: 78px;
+    gap: 0;
+    padding: 12px 20px 22px;
+    border-bottom: 2px solid var(--g-orange);
+  }
+
+  .site-header nav a {
+    width: 100%;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--g-line-dark);
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-art {
+    min-height: 54svh;
+    border-right: 0;
+    border-bottom: 1px solid var(--g-line-dark);
+  }
+
+  .hero-copy {
+    padding: 52px 24px 64px;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .actions a,
+  .actions a.outline {
+    width: 100%;
+  }
+
+  .home-grid,
+  .brand-story,
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature {
+    min-height: 310px;
+  }
+
+  .page-hero {
+    min-height: 340px;
+  }
+
+  .toolbar {
+    display: block;
+  }
+}
