@@ -1,0 +1,162 @@
+/* GUDAO Homepage 9:16 Showcase v16 */
+.home-showcase-section {
+  padding: clamp(58px, 8vw, 112px) 0;
+  background: var(--g-sand, #EBEBE9);
+  color: var(--g-rock, #262C31);
+}
+
+.home-showcase-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(38, 44, 49, 0.16);
+}
+
+.home-showcase-heading h2 {
+  margin: 0;
+  color: var(--g-rock, #262C31);
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  line-height: 1;
+}
+
+.home-showcase-heading > p {
+  max-width: 46ch;
+  margin: 0;
+  color: #555D62;
+}
+
+.home-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 28px);
+}
+
+.home-showcase-card {
+  overflow: hidden;
+  background: #FFFFFF;
+  border-top: 5px solid var(--g-orange, #FF8510);
+  box-shadow: 0 18px 50px rgba(38, 44, 49, 0.12);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.home-showcase-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 62px rgba(38, 44, 49, 0.18);
+}
+
+.home-showcase-poster {
+  position: relative;
+  display: block;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: var(--g-rock, #262C31);
+}
+
+.home-showcase-poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--g-rock, #262C31);
+  transition: transform 260ms ease;
+}
+
+.home-showcase-card:hover .home-showcase-poster img {
+  transform: scale(1.015);
+}
+
+.home-showcase-fallback {
+  display: none;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.62);
+  font: 700 clamp(1.7rem, 3vw, 2.4rem) "Khand", sans-serif;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.home-showcase-status {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 8px 13px;
+  background: var(--g-orange, #FF8510);
+  color: var(--g-rock, #262C31);
+  font-family: "Khand", "GenSekiGothicTC", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.home-showcase-body {
+  padding: clamp(22px, 2.5vw, 30px);
+}
+
+.home-showcase-eyebrow {
+  margin: 0 0 7px;
+  color: var(--g-red, #823B35);
+  font-family: "Khand", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.home-showcase-body h2 {
+  margin: 0 0 12px;
+  color: var(--g-rock, #262C31);
+  font-size: clamp(1.7rem, 2.6vw, 2.25rem);
+  line-height: 1.12;
+}
+
+.home-showcase-body > p:not(.home-showcase-eyebrow) {
+  min-height: 3.4em;
+  margin: 0;
+  color: #4A5055;
+  line-height: 1.7;
+}
+
+.home-showcase-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 20px;
+  padding-bottom: 4px;
+  color: var(--g-green, #345339);
+  font-family: "Khand", "GenSekiGothicTC", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid var(--g-orange, #FF8510);
+}
+
+.home-showcase-link:hover {
+  color: var(--g-red, #823B35);
+}
+
+@media (max-width: 980px) {
+  .home-showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .home-showcase-heading {
+    display: block;
+  }
+
+  .home-showcase-heading > p {
+    margin-top: 14px;
+  }
+
+  .home-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-showcase-card,
+  .home-showcase-poster img {
+    transition: none;
+  }
+}
