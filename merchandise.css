@@ -1,0 +1,298 @@
+/* GUDAO Merchandise v1 */
+.merchandise-page {
+  min-height: 100vh;
+  background: var(--g-sand, #EBEBE9);
+  color: var(--g-rock, #262C31);
+}
+
+.merchandise-hero {
+  background-color: var(--g-rock, #262C31) !important;
+}
+
+.merchandise-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  padding: clamp(52px, 7vw, 96px) 0 28px;
+  border-bottom: 1px solid rgba(38, 44, 49, 0.18);
+}
+
+.merchandise-intro h2 {
+  margin: 0;
+  color: var(--g-rock, #262C31);
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  line-height: 1;
+}
+
+.merchandise-intro > p {
+  max-width: 48ch;
+  margin: 0;
+  color: #535B60;
+}
+
+.merchandise-list {
+  display: grid;
+  gap: clamp(56px, 8vw, 110px);
+  padding: 38px 0 clamp(84px, 10vw, 140px);
+}
+
+.merch-product {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.85fr) minmax(360px, 1.15fr);
+  gap: clamp(34px, 6vw, 88px);
+  align-items: center;
+  padding-bottom: clamp(56px, 8vw, 100px);
+  border-bottom: 1px solid rgba(38, 44, 49, 0.18);
+}
+
+.merch-product:nth-child(even) .merch-gallery {
+  order: 2;
+}
+
+.merch-gallery {
+  position: relative;
+  aspect-ratio: 27 / 35;
+  overflow: hidden;
+  background: var(--g-rock, #262C31);
+  border-top: 5px solid var(--g-orange, #FF8510);
+  box-shadow: 0 24px 65px rgba(38, 44, 49, 0.18);
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.merch-track {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.merch-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 260ms ease;
+}
+
+.merch-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.merch-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--g-rock, #262C31);
+  pointer-events: none;
+}
+
+.merch-image-fallback {
+  display: none;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  font: 700 clamp(1.8rem, 4vw, 3rem) "Khand", sans-serif;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.merch-status {
+  position: absolute;
+  z-index: 4;
+  top: 16px;
+  left: 16px;
+  padding: 8px 13px;
+  background: var(--g-orange, #FF8510);
+  color: var(--g-rock, #262C31);
+  font-family: "Khand", "GenSekiGothicTC", sans-serif;
+  font-weight: 700;
+}
+
+.merch-counter {
+  position: absolute;
+  z-index: 4;
+  top: 19px;
+  right: 18px;
+  color: #FFFFFF;
+  font-family: "Khand", sans-serif;
+  font-weight: 700;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
+}
+
+.merch-arrow {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  width: 48px;
+  height: 58px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(38, 44, 49, 0.68);
+  color: #FFFFFF;
+  font-size: 2rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.merch-prev { left: 12px; }
+.merch-next { right: 12px; }
+
+.merch-arrow:hover {
+  background: var(--g-orange, #FF8510);
+  color: var(--g-rock, #262C31);
+  border-color: var(--g-orange, #FF8510);
+}
+
+.merch-dots {
+  position: absolute;
+  z-index: 5;
+  right: 0;
+  bottom: 17px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+}
+
+.merch-dot {
+  width: 10px;
+  min-height: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.merch-dot.active {
+  background: var(--g-orange, #FF8510);
+  border-color: var(--g-orange, #FF8510);
+}
+
+.merch-category,
+.merch-code {
+  margin: 0;
+  font-family: "Khand", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.merch-category { color: var(--g-orange, #FF8510); }
+.merch-code { margin-top: 7px; color: var(--g-red, #823B35); }
+
+.merch-content h2 {
+  margin: 9px 0 8px;
+  color: var(--g-rock, #262C31);
+  font-size: clamp(3rem, 6vw, 5.6rem);
+  line-height: 1;
+}
+
+.merch-subtitle {
+  margin: 0 0 24px;
+  color: #3F474C;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  font-weight: 700;
+}
+
+.merch-description {
+  max-width: 62ch;
+  margin: 0;
+  color: #535B60;
+  line-height: 1.8;
+}
+
+.merch-highlights {
+  display: grid;
+  gap: 0;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(38, 44, 49, 0.18);
+}
+
+.merch-highlights li {
+  padding: 13px 0 13px 23px;
+  border-bottom: 1px solid rgba(38, 44, 49, 0.12);
+  position: relative;
+}
+
+.merch-highlights li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  background: var(--g-orange, #FF8510);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.merch-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 30px;
+  padding: 13px 22px;
+  background: var(--g-orange, #FF8510);
+  color: var(--g-rock, #262C31);
+  font-family: "Khand", "GenSekiGothicTC", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid var(--g-orange, #FF8510);
+}
+
+.merch-link:hover {
+  background: transparent;
+}
+
+@media (max-width: 900px) {
+  .merch-product {
+    grid-template-columns: 1fr;
+  }
+
+  .merch-product:nth-child(even) .merch-gallery {
+    order: initial;
+  }
+
+  .merch-gallery {
+    width: min(100%, 620px);
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .merchandise-intro {
+    display: block;
+  }
+
+  .merchandise-intro > p {
+    margin-top: 16px;
+  }
+
+  .merch-product {
+    gap: 28px;
+  }
+
+  .merch-arrow {
+    width: 42px;
+    height: 50px;
+  }
+
+  .merch-content h2 {
+    font-size: clamp(2.8rem, 14vw, 4.4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .merch-slide {
+    transition: none;
+  }
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#262C31">
+  <title>周邊商品｜孤島 GUDAO</title>
+  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="brand-system-v14.css?v=14">
+  <link rel="stylesheet" href="contour-hero-v15.css?v=15">
+  <link rel="stylesheet" href="merchandise.css?v=1">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="assets/brand/logo.png" alt="孤島標誌">
+      <span>孤島 GUDAO</span>
+    </a>
+
+    <button class="menu" type="button" aria-label="開啟選單" aria-expanded="false">☰</button>
+
+    <nav aria-label="主要導覽">
+      <a href="index.html">首頁</a>
+      <a href="stock.html">現貨販售</a>
+      <a href="event.html">近期活動</a>
+      <a href="appreciation.html">孤島賞析</a>
+      <a class="active" href="merchandise.html">周邊商品</a>
+      <a href="raffle.html">孤島抽獎</a>
+      <a class="ig" href="https://www.instagram.com/gudao.team/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+    </nav>
+  </header>
+
+  <main class="merchandise-page">
+    <section class="page-hero merchandise-hero">
+      <p class="label">GUDAO GOODS</p>
+      <h1>周邊商品</h1>
+      <p>從培育介質到生活周邊，延伸孤島的品牌與培育日常。</p>
+    </section>
+
+    <section class="merchandise-intro wrap">
+      <div>
+        <p class="label">PRODUCT COLLECTION</p>
+        <h2>孤島選物</h2>
+      </div>
+      <p>圖片可左右滑動或使用按鈕切換。每項商品皆可獨立設定圖片、說明與相關連結。</p>
+    </section>
+
+    <section id="merchandise-list" class="merchandise-list wrap" aria-live="polite"></section>
+  </main>
+
+  <footer>
+    <img src="assets/brand/logo.png" alt="孤島標誌">
+    <div>
+      <b>PASSION TO THE ISLAND</b>
+      <p>© 2026 GUDAO TEAM</p>
+    </div>
+  </footer>
+
+  <script src="merchandise-data.js?v=1"></script>
+  <script src="merchandise.js?v=1"></script>
+  <script>
+    const menuButton = document.querySelector('.menu');
+    const navigation = document.querySelector('.site-header nav');
+
+    menuButton?.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+  </script>
+</body>
+</html>
