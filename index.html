@@ -7,6 +7,7 @@
   <title>孤島 GUDAO</title>
   <link rel="stylesheet" href="style.css?v=13">
   <link rel="stylesheet" href="brand-system-v14.css?v=14">
+  <link rel="stylesheet" href="home-banner-v17.css?v=17">
 </head>
 <body>
   <header class="site-header">
@@ -47,10 +48,25 @@
       </div>
     </section>
 
-    <section class="stripe">
+    <section class="stripe" aria-label="孤島品牌精神">
       <span>TOUGHNESS</span>
       <span>ISLAND</span>
       <span>PASSION</span>
+    </section>
+
+    <!-- 龍舌蘭培育橫幅：更換 images/home/agave-banner.jpg 即可換圖 -->
+    <section class="agave-banner-section" aria-labelledby="agave-banner-title">
+      <a class="agave-banner" href="appreciation.html">
+        <img src="images/home/agave-banner.jpg" alt="孤島培育的龍舌蘭">
+        <span class="agave-banner-shade" aria-hidden="true"></span>
+
+        <div class="agave-banner-content">
+          <p class="label">GUDAO CULTIVATION</p>
+          <h2 id="agave-banner-title">看見每一株<br>獨一無二的模樣</h2>
+          <p>記錄孤島培育中的龍舌蘭，從光照、葉序到刺型，留下每一次成長。</p>
+          <span class="agave-banner-link">查看孤島賞析 →</span>
+        </div>
+      </a>
     </section>
 
     <section class="brand-story wrap">
@@ -81,9 +97,5 @@
       menuButton.setAttribute('aria-expanded', String(isOpen));
     });
   </script>
-
-home-features.js?v=16script>
-home-showcase.js?v=16script>
- 
 </body>
 </html>
