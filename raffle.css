@@ -1,0 +1,324 @@
+/* GUDAO Raffle System */
+.raffle-page {
+  min-height: 100vh;
+  background: var(--g-sand, #EBEBE9);
+  color: var(--g-rock, #262C31);
+}
+
+.raffle-hero {
+  background: var(--g-rock, #262C31);
+  border-bottom-color: var(--g-orange, #FF8510);
+}
+
+.raffle-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(20px, 3vw, 42px);
+  width: min(calc(100% - 40px), 1320px);
+  margin: 0 auto;
+  padding: clamp(42px, 6vw, 88px) 0 clamp(70px, 8vw, 120px);
+}
+
+.raffle-panel {
+  padding: clamp(24px, 3vw, 42px);
+  background: #FFFFFF;
+  border-top: 6px solid var(--g-orange, #FF8510);
+  box-shadow: 0 18px 50px rgba(38, 44, 49, 0.12);
+}
+
+.panel-heading {
+  margin-bottom: 28px;
+}
+
+.panel-heading h2,
+.prize-heading h2 {
+  margin: 2px 0 0;
+  color: var(--g-rock, #262C31);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1;
+}
+
+.step {
+  margin: 0;
+  color: var(--g-orange, #FF8510);
+  font-family: "Khand", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.range-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.raffle-panel label {
+  display: grid;
+  gap: 7px;
+  color: #4A5055;
+  font-weight: 700;
+}
+
+.raffle-panel input {
+  width: 100%;
+  min-height: 50px;
+  padding: 10px 13px;
+  border: 1px solid rgba(38, 44, 49, 0.3);
+  border-radius: 0;
+  background: #FFFFFF;
+  color: #262C31;
+  font: inherit;
+}
+
+.raffle-panel input:focus {
+  outline: 3px solid rgba(255, 133, 16, 0.28);
+  border-color: #FF8510;
+}
+
+.prize-section {
+  margin-top: 38px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(38, 44, 49, 0.16);
+}
+
+.prize-heading,
+.winner-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.prize-list {
+  display: grid;
+  gap: 12px;
+}
+
+.prize-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px auto;
+  gap: 10px;
+  align-items: end;
+  padding: 14px;
+  background: #F5F4F0;
+  border-left: 4px solid #345339;
+}
+
+.primary-button,
+.secondary-button,
+.danger-button,
+.draw-button,
+.text-button,
+.remove-prize {
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 0;
+  font: 700 1rem "Khand", "GenSekiGothicTC", sans-serif;
+  cursor: pointer;
+}
+
+.primary-button,
+.draw-button {
+  border: 1px solid #FF8510;
+  background: #FF8510;
+  color: #262C31;
+}
+
+.secondary-button {
+  border: 1px solid #345339;
+  background: transparent;
+  color: #345339;
+}
+
+.danger-button,
+.remove-prize {
+  border: 1px solid #823B35;
+  background: transparent;
+  color: #823B35;
+}
+
+.text-button {
+  min-height: 36px;
+  padding: 5px 0;
+  border: 0;
+  border-bottom: 2px solid #FF8510;
+  background: transparent;
+  color: #345339;
+}
+
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
+.setup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.message {
+  min-height: 1.7em;
+  margin: 16px 0 0;
+  color: #345339;
+}
+
+.message.error {
+  color: #823B35;
+}
+
+.draw-panel {
+  background: #262C31;
+  color: #FFFFFF;
+}
+
+.draw-panel .panel-heading h2,
+.draw-panel h3 {
+  color: #FFFFFF;
+}
+
+.draw-status {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.draw-status > div {
+  min-height: 100px;
+  padding: 16px;
+  background: #262C31;
+}
+
+.draw-status span,
+.number-label {
+  display: block;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+
+.draw-status strong {
+  display: block;
+  margin-top: 7px;
+  color: #FFFFFF;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.number-stage {
+  display: grid;
+  place-items: center;
+  min-height: 350px;
+  margin: 22px 0 16px;
+  padding: 34px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255, 133, 16, 0.18), transparent 44%),
+    #1D2226;
+}
+
+#winner-number {
+  color: #FF8510;
+  font-family: "Khand", sans-serif;
+  font-size: clamp(5rem, 14vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+}
+
+#winner-prize {
+  margin: 18px 0 0;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+}
+
+.draw-button {
+  width: 100%;
+  min-height: 58px;
+  font-size: 1.3rem;
+}
+
+.winner-section {
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.winner-heading h3 {
+  margin: 0;
+  font-size: 1.65rem;
+}
+
+.winner-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.winner-list li {
+  display: grid;
+  grid-template-columns: 44px 90px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border-left: 4px solid #FF8510;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.winner-list strong {
+  color: #FF8510;
+  font-family: "Khand", sans-serif;
+  font-size: 1.6rem;
+}
+
+.winner-order {
+  color: rgba(255, 255, 255, 0.55);
+  font-family: "Khand", sans-serif;
+}
+
+.winner-list .empty-state {
+  display: block;
+  color: rgba(255, 255, 255, 0.62);
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 980px) {
+  .raffle-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .range-grid,
+  .draw-status {
+    grid-template-columns: 1fr;
+  }
+
+  .prize-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .prize-row {
+    grid-template-columns: 1fr 90px;
+  }
+
+  .remove-prize {
+    grid-column: 1 / -1;
+  }
+
+  .number-stage {
+    min-height: 270px;
+  }
+
+  .winner-list li {
+    grid-template-columns: 34px 70px minmax(0, 1fr);
+  }
+}

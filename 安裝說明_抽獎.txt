@@ -1,0 +1,14 @@
+孤島抽獎系統安裝方式
+
+1. 將 raffle.html、raffle.js、raffle.css 上傳到 GitHub Repository 根目錄。
+2. 在 index.html、stock.html、event.html、appreciation.html 的導覽列中，於「孤島賞析」後加入：
+   <a href="raffle.html">孤島抽獎</a>
+3. raffle.html 已載入：
+   style.css?v=13
+   brand-system-v14.css?v=14
+   raffle.css?v=1
+4. 網頁網址為：
+   https://gudaoteam2025.github.io/gudao-website/raffle.html
+5. 所有抽獎在訪客的瀏覽器本機執行，不會上傳參加者資料。
+6. 重新整理或按「全部重設」會清除本輪抽獎結果。
+7. 抽獎時已中獎的號碼會從候選清單移除，本輪不會再次抽中。

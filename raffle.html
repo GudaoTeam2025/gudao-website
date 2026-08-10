@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#262C31">
+  <title>孤島抽獎系統｜孤島 GUDAO</title>
+  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="brand-system-v14.css?v=14">
+  <link rel="stylesheet" href="raffle.css?v=1">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="assets/brand/logo.png" alt="孤島標誌">
+      <span>孤島 GUDAO</span>
+    </a>
+
+    <button class="menu" type="button" aria-label="開啟選單" aria-expanded="false">☰</button>
+
+    <nav aria-label="主要導覽">
+      <a href="index.html">首頁</a>
+      <a href="stock.html">現貨販售</a>
+      <a href="event.html">近期活動</a>
+      <a href="appreciation.html">孤島賞析</a>
+      <a class="active" href="raffle.html">孤島抽獎</a>
+      <a class="ig" href="https://www.instagram.com/gudao.team/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+    </nav>
+  </header>
+
+  <main class="raffle-page">
+    <section class="page-hero raffle-hero">
+      <p class="label">GUDAO RAFFLE</p>
+      <h1>孤島抽獎系統</h1>
+      <p>設定號碼範圍與獎項，已抽中的號碼不會再次參與本輪抽獎。</p>
+    </section>
+
+    <section class="raffle-wrap">
+      <section class="raffle-panel setup-panel" aria-labelledby="setup-title">
+        <div class="panel-heading">
+          <p class="step">STEP 01</p>
+          <h2 id="setup-title">設定抽獎</h2>
+        </div>
+
+        <div class="range-grid">
+          <label>
+            起始號碼
+            <input id="start-number" type="number" min="1" max="100000" value="1" inputmode="numeric">
+          </label>
+
+          <label>
+            結束號碼
+            <input id="end-number" type="number" min="1" max="100000" value="1000" inputmode="numeric">
+          </label>
+        </div>
+
+        <div class="prize-section">
+          <div class="prize-heading">
+            <div>
+              <p class="step">STEP 02</p>
+              <h2>輸入獎項</h2>
+            </div>
+            <button id="add-prize" class="secondary-button" type="button">＋ 新增獎項</button>
+          </div>
+
+          <div id="prize-list" class="prize-list"></div>
+        </div>
+
+        <div class="setup-actions">
+          <button id="initialize" class="primary-button" type="button">建立本輪抽獎</button>
+          <button id="reset-all" class="danger-button" type="button">全部重設</button>
+        </div>
+
+        <p id="setup-message" class="message" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="raffle-panel draw-panel" aria-labelledby="draw-title">
+        <div class="panel-heading">
+          <p class="step">STEP 03</p>
+          <h2 id="draw-title">開始抽獎</h2>
+        </div>
+
+        <div class="draw-status">
+          <div>
+            <span>目前獎項</span>
+            <strong id="current-prize">尚未建立抽獎</strong>
+          </div>
+          <div>
+            <span>剩餘候選號碼</span>
+            <strong id="remaining-count">0</strong>
+          </div>
+          <div>
+            <span>剩餘名額</span>
+            <strong id="remaining-prizes">0</strong>
+          </div>
+        </div>
+
+        <div class="number-stage" aria-live="polite">
+          <span class="number-label">WINNER</span>
+          <strong id="winner-number">---</strong>
+          <p id="winner-prize">建立本輪抽獎後即可開始</p>
+        </div>
+
+        <button id="draw" class="draw-button" type="button" disabled>抽出下一位</button>
+
+        <div class="winner-section">
+          <div class="winner-heading">
+            <h3>中獎紀錄</h3>
+            <button id="copy-results" class="text-button" type="button" disabled>複製結果</button>
+          </div>
+          <ol id="winner-list" class="winner-list">
+            <li class="empty-state">尚無中獎紀錄</li>
+          </ol>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/brand/logo.png" alt="孤島標誌">
+    <div>
+      <b>PASSION TO THE ISLAND</b>
+      <p>© 2026 GUDAO TEAM</p>
+    </div>
+  </footer>
+
+  <script src="raffle.js?v=1"></script>
+  <script>
+    const menuButton = document.querySelector('.menu');
+    const navigation = document.querySelector('.site-header nav');
+
+    menuButton?.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+  </script>
+</body>
+</html>
