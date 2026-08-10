@@ -296,3 +296,7 @@
     transition: none;
   }
 }
+/* 隱藏商品圖片左上角的橘色狀態標籤 */
+.merch-status {
+display: none;
+}
