@@ -27,7 +27,7 @@ window.GUDAO_MERCHANDISE = [
       "images/merchandise/medium/medium-005.jpg"
     ],
     link: "https://www.instagram.com/gudao.team/",
-    linkText: "Instagram 私訊了解"
+    linkText: "購買請點我"
   }
 
   /* 未來新增範例：
