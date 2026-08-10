@@ -13,16 +13,18 @@ window.GUDAO_MERCHANDISE = [
     name: "孤島介質",
     subtitle: "為龍舌蘭培育日常準備的孤島介質",
     status: "商品介紹",
-    description: "此處可填寫孤島介質的正式定位、特色、包裝內容與適用情境。配方、粒徑、容量與使用方式請依實際商品資料更新。",
+    description: "不只是介質，是孤島的經驗值，針對燈養環境調配，穩根、控型，一步到位",
     highlights: [
-      "商品特色待補充",
-      "容量與規格待補充",
-      "建議使用方式待補充"
+      "介質比例全顆粒8 泥炭2",
+      "容量2.5L（約1.5kg）",
+      "售價: $150元，運費另計"
     ],
     images: [
       "images/merchandise/medium/medium-001.jpg",
       "images/merchandise/medium/medium-002.jpg",
-      "images/merchandise/medium/medium-003.jpg"
+      "images/merchandise/medium/medium-003.jpg",
+      "images/merchandise/medium/medium-004.jpg",
+      "images/merchandise/medium/medium-005.jpg"
     ],
     link: "https://www.instagram.com/gudao.team/",
     linkText: "Instagram 私訊了解"
