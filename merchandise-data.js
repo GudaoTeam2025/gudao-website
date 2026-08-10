@@ -12,7 +12,6 @@ window.GUDAO_MERCHANDISE = [
     category: "CULTIVATION GOODS",
     name: "孤島介質",
     subtitle: "為龍舌蘭培育日常準備的孤島介質",
-    status: "商品介紹",
     description: "不只是介質，是孤島的經驗值，針對燈養環境調配，穩根、控型，一步到位",
     highlights: [
       "介質比例全顆粒8 泥炭2",
