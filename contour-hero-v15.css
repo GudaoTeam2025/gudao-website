@@ -1,0 +1,118 @@
+/* GUDAO Contour Hero v15
+   Load AFTER style.css and brand-system-v14.css.
+   Background asset: assets/brand/等高線背景.png
+*/
+
+:root {
+  --g-rock: #262C31;
+  --g-orange: #FF8510;
+}
+
+/* Disable the simulated concentric-line graphic from v14 */
+.hero::before,
+.page-hero::before,
+footer::before {
+  display: none !important;
+}
+
+/* Shared hero treatment for Stock, Event, Appreciation and Raffle */
+.page-hero,
+.page-hero.red,
+.appreciation-hero,
+.raffle-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 410px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(64px, 8vw, 112px) clamp(24px, 7vw, 112px);
+
+  /* Rock-gray fallback + manual contour artwork */
+  background-color: var(--g-rock) !important;
+  background-image: url("assets/brand/等高線背景.png") !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+
+  color: #FFFFFF;
+  border-bottom: 8px solid var(--g-orange);
+}
+
+/* Subtle dark veil keeps all headings readable without changing artwork ratio */
+.page-hero::after,
+.appreciation-hero::after,
+.raffle-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(38, 44, 49, 0.18) 0%,
+    rgba(38, 44, 49, 0.08) 52%,
+    rgba(38, 44, 49, 0.02) 100%
+  );
+  pointer-events: none;
+}
+
+/* Keep text above the background image */
+.page-hero > *,
+.appreciation-hero > *,
+.raffle-hero > * {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+}
+
+.page-hero .label,
+.appreciation-hero .label,
+.raffle-hero .label {
+  margin: 0 0 10px;
+  color: var(--g-orange);
+}
+
+.page-hero h1,
+.appreciation-hero h1,
+.raffle-hero h1 {
+  margin: 0;
+  color: #FFFFFF;
+  text-wrap: balance;
+}
+
+.page-hero > p:not(.label),
+.appreciation-hero > p:not(.label),
+.raffle-hero > p:not(.label) {
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.7;
+}
+
+/* Page-specific colors are intentionally neutralized */
+.page-hero.red {
+  background-color: var(--g-rock) !important;
+}
+
+/* Mobile framing preserves the artwork and keeps the line details visible */
+@media (max-width: 820px) {
+  .page-hero,
+  .page-hero.red,
+  .appreciation-hero,
+  .raffle-hero {
+    min-height: 340px;
+    padding: 58px 24px;
+    background-position: center center !important;
+    background-size: cover !important;
+  }
+}
+
+/* Optional: on very wide screens, avoid excessive enlargement */
+@media (min-width: 1700px) {
+  .page-hero,
+  .page-hero.red,
+  .appreciation-hero,
+  .raffle-hero {
+    background-size: 100% auto !important;
+  }
+}
