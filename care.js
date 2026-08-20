@@ -3,28 +3,44 @@
   if (!list || !Array.isArray(window.GUDAO_CARE_ARTICLES)) return;
 
   const safe = (value) => String(value ?? '')
-    .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
 
   const externalAttrs = (url) => /^https?:\/\//i.test(url)
-    ? ' target="_blank" rel="noopener noreferrer"' : '';
+    ? ' target="_blank" rel="noopener noreferrer"'
+    : '';
 
   list.innerHTML = window.GUDAO_CARE_ARTICLES.map((article, index) => {
     const images = Array.isArray(article.images) ? article.images : [];
     const slides = images.map((image, imageIndex) => `
       <li class="care-slide" aria-hidden="${imageIndex !== 0}">
-        <img src="${safe(image)}" alt="${safe(article.title)} 圖片 ${imageIndex + 1}"
-          loading="${imageIndex === 0 ? 'eager' : 'lazy'}" draggable="false"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+        <img
+          src="${safe(image)}"
+          alt="${safe(article.title)} 圖片 ${imageIndex + 1}"
+          loading="${imageIndex === 0 ? 'eager' : 'lazy'}"
+          draggable="false"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+        >
         <div class="care-fallback">GUDAO<br>${safe(article.code)}</div>
-      </li>`).join('');
+      </li>
+    `).join('');
 
     const dots = images.map((_, imageIndex) => `
-      <button class="care-dot ${imageIndex === 0 ? 'active' : ''}" type="button"
-        data-go-to="${imageIndex}" aria-label="顯示第 ${imageIndex + 1} 張圖片"></button>`).join('');
+      <button
+        class="care-dot ${imageIndex === 0 ? 'active' : ''}"
+        type="button"
+        data-go-to="${imageIndex}"
+        aria-label="顯示第 ${imageIndex + 1} 張圖片"
+      ></button>
+    `).join('');
 
-    const paragraphs = (article.paragraphs || []).map(text => `<p>${safe(text)}</p>`).join('');
-    const points = (article.points || []).map(text => `<li>${safe(text)}</li>`).join('');
+    const paragraphs = (article.paragraphs || [])
+      .map(text => `<p>${safe(text)}</p>`).join('');
+    const points = (article.points || [])
+      .map(text => `<li>${safe(text)}</li>`).join('');
 
     return `
       <article class="care-article" data-care-index="${index}">
@@ -33,7 +49,8 @@
           ${images.length > 1 ? `
             <button class="care-arrow care-prev" type="button" aria-label="上一張圖片">‹</button>
             <button class="care-arrow care-next" type="button" aria-label="下一張圖片">›</button>
-            <div class="care-dots">${dots}</div>` : ''}
+            <div class="care-dots">${dots}</div>
+          ` : ''}
           <span class="care-badge">${safe(article.badge)}</span>
           <span class="care-counter">1 / ${Math.max(images.length, 1)}</span>
         </div>
@@ -49,7 +66,8 @@
             ${safe(article.linkText)} <span aria-hidden="true">↗</span>
           </a>
         </div>
-      </article>`;
+      </article>
+    `;
   }).join('');
 
   document.querySelectorAll('.care-article').forEach(setupGallery);
@@ -80,36 +98,60 @@
     };
 
     previous?.addEventListener('click', event => {
-      event.preventDefault(); event.stopPropagation(); show(current - 1);
+      event.preventDefault();
+      event.stopPropagation();
+      show(current - 1);
     });
+
     next?.addEventListener('click', event => {
-      event.preventDefault(); event.stopPropagation(); show(current + 1);
+      event.preventDefault();
+      event.stopPropagation();
+      show(current + 1);
     });
+
     dots.forEach(dot => dot.addEventListener('click', event => {
-      event.preventDefault(); event.stopPropagation(); show(Number(dot.dataset.goTo));
+      event.preventDefault();
+      event.stopPropagation();
+      show(Number(dot.dataset.goTo));
     }));
 
     gallery.addEventListener('keydown', event => {
-      if (event.key === 'ArrowLeft') { event.preventDefault(); show(current - 1); }
-      if (event.key === 'ArrowRight') { event.preventDefault(); show(current + 1); }
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        show(current - 1);
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        show(current + 1);
+      }
     });
 
     gallery.addEventListener('pointerdown', event => {
       if (event.target.closest('button')) return;
-      dragging = true; startX = event.clientX; deltaX = 0;
+      dragging = true;
+      startX = event.clientX;
+      deltaX = 0;
       gallery.setPointerCapture?.(event.pointerId);
     });
+
     gallery.addEventListener('pointermove', event => {
       if (dragging) deltaX = event.clientX - startX;
     });
+
     gallery.addEventListener('pointerup', event => {
       if (!dragging) return;
       dragging = false;
       gallery.releasePointerCapture?.(event.pointerId);
-      if (Math.abs(deltaX) > 50) show(deltaX > 0 ? current - 1 : current + 1);
+      if (Math.abs(deltaX) > 50) {
+        show(deltaX > 0 ? current - 1 : current + 1);
+      }
       deltaX = 0;
     });
-    gallery.addEventListener('pointercancel', () => { dragging = false; deltaX = 0; });
+
+    gallery.addEventListener('pointercancel', () => {
+      dragging = false;
+      deltaX = 0;
+    });
 
     show(0);
   }

@@ -1,0 +1,9 @@
+本修正版已處理：
+1. care.css 中的 &gt; 已還原為 >，並移除所有 <br>。
+2. care-data.js 的 Instagram 連結已修正為純網址字串。
+3. care.js 中所有 =&gt;、&lt;、&gt; 與錯誤引號已修正。
+4. care.html 的 Instagram 導覽連結與箭頭函式已修正。
+5. care.html 快取版本更新為 care.css?v=2、care-data.js?v=2、care.js?v=2。
+6. 保留 7 張 1080 x 1400 圖片與電腦、手機輪播操作。
+
+請將 care.html、care.css、care-data.js、care.js 全部上傳到 GitHub 根目錄並覆蓋同名檔案。

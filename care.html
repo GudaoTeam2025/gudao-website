@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css?v=13">
   <link rel="stylesheet" href="brand-system-v14.css?v=14">
   <link rel="stylesheet" href="contour-hero-v15.css?v=15">
-  <link rel="stylesheet" href="care.css?v=1">
+  <link rel="stylesheet" href="care.css?v=2">
 </head>
 <body>
   <header class="site-header">
@@ -35,7 +35,7 @@
     <section class="page-hero care-hero">
       <p class="label">GUDAO CULTIVATION GUIDE</p>
       <h1>養護資訊</h1>
-      <p>從環境、光照、給水到日常養護，整理孤島的培育經驗</p>
+      <p>從環境、光照、給水到日常養護，整理孤島的培育經驗。</p>
     </section>
 
     <section class="care-intro wrap">
@@ -43,7 +43,7 @@
         <p class="label">CARE JOURNAL</p>
         <h2>孤島養護筆記</h2>
       </div>
-      <p>圖片可使用左右按鈕、圓點、鍵盤方向鍵或手機滑動切換</p>
+      <p>圖片可使用左右按鈕、圓點、鍵盤方向鍵或手機滑動切換。</p>
     </section>
 
     <section id="care-list" class="care-list wrap" aria-live="polite"></section>
@@ -57,11 +57,12 @@
     </div>
   </footer>
 
-  <script src="care-data.js?v=1"></script>
-  <script src="care.js?v=1"></script>
+  <script src="care-data.js?v=2"></script>
+  <script src="care.js?v=2"></script>
   <script>
     const menuButton = document.querySelector('.menu');
     const navigation = document.querySelector('.site-header nav');
+
     menuButton?.addEventListener('click', () => {
       const isOpen = navigation.classList.toggle('open');
       menuButton.setAttribute('aria-expanded', String(isOpen));
