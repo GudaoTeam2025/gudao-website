@@ -25,7 +25,11 @@ window.GUDAO_CARE_ARTICLES = [
     images: [
       "images/care/agave-care/care-001.jpg",
       "images/care/agave-care/care-002.jpg",
-      "images/care/agave-care/care-003.jpg"
+      "images/care/agave-care/care-003.jpg",
+      "images/care/agave-care/care-004.jpg",
+      "images/care/agave-care/care-005.jpg",
+      "images/care/agave-care/care-006.jpg",
+      "images/care/agave-care/care-007.jpg"      
     ],
     link: "https://www.instagram.com/gudao.team/",
     linkText: "聯繫孤島討論"
