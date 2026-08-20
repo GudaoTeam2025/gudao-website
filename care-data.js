@@ -10,7 +10,7 @@ window.GUDAO_CARE_ARTICLES = [
   {
     code: "GDC-001",
     category: "AGAVE CARE",
-    title: "【龍舌蘭光照簡易指南】",
+    title: "光照簡易指南",
     subtitle: "先觀察環境，再建立適合自己的養護節奏",
     badge: "養護筆記",
     paragraphs: [
