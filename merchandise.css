@@ -300,3 +300,10 @@
 .merch-status {
 display: none;
 }
+/* 移除圖片左上角的養護筆記標籤 */
+2
+.merch-status {
+3
+display: none !important;
+4
+}
