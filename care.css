@@ -34,3 +34,7 @@
 @media(max-width:900px){.care-article{grid-template-columns:1fr}.care-article:nth-child(even) .care-gallery{order:initial}.care-gallery{width:min(100%,620px);margin:0 auto}}
 @media(max-width:620px){.care-intro{display:block}.care-intro>p{margin-top:16px}.care-article{gap:28px}.care-arrow{width:42px;height:50px}.care-content h2{font-size:clamp(2.8rem,14vw,4.4rem)}}
 @media(prefers-reduced-motion:reduce){.care-slide{transition:none}}
+/* 隱藏圖片左上角的養護筆記標籤 */
+.care-badge {
+  display: none !important;
+}
