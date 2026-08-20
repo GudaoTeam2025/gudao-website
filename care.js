@@ -51,7 +51,6 @@
             <button class="care-arrow care-next" type="button" aria-label="下一張圖片">›</button>
             <div class="care-dots">${dots}</div>
           ` : ''}
-          <span class="care-badge">${safe(article.badge)}</span>
           <span class="care-counter">1 / ${Math.max(images.length, 1)}</span>
         </div>
 
