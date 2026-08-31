@@ -1,0 +1,52 @@
+(() => {
+  const STORAGE_KEY = "gudao-sales-registration";
+  const CUSTOMER_PIN = "1688";
+  const ADMIN_PIN = "2025";
+  const MAX_ITEMS = 10;
+  const LOGO = "assets/brand/logo.png";
+  const app = document.querySelector("#app");
+  const products = (window.GUDAO_SALES_PRODUCTS || []).filter(p => p.active !== false);
+  let records = loadRecords();
+  let role = "customer";
+
+  const esc = v => String(v ?? "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  const money = v => new Intl.NumberFormat("zh-TW",{style:"currency",currency:"TWD",maximumFractionDigits:0}).format(Number(v||0));
+  function loadRecords(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]")}catch{return[]}}
+  function saveRecords(){localStorage.setItem(STORAGE_KEY,JSON.stringify(records))}
+  function topbar(label){return `<header class="topbar"><div class="brand"><img src="${LOGO}" alt="孤島標誌"><div>孤島 GUDAO<small>${label}</small></div></div><button id="logout" class="logout">登出</button></header>`}
+  function bindLogout(){document.querySelector('#logout').onclick=()=>renderLogin()}
+
+  function renderLogin(error=""){
+    app.innerHTML=`<main class="login-page"><div class="login-wrap"><div class="login-brand"><img src="${LOGO}" alt="孤島標誌"><p class="eyebrow">GUDAO PRIVATE SALES</p><h1>販售登記</h1><p>請選擇身分並輸入 PIN 碼</p></div><section class="panel login-panel"><div class="role-grid"><button class="role ${role==='customer'?'active':''}" data-role="customer">顧客填寫</button><button class="role ${role==='admin'?'active':''}" data-role="admin">Admin</button></div><form id="login-form" class="login-form"><label class="field">${role==='admin'?'Admin PIN':'顧客 PIN'}<div class="pin-wrap"><input id="pin" class="input" type="password" inputmode="numeric" autofocus placeholder="請輸入 PIN"><button id="eye" class="eye" type="button">顯示</button></div></label>${error?`<div class="error">${esc(error)}</div>`:''}<button class="btn" type="submit">${role==='admin'?'進入管理後台':'進入填寫頁面'}</button></form><div class="demo">顧客 PIN：1688<br>Admin PIN：2025</div></section></div></main>`;
+    document.querySelectorAll('[data-role]').forEach(b=>b.onclick=()=>{role=b.dataset.role;renderLogin()});
+    document.querySelector('#eye').onclick=e=>{const i=document.querySelector('#pin');i.type=i.type==='password'?'text':'password';e.currentTarget.textContent=i.type==='password'?'顯示':'隱藏'};
+    document.querySelector('#login-form').onsubmit=e=>{e.preventDefault();const expected=role==='admin'?ADMIN_PIN:CUSTOMER_PIN;if(document.querySelector('#pin').value!==expected)return renderLogin('PIN 碼不正確');role==='admin'?renderAdmin():renderForm()};
+  }
+
+  function productOptions(){return `<option value="">請選擇商品</option>${products.map(p=>`<option value="${esc(p.id)}" data-price="${Number(p.price||0)}">${esc(p.name)}｜${money(p.price)}</option>`).join('')}<option value="__manual__">手動輸入其他商品</option>`}
+  function itemHtml(index){return `<div class="item-row" data-item><span class="item-number">商品 ${index+1}</span><label class="field preset-wrap">商品選項<select class="select product-select">${productOptions()}</select></label><label class="field manual-wrap">商品名稱<input class="input manual-name" placeholder="自行輸入商品名稱"></label><label class="field">商品名稱<input class="input display-name" readonly placeholder="選擇後自動帶入"></label><label class="field">金額<input class="input amount" type="number" min="0" step="1" placeholder="0"></label><button class="remove-item" type="button">移除</button></div>`}
+
+  function renderForm(){
+    app.innerHTML=`${topbar('SALES REGISTRATION')}<main class="content form-layout"><section class="intro"><p class="eyebrow">GUDAO SALES</p><h1>販售登記</h1><p>選擇商品即可自動帶入金額，也可以選擇手動輸入其他商品。</p><div class="benefits"><div>◆ 預設只顯示一項商品</div><div>◆ 按新增商品可增加至十項</div><div>◆ 自動計算交易總金額</div></div></section><section class="panel form-panel"><p class="eyebrow">SALES FORM</p><h2>購買資訊</h2><form id="sale-form" class="form-grid"><div class="two-cols"><label class="field">您的名字是 *<input id="name" class="input" required></label><label class="field">您的 IG 帳號或 FB 名稱 *<input id="social" class="input" required></label></div><div class="items-head"><div><p class="eyebrow">PURCHASE ITEMS</p><h3>購買商品</h3></div><button id="add-item" class="btn secondary" type="button">＋ 新增商品</button></div><div id="item-list" class="item-list">${itemHtml(0)}</div><label class="field">備註<textarea id="note" class="textarea" placeholder="付款方式、保留、寄送、折扣或其他事項"></textarea></label><div class="total-row"><div><div>總金額</div><div id="total" class="total">${money(0)}</div></div><button class="btn" type="submit">完成販售登記</button></div></form></section></main>`;
+    bindLogout();bindItem(document.querySelector('[data-item]'));document.querySelector('#add-item').onclick=addItem;document.querySelector('#sale-form').onsubmit=submitSale;refreshItems();
+  }
+
+  function bindItem(row){
+    const select=row.querySelector('.product-select'),manual=row.querySelector('.manual-name'),display=row.querySelector('.display-name'),amount=row.querySelector('.amount');
+    select.onchange=()=>{const isManual=select.value==='__manual__';row.classList.toggle('manual',isManual);if(isManual){display.readOnly=false;display.value=manual.value;amount.value='';manual.focus()}else{const option=select.selectedOptions[0];display.readOnly=true;display.value=select.value?option.textContent.split('｜')[0]:'';amount.value=select.value?option.dataset.price:''}updateTotal()};
+    manual.oninput=()=>{display.value=manual.value};amount.oninput=updateTotal;row.querySelector('.remove-item').onclick=()=>{row.remove();refreshItems();updateTotal()};
+  }
+  function addItem(){const list=document.querySelector('#item-list');if(list.children.length>=MAX_ITEMS)return;list.insertAdjacentHTML('beforeend',itemHtml(list.children.length));bindItem(list.lastElementChild);refreshItems()}
+  function refreshItems(){const rows=[...document.querySelectorAll('[data-item]')];rows.forEach((r,i)=>{r.querySelector('.item-number').textContent=`商品 ${i+1}`;r.querySelector('.remove-item').disabled=rows.length===1});const add=document.querySelector('#add-item');if(add)add.disabled=rows.length>=MAX_ITEMS}
+  function updateTotal(){const total=[...document.querySelectorAll('.amount')].reduce((s,i)=>s+Number(i.value||0),0);document.querySelector('#total').textContent=money(total);return total}
+  function submitSale(e){e.preventDefault();const items=[...document.querySelectorAll('[data-item]')].map(r=>({product:r.querySelector('.display-name').value.trim(),amount:Number(r.querySelector('.amount').value||0)})).filter(x=>x.product||x.amount>0);const total=items.reduce((s,x)=>s+x.amount,0);if(!items.length||!items[0].product||total<=0)return alert('請至少完成第一項商品與金額');const now=new Date();const rec={id:`GD-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}-${String(records.length+1).padStart(3,'0')}`,customerName:document.querySelector('#name').value.trim(),socialName:document.querySelector('#social').value.trim(),items,note:document.querySelector('#note').value.trim(),total,createdAt:now.toISOString()};records.unshift(rec);saveRecords();showSuccess(rec)}
+  function showSuccess(rec){document.body.insertAdjacentHTML('beforeend',`<div id="modal" class="modal"><section class="panel modal-card"><div style="font-size:48px;color:var(--green)">✓</div><h2>登記完成</h2><p>交易編號</p><p class="transaction">${esc(rec.id)}</p><p class="modal-total">${money(rec.total)}</p><button id="next" class="btn">登記下一位客人</button></section></div>`);document.querySelector('#next').onclick=()=>{document.querySelector('#modal').remove();renderForm()}}
+
+  function renderAdmin(query=''){
+    const kw=query.trim().toLowerCase();const data=!kw?records:records.filter(r=>[r.id,r.customerName,r.socialName,r.note,...r.items.flatMap(x=>[x.product,x.amount])].join(' ').toLowerCase().includes(kw));const total=data.reduce((s,r)=>s+r.total,0);const cards=data.map(r=>`<article class="record"><div class="record-head"><div><div class="record-id">${esc(r.id)}</div><h2>${esc(r.customerName)}</h2><div class="record-meta">${esc(r.socialName)}｜${new Date(r.createdAt).toLocaleString('zh-TW')}</div></div><div><span class="record-total">${money(r.total)}</span><button class="delete" data-delete="${esc(r.id)}">刪除</button></div></div><div class="record-items">${r.items.map((x,i)=>`<div class="record-item"><small>商品 ${i+1}</small><div><b>${esc(x.product)}</b></div><div>${money(x.amount)}</div></div>`).join('')}</div>${r.note?`<div class="record-note"><small>備註</small><div>${esc(r.note)}</div></div>`:''}</article>`).join('');
+    app.innerHTML=`${topbar('SALES ADMIN')}<main class="content"><div class="admin-head"><div><p class="eyebrow">SALES ADMIN</p><h1>販售紀錄</h1><p>本裝置儲存 ${records.length} 筆交易。</p></div><button id="export" class="btn" ${data.length?'':'disabled'}>匯出 CSV</button></div><section class="metrics"><div class="metric"><span>交易筆數</span><strong>${data.length} 筆</strong></div><div class="metric"><span>販售總額</span><strong>${money(total)}</strong></div><div class="metric"><span>平均客單</span><strong>${money(data.length?total/data.length:0)}</strong></div></section><input id="search" class="input search" value="${esc(query)}" placeholder="搜尋姓名、帳號、商品或備註"><section class="records">${cards||'<div class="empty">尚無符合條件的販售紀錄</div>'}</section></main>`;
+    bindLogout();document.querySelector('#search').oninput=e=>renderAdmin(e.target.value);document.querySelector('#export').onclick=()=>exportCsv(data);document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{if(confirm('確定刪除此紀錄？')){records=records.filter(r=>r.id!==b.dataset.delete);saveRecords();renderAdmin(query)}})
+  }
+  function exportCsv(data){const headers=['交易編號','登記時間','姓名','IG或FB名稱',...Array.from({length:MAX_ITEMS},(_,i)=>[`商品${i+1}`,`金額${i+1}`]).flat(),'備註','總金額'];const rows=[headers,...data.map(r=>{const items=[...r.items];while(items.length<MAX_ITEMS)items.push({});return[r.id,new Date(r.createdAt).toLocaleString('zh-TW'),r.customerName,r.socialName,...items.slice(0,MAX_ITEMS).flatMap(x=>[x.product||'',x.amount||'']),r.note||'',r.total]})];const csv=rows.map(row=>row.map(cell=>`"${String(cell).replaceAll('"','""')}"`).join(',')).join('\n');const blob=new Blob(['\uFEFF',csv],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`孤島販售登記-${new Date().toISOString().slice(0,10)}.csv`;a.click();URL.revokeObjectURL(url)}
+  renderLogin();
+})();
