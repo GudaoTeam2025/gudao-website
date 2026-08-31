@@ -23,7 +23,7 @@
     document.querySelector('#login-form').addEventListener('submit',e=>{e.preventDefault();const pin=document.querySelector('#pin').value;const expected=selectedRole==='admin'?ADMIN_PIN:CUSTOMER_PIN;if(pin!==expected){renderLogin('PIN 碼不正確');return;}session=selectedRole;session==='admin'?renderAdmin():renderForm();});
   }
 
-  function topbar(label) { return `<header class="topbar"><div class="brand"><div class="brand-mark">孤</div><div>孤島 GUDAO<small>${label}</small></div></div><button id="logout" class="logout">登出</button></header>`; }
+  function topbar(label) { return `<header class="topbar"><div class="brand"><div class="brand-mark">GuDao</div><div>孤島 GUDAO<small>${label}</small></div></div><button id="logout" class="logout">登出</button></header>`; }
   function bindLogout(){document.querySelector('#logout').addEventListener('click',()=>{session=null;selectedRole='customer';renderLogin();});}
 
   function renderForm(){
