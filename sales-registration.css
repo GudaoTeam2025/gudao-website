@@ -8,3 +8,12 @@
 .modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:18px;background:rgba(0,0,0,.72)}.modal-card{width:min(100%,430px);padding:34px;text-align:center}.modal-card h2{font-size:36px;margin:12px 0 0}.transaction{color:var(--red);font-weight:700}.modal-total{font-family:"Khand",sans-serif;font-size:44px;font-weight:700}
 .admin-head{display:flex;align-items:end;justify-content:space-between;gap:20px}.admin-head h1{margin:2px 0;font-size:clamp(48px,7vw,76px)}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:25px}.metric{padding:20px;background:#fff;border-top:4px solid var(--orange);box-shadow:0 10px 25px rgba(38,44,49,.06)}.metric span{color:#667078}.metric strong{display:block;margin-top:3px;font-size:28px}.search{margin-top:22px}.records{display:grid;gap:14px;margin-top:20px}.record{padding:20px;background:#fff;border-left:4px solid var(--orange);box-shadow:0 8px 22px rgba(38,44,49,.05)}.record-head{display:flex;justify-content:space-between;gap:16px}.record h2{margin:3px 0}.record-id{color:var(--red);font-weight:700}.record-date,.record-social{color:#687078;font-size:14px}.record-total{font-family:"Khand",sans-serif;font-size:28px;font-weight:700}.delete{border:0;background:transparent;color:var(--red);font-weight:700}.record-items{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:15px;padding-top:15px;border-top:1px solid #ddd}.record-item{padding:10px;background:#f3f2ee}.record-item small{color:#687078}.record-note{margin-top:14px;padding:10px 12px;background:#faf9f6;border-left:4px solid var(--orange);white-space:pre-wrap}.empty{padding:48px;text-align:center;background:#fff;border:1px dashed #bbb;color:#687078}
 @media(max-width:850px){.form-layout{grid-template-columns:1fr}.intro{padding:28px}.record-items{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.topbar{padding:10px 14px}.brand small{display:none}.content{width:min(calc(100% - 22px),1160px);padding-top:22px}.two-cols,.item{grid-template-columns:1fr}.total-row,.admin-head{align-items:stretch;flex-direction:column}.metrics{grid-template-columns:1fr}.record-head{flex-direction:column}.record-items{grid-template-columns:1fr}.btn{width:100%}}
+/* 移除販售登記頁首的圓形裝飾線條 */
+.sale-hero::before,
+.sale-hero::after,
+.registration-hero::before,
+.registration-hero::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
