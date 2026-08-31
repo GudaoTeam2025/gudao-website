@@ -9,8 +9,12 @@
   active   true 顯示，false 暫時隱藏
 */
 window.GUDAO_SALE_PRODUCTS = [
-  { id: "AGV-001", name: "範例植株 A", price: 1200, active: true },
-  { id: "AGV-002", name: "範例植株 B", price: 1800, active: true },
-  { id: "MED-001", name: "孤島介質", price: 350, active: true },
+  { id: "AGV-001", name: "三宅雷神×妖炎", price: 2500, active: true },
+  { id: "AGV-002", name: "妖炎×鰲頭嚴龍", price: 4500, active: true },
+  { id: "AGV-003", name: "三宅雷神×血后", price: 1600, active: true },
+  { id: "AGV-004", name: "寬血蟹×大鋼牙S", price: 5800, active: true },
+  { id: "AGV-005", name: "寬血蟹×大鋼牙A", price: 4500, active: true },
+  { id: "MED-001", name: "孤島介質", price: 150, active: true },
+  { id: "TRT-001", name: "孤島T", price: 490, active: true },
   { id: "POT-001", name: "孤島盆器", price: 500, active: false }
 ];
