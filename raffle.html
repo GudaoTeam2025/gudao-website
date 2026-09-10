@@ -6,13 +6,20 @@
   <meta name="theme-color" content="#262C31">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <title>抽獎工具｜孤島 GUDAO</title>
+
   <link rel="stylesheet" href="raffle.css?v=2">
+  <link rel="stylesheet" href="raffle-enhancement.css?v=2">
 </head>
 <body>
   <header class="site-header">
     <div class="brand">
-      <span class="logo-box"><img src="assets/brand/logo.png" alt="孤島標誌"></span>
-      <span><strong>孤島 GUDAO</strong><small>LOTTERY TOOL</small></span>
+      <span class="logo-box">
+        <img src="assets/brand/logo.png" alt="孤島標誌">
+      </span>
+      <span>
+        <strong>孤島 GUDAO</strong>
+        <small>LOTTERY TOOL</small>
+      </span>
     </div>
     <button id="auth-button" class="header-button" type="button">Admin 登入</button>
   </header>
@@ -21,7 +28,7 @@
     <section class="hero">
       <p class="eyebrow">GUDAO LOTTERY TOOL</p>
       <h1>孤島抽獎</h1>
-      <p>一起同樂，公平抽出獎項，獎落誰家?</p>
+      <p>一起同樂，公平抽出獎項，獎落誰家？</p>
     </section>
 
     <section class="workspace">
@@ -29,6 +36,7 @@
         <section class="block">
           <p class="step">STEP 01</p>
           <h2>參加名單來源</h2>
+
           <div class="source-tabs" role="tablist" aria-label="名單來源">
             <button id="source-cloud" class="source-tab active" type="button">Supabase 名單</button>
             <button id="source-manual" class="source-tab" type="button">手動編號範圍</button>
@@ -45,8 +53,14 @@
 
           <div id="manual-source" hidden>
             <div class="range-grid">
-              <label>起始編號<input id="range-start" type="number" min="1" step="1" value="1"></label>
-              <label>結束編號<input id="range-end" type="number" min="1" step="1" value="100"></label>
+              <label>
+                起始編號
+                <input id="range-start" type="number" min="1" step="1" value="1">
+              </label>
+              <label>
+                結束編號
+                <input id="range-end" type="number" min="1" step="1" value="100">
+              </label>
             </div>
             <p class="hint">手動模式只顯示中獎編號，不會顯示 IG 帳號。</p>
           </div>
@@ -55,7 +69,8 @@
         <section class="block">
           <p class="step">STEP 02</p>
           <h2>獎項設定</h2>
-          <label>獎項清單
+          <label>
+            獎項清單
             <textarea id="prize-input" rows="7" placeholder="每行一個獎項，例如：&#10;孤島植株 A&#10;孤島介質 x2&#10;孤島周邊商品"></textarea>
           </label>
           <p class="hint">支援「獎項名稱 x數量」，例如「孤島介質 x3」會展開成 3 個獎項。</p>
@@ -66,7 +81,10 @@
         <section class="block">
           <p class="step">STEP 03</p>
           <h2>抽獎控制</h2>
-          <label class="check-row"><input id="no-repeat" type="checkbox" checked><span>同一場不重複中獎</span></label>
+          <label class="check-row">
+            <input id="no-repeat" type="checkbox" checked>
+            <span>同一場不重複中獎</span>
+          </label>
           <button id="draw-button" class="draw-button" type="button" disabled>開始抽獎</button>
           <button id="reset-draw" class="danger-button full" type="button">清除本次抽獎結果</button>
           <p id="draw-message" class="status-text" aria-live="polite"></p>
@@ -75,7 +93,10 @@
 
       <section class="draw-stage">
         <div class="stage-header">
-          <div><p class="eyebrow">CURRENT PRIZE</p><h2 id="current-prize">等待設定獎項</h2></div>
+          <div>
+            <p class="eyebrow">CURRENT PRIZE</p>
+            <h2 id="current-prize">等待設定獎項</h2>
+          </div>
           <span id="progress-chip">0 / 0</span>
         </div>
 
@@ -86,8 +107,13 @@
         </div>
 
         <section class="results-panel">
-          <div class="results-head"><h3>中獎結果</h3><button id="export-results" class="outline-button" type="button" disabled>匯出 CSV</button></div>
-          <div id="result-list" class="result-list"><div class="empty">尚無抽獎結果</div></div>
+          <div class="results-head">
+            <h3>中獎結果</h3>
+            <button id="export-results" class="outline-button" type="button" disabled>匯出 CSV</button>
+          </div>
+          <div id="result-list" class="result-list">
+            <div class="empty">尚無抽獎結果</div>
+          </div>
         </section>
       </section>
     </section>
@@ -98,9 +124,19 @@
       <button id="close-login" class="close-button" type="button" aria-label="關閉">×</button>
       <p class="eyebrow">GUDAO ADMIN</p>
       <h2>Supabase Admin 登入</h2>
+
       <form id="login-form">
-        <label>Email<input id="admin-email" type="email" autocomplete="username" required></label>
-        <label>密碼<span class="password-wrap"><input id="admin-password" type="password" autocomplete="current-password" required><button id="show-password" type="button">顯示</button></span></label>
+        <label>
+          Email
+          <input id="admin-email" type="email" autocomplete="username" required>
+        </label>
+        <label>
+          密碼
+          <span class="password-wrap">
+            <input id="admin-password" type="password" autocomplete="current-password" required>
+            <button id="show-password" type="button">顯示</button>
+          </span>
+        </label>
         <p id="login-message" class="status-text"></p>
         <button class="primary-button full" type="submit">登入</button>
       </form>
@@ -110,5 +146,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js?v=2"></script>
   <script src="raffle.js?v=2"></script>
+  <script src="raffle-enhancement.js?v=2"></script>
 </body>
 </html>
