@@ -1,0 +1,115 @@
+/* 孤島抽獎工具：手機同畫面抽獎控制列，無角色、無灑花 */
+.raffle-mobile-dock {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  body {
+    padding-bottom: calc(104px + env(safe-area-inset-bottom));
+  }
+
+  /* 手機先顯示開獎區，縮短開獎區高度 */
+  .draw-stage {
+    order: -1;
+    padding: 14px;
+  }
+
+  .stage-header {
+    gap: 8px;
+  }
+
+  .stage-header h2 {
+    max-width: 72vw;
+    margin: 3px 0;
+    font-size: clamp(24px, 7vw, 34px);
+  }
+
+  .draw-display {
+    min-height: 245px;
+    margin: 14px 0;
+    padding: 16px 10px;
+  }
+
+  .draw-display strong {
+    font-size: clamp(84px, 27vw, 145px);
+  }
+
+  .winner-account {
+    max-width: 100%;
+    padding: 0 8px;
+    overflow-wrap: anywhere;
+    font-size: clamp(20px, 6vw, 30px) !important;
+  }
+
+  /* 固定在手機底部，開獎畫面與按鈕可同時看見 */
+  .raffle-mobile-dock {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(132px, 42vw);
+    gap: 10px;
+    align-items: center;
+    padding: 10px max(12px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    background: rgba(38, 44, 49, .98);
+    border-top: 4px solid #FF8510;
+    box-shadow: 0 -10px 28px rgba(0, 0, 0, .30);
+  }
+
+  .raffle-mobile-dock__info {
+    min-width: 0;
+    color: #FFFFFF;
+  }
+
+  .raffle-mobile-dock__label {
+    display: block;
+    color: rgba(255, 255, 255, .58);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .14em;
+  }
+
+  .raffle-mobile-dock__prize {
+    display: block;
+    overflow: hidden;
+    margin-top: 2px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 900;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .raffle-mobile-dock__progress {
+    color: #FF8510;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .raffle-mobile-dock__button {
+    min-height: 58px;
+    padding: 10px 12px;
+    border: 1px solid #FF8510;
+    background: #FF8510;
+    color: #262C31;
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  .raffle-mobile-dock__button:disabled {
+    cursor: not-allowed;
+    opacity: .45;
+  }
+}
+
+@media (max-width: 420px) {
+  .raffle-mobile-dock {
+    grid-template-columns: minmax(0, 1fr) 132px;
+  }
+
+  .raffle-mobile-dock__button {
+    font-size: 16px;
+  }
+}
