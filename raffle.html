@@ -4,139 +4,111 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#262C31">
-  <title>孤島抽獎系統｜孤島 GUDAO</title>
-  <link rel="stylesheet" href="style.css?v=13">
-  <link rel="stylesheet" href="brand-system-v14.css?v=14">
-  <link rel="stylesheet" href="raffle.css?v=1">
-  <link rel="stylesheet" href="contour-hero-v15.css?v=15">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>直播抽獎工具｜孤島 GUDAO</title>
+  <link rel="stylesheet" href="raffle.css?v=2">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html">
-      <img src="assets/brand/logo.png" alt="孤島標誌">
-      <span>孤島 GUDAO</span>
-    </a>
-
-    <button class="menu" type="button" aria-label="開啟選單" aria-expanded="false">☰</button>
-
-    <nav aria-label="主要導覽">
-      <a href="index.html">首頁</a>
-      <a href="stock.html">植株選購</a>
-      <a href="event.html">近期活動</a>
-      <a href="appreciation.html">孤島植賞</a>
-      <a href="merchandise.html">周邊商品</a>
-      <a href="care.html">養護資訊</a>
-      <a class="active" href="raffle.html">孤島抽獎</a>
-      <a class="ig" href="https://www.instagram.com/gudao.team/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-    </nav>
+    <div class="brand">
+      <span class="logo-box"><img src="assets/brand/logo.png" alt="孤島標誌"></span>
+      <span><strong>孤島 GUDAO</strong><small>LIVE DRAW CONSOLE</small></span>
+    </div>
+    <button id="auth-button" class="header-button" type="button">Admin 登入</button>
   </header>
 
-  <main class="raffle-page">
-    <section class="page-hero raffle-hero">
-      <p class="label">GUDAO RAFFLE</p>
-      <h1>孤島抽獎</h1>
-      <p>一起同樂，公平抽出幸運獎項</p>
-      <p>已抽中號碼不再重複參與，獎落誰家?</p>
+  <main class="page-shell">
+    <section class="hero">
+      <p class="eyebrow">GUDAO LIVE DRAW</p>
+      <h1>直播抽獎工具</h1>
+      <p>可直接載入通關密語合格名單，也保留手動編號範圍抽獎。</p>
     </section>
 
-    <section class="raffle-wrap">
-      <section class="raffle-panel setup-panel" aria-labelledby="setup-title">
-        <div class="panel-heading">
+    <section class="workspace">
+      <aside class="control-panel">
+        <section class="block">
           <p class="step">STEP 01</p>
-          <h2 id="setup-title">設定抽獎</h2>
-        </div>
+          <h2>參加名單來源</h2>
+          <div class="source-tabs" role="tablist" aria-label="名單來源">
+            <button id="source-cloud" class="source-tab active" type="button">Supabase 名單</button>
+            <button id="source-manual" class="source-tab" type="button">手動編號範圍</button>
+          </div>
 
-        <div class="range-grid">
-          <label>
-            起始號碼
-            <input id="start-number" type="number" min="1" max="100000" value="1" inputmode="numeric">
-          </label>
-
-          <label>
-            結束號碼
-            <input id="end-number" type="number" min="1" max="100000" value="1000" inputmode="numeric">
-          </label>
-        </div>
-
-        <div class="prize-section">
-          <div class="prize-heading">
-            <div>
-              <p class="step">STEP 02</p>
-              <h2>輸入獎項</h2>
+          <div id="cloud-source">
+            <p id="cloud-hint" class="hint">請先登入 Admin，再讀取目前活動的合格名單。</p>
+            <div class="inline-actions">
+              <button id="load-cloud" class="secondary-button" type="button" disabled>讀取雲端名單</button>
+              <span id="cloud-count" class="count-chip">0 位</span>
             </div>
-            <button id="add-prize" class="secondary-button" type="button">＋ 新增獎項</button>
+            <div id="cloud-event" class="event-info">尚未載入活動</div>
           </div>
 
-          <div id="prize-list" class="prize-list"></div>
-        </div>
+          <div id="manual-source" hidden>
+            <div class="range-grid">
+              <label>起始編號<input id="range-start" type="number" min="1" step="1" value="1"></label>
+              <label>結束編號<input id="range-end" type="number" min="1" step="1" value="100"></label>
+            </div>
+            <p class="hint">手動模式只顯示中獎編號，不會顯示 IG 帳號。</p>
+          </div>
+        </section>
 
-        <div class="setup-actions">
-          <button id="initialize" class="primary-button" type="button">建立本輪抽獎</button>
-          <button id="reset-all" class="danger-button" type="button">全部重設</button>
-        </div>
+        <section class="block">
+          <p class="step">STEP 02</p>
+          <h2>獎項設定</h2>
+          <label>獎項清單
+            <textarea id="prize-input" rows="7" placeholder="每行一個獎項，例如：&#10;孤島植株 A&#10;孤島介質 x2&#10;孤島周邊商品"></textarea>
+          </label>
+          <p class="hint">支援「獎項名稱 x數量」，例如「孤島介質 x3」會展開成 3 個獎項。</p>
+          <button id="apply-prizes" class="secondary-button full" type="button">套用獎項</button>
+          <p id="prize-summary" class="status-text">尚未設定獎項</p>
+        </section>
 
-        <p id="setup-message" class="message" role="status" aria-live="polite"></p>
-      </section>
-
-      <section class="raffle-panel draw-panel" aria-labelledby="draw-title">
-        <div class="panel-heading">
+        <section class="block">
           <p class="step">STEP 03</p>
-          <h2 id="draw-title">開始抽獎</h2>
+          <h2>抽獎控制</h2>
+          <label class="check-row"><input id="no-repeat" type="checkbox" checked><span>同一場不重複中獎</span></label>
+          <button id="draw-button" class="draw-button" type="button" disabled>開始抽獎</button>
+          <button id="reset-draw" class="danger-button full" type="button">清除本次抽獎結果</button>
+          <p id="draw-message" class="status-text" aria-live="polite"></p>
+        </section>
+      </aside>
+
+      <section class="draw-stage">
+        <div class="stage-header">
+          <div><p class="eyebrow">CURRENT PRIZE</p><h2 id="current-prize">等待設定獎項</h2></div>
+          <span id="progress-chip">0 / 0</span>
         </div>
 
-        <div class="draw-status">
-          <div>
-            <span>目前獎項</span>
-            <strong id="current-prize">尚未建立抽獎</strong>
-          </div>
-          <div>
-            <span>剩餘候選號碼</span>
-            <strong id="remaining-count">0</strong>
-          </div>
-          <div>
-            <span>剩餘名額</span>
-            <strong id="remaining-prizes">0</strong>
-          </div>
-        </div>
-
-        <div class="number-stage" aria-live="polite">
-          <span class="number-label">WINNER</span>
+        <div id="draw-display" class="draw-display">
+          <p>中獎編號</p>
           <strong id="winner-number">---</strong>
-          <p id="winner-prize">建立本輪抽獎後即可開始</p>
+          <p id="winner-account" class="winner-account">等待抽獎</p>
         </div>
 
-        <button id="draw" class="draw-button" type="button" disabled>抽出下一位</button>
-
-        <div class="winner-section">
-          <div class="winner-heading">
-            <h3>中獎紀錄</h3>
-            <button id="copy-results" class="text-button" type="button" disabled>複製結果</button>
-          </div>
-          <ol id="winner-list" class="winner-list">
-            <li class="empty-state">尚無中獎紀錄</li>
-          </ol>
-        </div>
+        <section class="results-panel">
+          <div class="results-head"><h3>中獎結果</h3><button id="export-results" class="outline-button" type="button" disabled>匯出 CSV</button></div>
+          <div id="result-list" class="result-list"><div class="empty">尚無抽獎結果</div></div>
+        </section>
       </section>
     </section>
   </main>
 
-  <footer>
-    <img src="assets/brand/logo.png" alt="孤島標誌">
-    <div>
-      <b>PASSION TO THE ISLAND</b>
-      <p>© 2026 GUDAO TEAM</p>
-    </div>
-  </footer>
+  <div id="login-modal" class="modal" hidden>
+    <section class="modal-card">
+      <button id="close-login" class="close-button" type="button" aria-label="關閉">×</button>
+      <p class="eyebrow">GUDAO ADMIN</p>
+      <h2>Supabase Admin 登入</h2>
+      <form id="login-form">
+        <label>Email<input id="admin-email" type="email" autocomplete="username" required></label>
+        <label>密碼<span class="password-wrap"><input id="admin-password" type="password" autocomplete="current-password" required><button id="show-password" type="button">顯示</button></span></label>
+        <p id="login-message" class="status-text"></p>
+        <button class="primary-button full" type="submit">登入</button>
+      </form>
+    </section>
+  </div>
 
-  <script src="raffle.js?v=1"></script>
-  <script>
-    const menuButton = document.querySelector('.menu');
-    const navigation = document.querySelector('.site-header nav');
-
-    menuButton?.addEventListener('click', () => {
-      const isOpen = navigation.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', String(isOpen));
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=2"></script>
+  <script src="raffle.js?v=2"></script>
 </body>
 </html>
