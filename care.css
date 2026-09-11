@@ -10,3 +10,66 @@
 @media(max-width:720px){.care-intro,.lab-heading{display:block}.care-intro-copy,.balance-badge{margin-top:18px}.triangle-panel{aspect-ratio:1.1547/1}.factor-node{width:72px;height:72px;min-width:72px;min-height:72px;padding:5px}.factor-node b{font-size:15px}.factor-icon{font-size:22px}.factor-light{top:4px}.factor-wind{bottom:4px;left:calc(17.833% - 36px)}.factor-water{right:calc(17.833% - 36px);bottom:4px}.triangle-status-card{padding:17px 18px}.triangle-status-card strong{font-size:19px}.triangle-status-card p{font-size:13px}.stage-selector{grid-template-columns:repeat(2,1fr)}.stage-advice{grid-template-columns:1fr}.principles{grid-template-columns:1fr}.care-modal-panel{top:20px;right:12px;bottom:20px;left:12px;width:auto;max-height:none;padding:58px 18px 22px;transform:none}.care-modal-panel h2{font-size:clamp(34px,9.5vw,46px)}.drawer-points article{grid-template-columns:38px minmax(0,1fr);gap:10px;padding:14px}.symptom-list{overflow-x:auto;overflow-y:hidden;flex-wrap:nowrap;padding-bottom:8px;-webkit-overflow-scrolling:touch}.symptom-list button{flex:0 0 auto;white-space:nowrap}.diagnosis-result{padding:17px}}
 @media(max-width:520px){.care-intro{padding-top:45px}.lab-heading h2,.section-heading h2{font-size:2.8rem}.knowledge-grid{grid-template-columns:1fr 1fr}.knowledge-card{min-height:220px;padding:16px}.knowledge-card b{font-size:26px}.knowledge-card p{font-size:13px}.care-modal-panel{top:12px;right:8px;bottom:12px;left:8px;padding:56px 16px 20px}.care-modal-panel h2{font-size:clamp(31px,9vw,40px)}}
 @media(prefers-reduced-motion:reduce){.knowledge-card,.drying-track span{transition:none}}
+/* ==================================================
+   光、風、水節點光暈
+   光暈強度會跟滑桿數值同步變化
+   ================================================== */
+
+/* 風：綠色光暈 */
+.factor-wind {
+  box-shadow:
+    0 0 calc(12px + 32px * var(--wind-level))
+    rgba(
+      52,
+      83,
+      57,
+      calc(0.12 + 0.46 * var(--wind-level))
+    );
+}
+
+/* 水：藍色光暈 */
+.factor-water {
+  box-shadow:
+    0 0 calc(12px + 32px * var(--water-level))
+    rgba(
+      101,
+      159,
+      184,
+      calc(0.12 + 0.46 * var(--water-level))
+    );
+}
+/* 光：橙色 */
+.factor-light {
+  box-shadow:
+    0 0 calc(14px + 36px * var(--light-level))
+    rgba(
+      255,
+      133,
+      16,
+      calc(0.14 + 0.50 * var(--light-level))
+    );
+}
+
+/* 風：綠色 */
+.factor-wind {
+  box-shadow:
+    0 0 calc(14px + 36px * var(--wind-level))
+    rgba(
+      92,
+      160,
+      105,
+      calc(0.14 + 0.50 * var(--wind-level))
+    );
+}
+
+/* 水：藍色 */
+.factor-water {
+  box-shadow:
+    0 0 calc(14px + 36px * var(--water-level))
+    rgba(
+      92,
+      190,
+      225,
+      calc(0.14 + 0.50 * var(--water-level))
+    );
+}
