@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css?v=12">
   <link rel="stylesheet" href="brand-system-v14.css?v=14">
   <link rel="stylesheet" href="contour-hero-v15.css?v=15">
+  <link rel="stylesheet" href="appreciation.css?v=1">
 </head>
 <body>
   <header class="site-header">
@@ -40,11 +41,11 @@
 
     <section class="wrap section">
       <div class="toolbar appreciation-toolbar">
-        <p>個體表現定期更新，想知道更多歡迎聯絡團隊</p>
-        <div id="appreciation-filters" class="filter-group" aria-label="賞析篩選"></div>
+        <p>左右滑動照片觀看個體細節，內容將持續更新。</p>
+        <div id="appreciation-filters" class="filter-group" aria-label="植賞分類篩選"></div>
       </div>
 
-      <div id="appreciation-grid" class="card-grid appreciation-grid" aria-live="polite"></div>
+      <div id="appreciation-grid" class="appreciation-grid" aria-live="polite"></div>
     </section>
   </main>
 
@@ -56,71 +57,215 @@
     </div>
   </footer>
 
-  <script src="appreciations.js?v=12"></script>
+  <script src="appreciations.js?v=13"></script>
   <script>
-    const menuButton = document.querySelector('.menu');
-    const navigation = document.querySelector('.site-header nav');
+    (() => {
+      const ALLOWED_CATEGORIES = ['個體賞析', '培育紀錄'];
+      const menuButton = document.querySelector('.menu');
+      const navigation = document.querySelector('.site-header nav');
+      const grid = document.querySelector('#appreciation-grid');
+      const filters = document.querySelector('#appreciation-filters');
 
-    menuButton?.addEventListener('click', () => {
-      const isOpen = navigation.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', String(isOpen));
-    });
+      const escapeHtml = value => String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
 
-    const grid = document.querySelector('#appreciation-grid');
-    const filters = document.querySelector('#appreciation-filters');
+      const safeUrl = value => {
+        try {
+          const url = new URL(String(value ?? ''), window.location.href);
+          return ['http:', 'https:'].includes(url.protocol) ? url.href : '#';
+        } catch {
+          return '#';
+        }
+      };
 
-    function renderAppreciations(category = '全部') {
-      const items = category === '全部'
-        ? window.GUDAO_APPRECIATIONS
-        : window.GUDAO_APPRECIATIONS.filter(item => item.category === category);
+      const normalizedItems = (window.GUDAO_APPRECIATIONS || []).map((item, itemIndex) => {
+        const category = ALLOWED_CATEGORIES.includes(item.category)
+          ? item.category
+          : '個體賞析';
+        const sourceImages = Array.isArray(item.images) && item.images.length
+          ? item.images
+          : item.image
+            ? [item.image]
+            : [];
+        return {
+          ...item,
+          id: `appreciation-${itemIndex}`,
+          category,
+          images: sourceImages.filter(Boolean).slice(0, 6)
+        };
+      });
 
-      grid.innerHTML = items.map(item => `
-        <article class="card appreciation-card">
-          <div class="poster">
+      menuButton?.addEventListener('click', () => {
+        const isOpen = navigation.classList.toggle('open');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      function imageSlides(item) {
+        if (!item.images.length) {
+          return '<div class="appreciation-fallback">GUDAO<br>APPRECIATION</div>';
+        }
+        return item.images.map((image, imageIndex) => `
+          <figure class="appreciation-slide" data-slide="${imageIndex}" aria-hidden="${imageIndex !== 0}">
             <img
-              src="${item.image}"
-              alt="${item.name}"
+              src="${escapeHtml(image)}"
+              alt="${escapeHtml(item.name)}，第 ${imageIndex + 1} 張照片"
               loading="lazy"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+              draggable="false"
             >
-            <div class="poster-fallback">GUDAO<br>APPRECIATION</div>
-            <span>${item.category}</span>
+          </figure>
+        `).join('');
+      }
+
+      function galleryControls(item) {
+        if (item.images.length <= 1) return '';
+        return `
+          <button class="gallery-arrow gallery-prev" type="button" aria-label="上一張照片">‹</button>
+          <button class="gallery-arrow gallery-next" type="button" aria-label="下一張照片">›</button>
+          <div class="gallery-status" aria-live="polite">
+            <span class="gallery-counter">1 / ${item.images.length}</span>
           </div>
-
-          <div class="card-body">
-            <small>${item.code}</small>
-            <h2>${item.name}</h2>
-            <p>${item.description}</p>
-
-            <dl class="appreciation-meta">
-              <div><dt>培育</dt><dd>${item.cultivation}</dd></div>
-              <div><dt>紀錄</dt><dd>${item.record}</dd></div>
-            </dl>
-
-            <a href="${item.instagram}" target="_blank" rel="noopener noreferrer">
-              INSTAGRAM 查看更多 ↗
-            </a>
+          <div class="gallery-dots" role="tablist" aria-label="選擇照片">
+            ${item.images.map((_, index) => `
+              <button
+                class="gallery-dot ${index === 0 ? 'active' : ''}"
+                type="button"
+                role="tab"
+                aria-label="第 ${index + 1} 張照片"
+                aria-selected="${index === 0}"
+                data-index="${index}"
+              ></button>
+            `).join('')}
           </div>
-        </article>
+        `;
+      }
+
+      function renderAppreciations(category = '全部') {
+        const items = category === '全部'
+          ? normalizedItems
+          : normalizedItems.filter(item => item.category === category);
+
+        if (!items.length) {
+          grid.innerHTML = '<div class="appreciation-empty">這個分類目前尚無內容。</div>';
+          return;
+        }
+
+        grid.innerHTML = items.map(item => `
+          <article class="appreciation-card">
+            <div class="appreciation-gallery" data-gallery data-index="0" data-count="${item.images.length}">
+              <div class="appreciation-track">
+                ${imageSlides(item)}
+              </div>
+              <span class="appreciation-category">${escapeHtml(item.category)}</span>
+              ${galleryControls(item)}
+            </div>
+
+            <div class="appreciation-body">
+              <small>${escapeHtml(item.code)}</small>
+              <h2>${escapeHtml(item.name)}</h2>
+              <p>${escapeHtml(item.description)}</p>
+
+              <dl class="appreciation-meta">
+                <div><dt>培育</dt><dd>${escapeHtml(item.cultivation)}</dd></div>
+                <div><dt>紀錄</dt><dd>${escapeHtml(item.record)}</dd></div>
+              </dl>
+
+              <a href="${escapeHtml(safeUrl(item.instagram))}" target="_blank" rel="noopener noreferrer">
+                INSTAGRAM 查看更多 ↗
+              </a>
+            </div>
+          </article>
+        `).join('');
+
+        initializeGalleries();
+      }
+
+      function initializeGalleries() {
+        grid.querySelectorAll('[data-gallery]').forEach(gallery => {
+          const slides = [...gallery.querySelectorAll('.appreciation-slide')];
+          const dots = [...gallery.querySelectorAll('.gallery-dot')];
+          const counter = gallery.querySelector('.gallery-counter');
+          const count = slides.length;
+          let index = 0;
+          let touchStartX = null;
+          let touchStartY = null;
+
+          if (!count) return;
+
+          const show = nextIndex => {
+            index = (nextIndex + count) % count;
+            gallery.dataset.index = String(index);
+            slides.forEach((slide, slideIndex) => {
+              const active = slideIndex === index;
+              slide.classList.toggle('active', active);
+              slide.setAttribute('aria-hidden', String(!active));
+            });
+            dots.forEach((dot, dotIndex) => {
+              const active = dotIndex === index;
+              dot.classList.toggle('active', active);
+              dot.setAttribute('aria-selected', String(active));
+            });
+            if (counter) counter.textContent = `${index + 1} / ${count}`;
+          };
+
+          gallery.querySelector('.gallery-prev')?.addEventListener('click', () => show(index - 1));
+          gallery.querySelector('.gallery-next')?.addEventListener('click', () => show(index + 1));
+          dots.forEach(dot => dot.addEventListener('click', () => show(Number(dot.dataset.index))));
+
+          gallery.addEventListener('touchstart', event => {
+            const touch = event.changedTouches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+          }, { passive: true });
+
+          gallery.addEventListener('touchend', event => {
+            if (touchStartX === null || touchStartY === null || count <= 1) return;
+            const touch = event.changedTouches[0];
+            const deltaX = touch.clientX - touchStartX;
+            const deltaY = touch.clientY - touchStartY;
+            touchStartX = null;
+            touchStartY = null;
+            if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+            show(deltaX < 0 ? index + 1 : index - 1);
+          }, { passive: true });
+
+          gallery.setAttribute('tabindex', '0');
+          gallery.addEventListener('keydown', event => {
+            if (event.key === 'ArrowLeft') show(index - 1);
+            if (event.key === 'ArrowRight') show(index + 1);
+          });
+
+          slides.forEach(slide => {
+            const image = slide.querySelector('img');
+            image?.addEventListener('error', () => {
+              slide.innerHTML = '<div class="appreciation-fallback">GUDAO<br>APPRECIATION</div>';
+            });
+          });
+
+          show(0);
+        });
+      }
+
+      const categories = ['全部', ...ALLOWED_CATEGORIES];
+      filters.innerHTML = categories.map((category, index) => `
+        <button class="${index === 0 ? 'active' : ''}" type="button" data-category="${category}">
+          ${category}
+        </button>
       `).join('');
-    }
 
-    const categories = ['全部', ...new Set(window.GUDAO_APPRECIATIONS.map(item => item.category))];
+      filters.addEventListener('click', event => {
+        const button = event.target.closest('button[data-category]');
+        if (!button) return;
+        filters.querySelectorAll('button').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        renderAppreciations(button.dataset.category);
+      });
 
-    filters.innerHTML = categories.map((category, index) => `
-      <button class="${index === 0 ? 'active' : ''}" data-category="${category}">
-        ${category}
-      </button>
-    `).join('');
-
-    filters.addEventListener('click', event => {
-      if (!event.target.matches('button')) return;
-      filters.querySelectorAll('button').forEach(button => button.classList.remove('active'));
-      event.target.classList.add('active');
-      renderAppreciations(event.target.dataset.category);
-    });
-
-    renderAppreciations();
+      renderAppreciations();
+    })();
   </script>
 </body>
 </html>
