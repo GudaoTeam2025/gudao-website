@@ -265,7 +265,7 @@ else if (light < 28) {
     const item = symptoms[symptom];
     if (!item) return;
     $$('#symptom-list button').forEach(button => button.classList.toggle('active', button.dataset.symptom === symptom));
-    $('#diagnosis-result').innerHTML = `<p class="diagnosis-label">目前觀察</p><h3>${symptom}</h3><div class="diagnosis-columns"><section><h4>可能相關因素</h4><ul>${item.causes.map(text => `<li>${text}</li>`).join('')}</ul></section><section><h4>建議先檢查</h4><ul>${item.checks.map(text => `<li>${text}</li>`).join('')}</ul></section></div><p class="diagnosis-warning">同一症狀可能有多種原因。若組織快速軟爛、異味或病斑持續擴大，請先隔離植株並尋求專業協助。</p>`;
+    $('#diagnosis-result').innerHTML = `<p class="diagnosis-label">目前觀察</p><h3>${symptom}</h3><div class="diagnosis-columns"><section><h4>可能相關因素</h4><ul>${item.causes.map(text => `<li>${text}</li>`).join('')}</ul></section><section><h4>建議先檢查</h4><ul>${item.checks.map(text => `<li>${text}</li>`).join('')}</ul></section></div><p class="diagnosis-warning">症狀可能有多種原因，若問題持續惡化，請先隔離植株或是向孤島討論交流</p>`;
   }
 
   function closeDiagnosis() {
