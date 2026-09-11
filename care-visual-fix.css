@@ -1,0 +1,297 @@
+/* ==================================================
+   GUDAO 養護三角視覺修正版 v2
+   修正：左側白線、中央植株過大、圖片破圖、構圖比例
+   ================================================== */
+
+/* 隱藏舊版固定角度線段，僅保留動態 SVG 三角線 */
+.triangle-panel .triangle-lines {
+  display: none !important;
+}
+
+/* 三角畫布 */
+.triangle-panel {
+  position: relative;
+  isolation: isolate;
+  min-height: 680px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 133, 16, 0.07), transparent 34%),
+    var(--g-rock, #262C31);
+}
+
+/* 動態 SVG 線位於所有內容後方 */
+.care-triangle-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 1 !important;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.care-triangle-svg line {
+  stroke: var(--g-orange, #FF8510);
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.78;
+}
+
+/* 三個節點是三角形頂點 */
+.triangle-panel .factor-node {
+  z-index: 6;
+  width: 108px;
+  height: 108px;
+  min-width: 108px;
+  min-height: 108px;
+}
+
+.triangle-panel .factor-light {
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.triangle-panel .factor-wind {
+  bottom: 9%;
+  left: 8%;
+}
+
+.triangle-panel .factor-water {
+  right: 8%;
+  bottom: 9%;
+}
+
+/*
+   中央植株改成較小的直式展示框。
+   不再使用大型圓形，因此不會超出三角形。
+*/
+.triangle-panel .plant-stage-visual {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  z-index: 4;
+  width: clamp(150px, 29%, 220px);
+  max-width: none;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 0;
+  background: #171B1E;
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.34),
+    0 0 calc(12px + 30px * var(--light-level)) rgba(255, 133, 16, calc(0.05 + 0.18 * var(--light-level)));
+  transform: translate(-50%, -50%) scale(var(--plant-scale, 1));
+  transform-origin: center;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.triangle-panel .plant-stage-visual img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background: #171B1E;
+  filter:
+    saturate(calc(0.82 + 0.32 * var(--light-level)))
+    brightness(calc(0.86 + 0.20 * var(--light-level)));
+}
+
+/* 圖片載入完成前，不顯示瀏覽器破圖替代文字 */
+.triangle-panel .plant-stage-visual img:not([src]),
+.triangle-panel .plant-stage-visual img[src=""] {
+  visibility: hidden;
+}
+
+.triangle-panel .plant-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  box-shadow: inset 0 0 35px rgba(255, 133, 16, calc(0.04 + 0.16 * var(--light-level)));
+  pointer-events: none;
+}
+
+.triangle-panel .plant-stage-visual > span {
+  position: absolute;
+  right: auto;
+  bottom: 10px;
+  left: 50%;
+  z-index: 3;
+  width: max-content;
+  margin: 0;
+  padding: 5px 11px;
+  background: var(--g-orange, #FF8510);
+  color: var(--g-rock, #262C31);
+  font-weight: 900;
+  transform: translateX(-50%);
+}
+
+/*
+   風流只出現在植株左側的小區域。
+   清除舊版固定寬度所造成的五條白色水平線。
+*/
+.triangle-panel .airflow {
+  position: absolute;
+  top: 37%;
+  right: auto;
+  bottom: auto;
+  left: 15%;
+  z-index: 3;
+  width: 22%;
+  height: 120px;
+  overflow: hidden;
+  opacity: calc(0.20 + 0.58 * var(--wind-level));
+  pointer-events: none;
+}
+
+.triangle-panel .airflow i {
+  position: absolute;
+  left: -75%;
+  width: 70%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.58),
+    transparent
+  );
+  animation: gudao-airflow calc(5s - 2.4s * var(--wind-level)) linear infinite;
+}
+
+.triangle-panel .airflow i:nth-child(1) { top: 8%; }
+.triangle-panel .airflow i:nth-child(2) { top: 28%; animation-delay: -0.6s; }
+.triangle-panel .airflow i:nth-child(3) { top: 48%; animation-delay: -1.2s; }
+.triangle-panel .airflow i:nth-child(4) { top: 68%; animation-delay: -1.8s; }
+.triangle-panel .airflow i:nth-child(5) { top: 88%; animation-delay: -2.4s; }
+
+@keyframes gudao-airflow {
+  from { transform: translateX(0); }
+  to { transform: translateX(245%); }
+}
+
+/* 摘要固定在底邊上方，不與節點或線條重疊 */
+.triangle-panel .triangle-summary {
+  right: 20%;
+  bottom: 2.8%;
+  left: 20%;
+  z-index: 7;
+  padding: 5px 8px;
+  background: rgba(38, 44, 49, 0.74);
+}
+
+@media (max-width: 720px) {
+  .triangle-panel {
+    min-height: 570px;
+  }
+
+  .triangle-panel .factor-node {
+    width: 84px;
+    min-width: 84px;
+    height: 84px;
+    min-height: 84px;
+  }
+
+  .triangle-panel .factor-light {
+    top: 4%;
+  }
+
+  .triangle-panel .factor-wind {
+    bottom: 9%;
+    left: 5%;
+  }
+
+  .triangle-panel .factor-water {
+    right: 5%;
+    bottom: 9%;
+  }
+
+  .triangle-panel .plant-stage-visual {
+    top: 43%;
+    width: clamp(135px, 34%, 178px);
+  }
+
+  .triangle-panel .airflow {
+    top: 36%;
+    left: 12%;
+    width: 24%;
+    height: 100px;
+  }
+
+  .triangle-panel .triangle-summary {
+    right: 17%;
+    bottom: 2.5%;
+    left: 17%;
+  }
+
+  .care-triangle-svg line {
+    stroke-width: 1.5;
+  }
+}
+
+@media (max-width: 520px) {
+  .triangle-panel {
+    min-height: 510px;
+  }
+
+  .triangle-panel .factor-node {
+    width: 74px;
+    min-width: 74px;
+    height: 74px;
+    min-height: 74px;
+  }
+
+  .triangle-panel .plant-stage-visual {
+    top: 42%;
+    width: 128px;
+  }
+
+  .triangle-panel .airflow {
+    top: 35%;
+    left: 10%;
+    width: 25%;
+    height: 86px;
+  }
+
+  .triangle-panel .triangle-summary {
+    right: 14%;
+    bottom: 1.8%;
+    left: 14%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .triangle-panel .airflow i {
+    animation: none;
+  }
+}
+
+/* 圖片仍未上傳時的乾淨提示，不顯示瀏覽器破圖圖示 */
+.plant-image-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
+  padding: 18px;
+  background: linear-gradient(145deg, #171B1E, #2E353A);
+  color: rgba(255, 255, 255, 0.72);
+  text-align: center;
+}
+
+.plant-image-fallback b {
+  color: var(--g-orange, #FF8510);
+  font-family: "Khand", sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.12em;
+}
+
+.plant-image-fallback small {
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
