@@ -6,16 +6,10 @@
   <meta name="theme-color" content="#262C31">
   <meta name="description" content="孤島 GUDAO 室內燈養龍舌蘭光、風、水養護互動資訊">
   <title>養護資訊｜孤島 GUDAO</title>
-<link rel="stylesheet" href="style.css?v=13">
-<link rel="stylesheet" href="brand-system-v14.css?v=14">
-<link rel="stylesheet" href="contour-hero-v15.css?v=15">
-<link rel="stylesheet" href="care.css?v=5">
-<link rel="stylesheet" href="care-triangle-fix.css?v=1">
-<link rel="stylesheet" href="care-visual-fix.css?v=1">
-<link rel="stylesheet" href="care-mobile-layout-fix.css?v=1">
-<link rel="stylesheet" href="care-window-fix.css?v=2">
-
-  
+  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="brand-system-v14.css?v=14">
+  <link rel="stylesheet" href="contour-hero-v15.css?v=15">
+  <link rel="stylesheet" href="care.css?v=6">
 </head>
 <body>
   <header class="site-header">
@@ -40,7 +34,7 @@
     <section class="page-hero care-hero">
       <p class="label">GUDAO CULTIVATION LAB</p>
       <h1>養護資訊</h1>
-      <p>孤島GUDAO燈養龍舌蘭團隊</p>
+      <p>孤島 GUDAO 燈養龍舌蘭團隊</p>
       <p>光、風、水養護互動資訊</p>
     </section>
 
@@ -49,13 +43,18 @@
         <p class="label">INTERACTIVE CARE TOOL</p>
         <h2>全方面養護建議</h2>
       </div>
-      <p>這不是絕對養護公式，實際養護仍需觀察植株、根系、介質乾燥與季節環境來調整</p>
-      <p>有任何養護問題歡迎聯繫孤島</p>
+      <div class="care-intro-copy">
+        <p>這不是絕對養護公式，實際養護仍需觀察植株、根系、介質乾燥與季節環境來調整。</p>
+        <p>有任何養護問題歡迎聯繫孤島。</p>
+      </div>
     </section>
 
     <section class="care-lab wrap" aria-labelledby="lab-title">
       <div class="lab-heading">
-        <div><p class="label">LIGHT × AIR × WATER</p><h2 id="lab-title">養護三角示意</h2></div>
+        <div>
+          <p class="label">LIGHT × AIR × WATER</p>
+          <h2 id="lab-title">養護三角示意</h2>
+        </div>
         <div id="balance-badge" class="balance-badge" data-state="balanced">
           <span>目前環境傾向</span>
           <strong id="balance-title">平衡觀察</strong>
@@ -63,63 +62,56 @@
       </div>
 
       <div class="lab-layout">
-        <section class="triangle-panel" aria-label="光風水互動視覺">
-          <div class="triangle-lines" aria-hidden="true">
-            <span class="line line-light-wind"></span>
-            <span class="line line-light-water"></span>
-            <span class="line line-wind-water"></span>
-          </div>
+        <div class="triangle-column">
+          <section class="triangle-panel" aria-label="光、風、水互動視覺">
+            <svg class="triangle-svg" viewBox="0 0 600 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <line x1="300" y1="92" x2="107" y2="407"></line>
+              <line x1="300" y1="92" x2="493" y2="407"></line>
+              <line x1="107" y1="407" x2="493" y2="407"></line>
+            </svg>
 
-          <button class="factor-node factor-light" type="button" data-topic="light" aria-label="開啟光照說明">
-            <span class="factor-icon">☀</span><b>光</b><small id="light-node-value">50</small>
-          </button>
-          <button class="factor-node factor-wind" type="button" data-topic="wind" aria-label="開啟通風說明">
-            <span class="factor-icon wind-icon">≋</span><b>風</b><small id="wind-node-value">50</small>
-          </button>
-          <button class="factor-node factor-water" type="button" data-topic="water" aria-label="開啟水分說明">
-            <span class="factor-icon">●</span><b>水</b><small id="water-node-value">50</small>
-          </button>
+            <button class="factor-node factor-light" type="button" data-topic="light" aria-label="開啟光照說明">
+              <span class="factor-icon">☀</span><b>光</b><small id="light-node-value">50</small>
+            </button>
+            <button class="factor-node factor-wind" type="button" data-topic="wind" aria-label="開啟通風說明">
+              <span class="factor-icon wind-icon">≋</span><b>風</b><small id="wind-node-value">50</small>
+            </button>
+            <button class="factor-node factor-water" type="button" data-topic="water" aria-label="開啟水分說明">
+              <span class="factor-icon water-icon">●</span><b>水</b><small id="water-node-value">50</small>
+            </button>
+          </section>
 
-          <div id="airflow" class="airflow" aria-hidden="true">
-            <i></i><i></i><i></i><i></i><i></i>
-          </div>
-
-          <div id="plant-stage-visual" class="plant-stage-visual" data-stage="seedling">
-            <div class="plant-glow"></div>
-            <img src="images/care/agave-care/agave-center.jpg" alt="中央龍舌蘭植株示意">
-            <span id="stage-visual-label">植株示意</span>
-          </div>
-
-          <div class="triangle-summary">
-            <strong id="balance-short">目前接近中間值</strong>
-            <p id="balance-copy">請同時觀察葉片表現、介質乾燥速度與環境通風</p>
-          </div>
-        </section>
+          <section class="triangle-status-card" aria-live="polite">
+            <span>ENVIRONMENT STATUS</span>
+            <strong id="balance-short">三項環境條件目前沒有明顯失衡</strong>
+            <p id="balance-copy">建議同步觀察葉片表現、空氣流動與介質乾燥速度，依植株反應逐步調整。</p>
+          </section>
+        </div>
 
         <section class="control-board" aria-label="環境控制">
           <article class="control-card light-card">
             <div class="control-title"><span>☀</span><div><b>光照指標</b><small>強度與時間的綜合示意</small></div><output id="light-output">50</output></div>
             <input id="light-range" type="range" min="0" max="100" value="50" aria-label="光照示意">
             <div class="range-labels"><span>散光</span><span>高光</span></div>
-            <p id="light-suggestion">逐步增強光照，避免突然提高增加植株負荷</p>
+            <p id="light-suggestion">維持穩定光照時數，調整後保留觀察期。</p>
           </article>
 
           <article class="control-card wind-card">
             <div class="control-title"><span>≋</span><div><b>空氣流動</b><small>不是直吹強風，而是帶走悶熱</small></div><output id="wind-output">50</output></div>
             <input id="wind-range" type="range" min="0" max="100" value="50" aria-label="空氣流動示意">
             <div class="range-labels"><span>較靜</span><span>流動</span></div>
-            <p id="wind-suggestion">保持穩定空氣交換，散熱且可避免植株與介質長時間悶濕，出現染菌敗根問題</p>
+            <p id="wind-suggestion">目前風量可作為觀察起點，留意植株與介質後續變化。</p>
           </article>
 
           <article class="control-card water-card">
             <div class="control-title"><span>●</span><div><b>水分</b><small>示意環境濕度與介質中的水分負荷</small></div><output id="water-output">50</output></div>
             <input id="water-range" type="range" min="0" max="100" value="50" aria-label="水分示意">
             <div class="range-labels"><span>偏乾</span><span>偏濕</span></div>
-            <p id="water-suggestion">環境濕度高於80%或是梅雨季節，務必留意給水頻率</p>
+            <p id="water-suggestion">以介質乾燥、盆重與近期新葉狀態共同判斷。</p>
           </article>
 
           <article class="drying-card">
-            <div class="drying-head"><div><b>植株乾燥趨勢</b><small>依目前光風水的示意變化</small></div><strong id="drying-label">中等</strong></div>
+            <div class="drying-head"><div><b>植株乾燥趨勢</b><small>依目前光、風、水的示意變化</small></div><strong id="drying-label">中等</strong></div>
             <div class="drying-track"><span id="drying-bar"></span></div>
             <div class="drying-steps"><span>剛澆水</span><span>逐步乾燥</span><span>評估補水</span></div>
           </article>
@@ -128,7 +120,12 @@
     </section>
 
     <section class="growth-section wrap" aria-labelledby="growth-title">
-      <div class="section-heading"><p class="label">GROWTH STAGE</p><h2 id="growth-title">植株成長階段</h2><p>植株於不同階段個體養護建議方向</p><p>每個品種耐受與反應不同，調整環境時應逐步建立，不以固定數值套用所有植株</p></div>
+      <div class="section-heading">
+        <p class="label">GROWTH STAGE</p>
+        <h2 id="growth-title">植株成長階段</h2>
+        <p>植株於不同階段個體養護建議方向。</p>
+        <p>每個品種耐受與反應不同，調整環境時應逐步建立，不以固定數值套用所有植株。</p>
+      </div>
       <div class="stage-selector" role="tablist" aria-label="選擇植株成長階段">
         <button class="stage-button active" type="button" data-stage="seedling" role="tab" aria-selected="true"><span>01</span><b>小苗</b></button>
         <button class="stage-button" type="button" data-stage="small" role="tab" aria-selected="false"><span>02</span><b>實葉期</b></button>
@@ -136,32 +133,32 @@
         <button class="stage-button" type="button" data-stage="mature" role="tab" aria-selected="false"><span>04</span><b>亞成株</b></button>
       </div>
       <div class="stage-advice">
-        <div><span>階段提醒</span><h3 id="stage-title">小苗：先建立穩定環境</h3><p id="stage-copy">光量逐步建立，同時保持環境通風；根系與介質尚在建立時，更應避免強光與環境突然改變</p></div>
-        <div class="suggested-ranges"><div><span>光</span><b id="stage-light">低至中</b></div><div><span>風</span><b id="stage-wind">柔和流動</b></div><div><span>水</span><b id="stage-water">小量觀察</b></div></div>
+        <div><span>階段提醒</span><h3 id="stage-title">苗芽期：先建立穩定根系</h3><p id="stage-copy"></p></div>
+        <div class="suggested-ranges"><div><span>光</span><b id="stage-light"></b></div><div><span>風</span><b id="stage-wind"></b></div><div><span>水</span><b id="stage-water"></b></div></div>
       </div>
     </section>
 
     <section class="knowledge-section wrap" aria-labelledby="knowledge-title">
       <div class="section-heading"><p class="label">CARE ESSENTIALS</p><h2 id="knowledge-title">三元素與常見問題</h2></div>
       <div class="knowledge-grid">
-        <button class="knowledge-card" type="button" data-topic="light"><span>☀</span><small>LIGHT</small><b>光</b><p>強度、照射時間與成長階段要一起評估</p></button>
-        <button class="knowledge-card" type="button" data-topic="wind"><span>≋</span><small>AIRFLOW</small><b>風</b><p>帶走葉片周圍熱與水氣，降低悶濕停滯造成植株染菌</p></button>
-        <button class="knowledge-card" type="button" data-topic="water"><span>●</span><small>WATER</small><b>水</b><p>從介質乾燥、盆重與環境變化判斷適當給水</p></button>
-        <button class="knowledge-card diagnose-card" type="button" id="open-diagnosis"><span>＋</span><small>PLANT CHECK</small><b>植株問題</b><p>整理常見問題，提供可能原因與檢查方向</p></button>
+        <button class="knowledge-card" type="button" data-topic="light"><span>☀</span><small>LIGHT</small><b>光</b><p>強度、照射時間與成長階段要一起評估。</p></button>
+        <button class="knowledge-card" type="button" data-topic="wind"><span>≋</span><small>AIRFLOW</small><b>風</b><p>帶走葉片周圍熱與水氣，降低悶濕停滯造成植株染菌。</p></button>
+        <button class="knowledge-card" type="button" data-topic="water"><span>●</span><small>WATER</small><b>水</b><p>從介質乾燥、盆重與環境變化判斷適當給水。</p></button>
+        <button class="knowledge-card diagnose-card" type="button" id="open-diagnosis"><span>＋</span><small>PLANT CHECK</small><b>植株問題</b><p>整理常見問題，提供可能原因與檢查方向。</p></button>
       </div>
     </section>
 
     <section class="principles wrap" aria-label="養護原則">
-      <div><span>01</span><h3>改變要逐步</h3><p>提高光照或更換環境時，先讓植株有適應過程，避免一次大幅調整</p></div>
-      <div><span>02</span><h3>觀察最重要</h3><p>給水前先確認介質乾燥、盆重、捏捏葉片與近期環境，找出合理頻率，可從3天1水開始</p></div>
-      <div><span>03</span><h3>異常先檢查</h3><p>若中心軟爛、異味或問題擴大，先停止例行操作並隔離觀察，必要時尋求協助</p></div>
+      <div><span>01</span><h3>改變要逐步</h3><p>提高光照或更換環境時，先讓植株有適應過程，避免一次大幅調整。</p></div>
+      <div><span>02</span><h3>觀察最重要</h3><p>給水前先確認介質乾燥、盆重、葉片與近期環境，再找出適合自己的合理頻率。</p></div>
+      <div><span>03</span><h3>異常先檢查</h3><p>若中心軟爛、異味或問題擴大，先停止例行操作並隔離觀察，必要時尋求協助。</p></div>
     </section>
 
     <section class="care-disclaimer wrap">
       <strong>使用提醒</strong>
-      <p>本頁為養護理解與植株問題判斷資訊，不構成病害診斷或絕對解決方式</p>
-      <p>會因品種、根系、盆器、介質、溫濕度與設備都會影響狀態</p>
-      <p>若植株出現快速腐爛、蟲害擴散或大範圍病斑，請隔離並諮詢孤島團隊或是詢問有經驗培育家</p>
+      <p>本頁為養護理解與植株問題判斷資訊，不構成病害診斷或絕對解決方式。</p>
+      <p>品種、根系、盆器、介質、溫濕度與設備都會影響植株狀態。</p>
+      <p>若植株出現快速腐爛、蟲害擴散或大範圍病斑，請隔離並諮詢孤島團隊或有經驗的培育家。</p>
     </section>
   </main>
 
@@ -170,10 +167,10 @@
     <div><b>PASSION TO THE ISLAND</b><p>© 2026 GUDAO TEAM</p></div>
   </footer>
 
-  <div id="topic-drawer" class="drawer" hidden>
-    <button class="drawer-backdrop" type="button" aria-label="關閉說明"></button>
-    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
-      <button id="close-drawer" class="drawer-close" type="button" aria-label="關閉">×</button>
+  <div id="topic-drawer" class="care-modal" hidden>
+    <button class="care-modal-backdrop" type="button" data-close="topic" aria-label="關閉說明"></button>
+    <aside class="care-modal-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <button id="close-drawer" class="care-modal-close" type="button" aria-label="關閉">×</button>
       <p id="drawer-label" class="label">CARE FACTOR</p>
       <h2 id="drawer-title">光</h2>
       <p id="drawer-intro" class="drawer-intro"></p>
@@ -182,37 +179,18 @@
     </aside>
   </div>
 
-  <div id="diagnosis-modal" class="diagnosis-modal" hidden>
-    <button class="diagnosis-backdrop" type="button" aria-label="關閉植株診療"></button>
-    <section class="diagnosis-panel" role="dialog" aria-modal="true" aria-labelledby="diagnosis-title">
-      <button id="close-diagnosis" class="drawer-close" type="button" aria-label="關閉">×</button>
+  <div id="diagnosis-modal" class="care-modal" hidden>
+    <button class="care-modal-backdrop" type="button" data-close="diagnosis" aria-label="關閉植株狀態評估"></button>
+    <section class="care-modal-panel" role="dialog" aria-modal="true" aria-labelledby="diagnosis-title">
+      <button id="close-diagnosis" class="care-modal-close" type="button" aria-label="關閉">×</button>
       <p class="label">PLANT CHECK</p>
       <h2 id="diagnosis-title">植株狀態評估</h2>
-      <p>先選擇觀察到的狀況，系統提供合適建議，不會直接判定病因，若有需要歡迎與孤島聯繫</p>
+      <p>先選擇觀察到的狀況，系統提供合適建議，不會直接判定病因，若有需要歡迎與孤島聯繫。</p>
       <div id="symptom-list" class="symptom-list"></div>
-      <div id="diagnosis-result" class="diagnosis-result">
-        <p>請先選擇一個狀況</p>
-      </div>
+      <div id="diagnosis-result" class="diagnosis-result"><p>請先選擇一個狀況。</p></div>
     </section>
   </div>
 
-  <script src="care.js?v=5"></script>
-
-<script src="care-triangle-fix.js?v=1"></script>
-
-<script src="care-visual-fix.js?v=1"></script>
-
-<script src="care-mobile-layout-fix.js?v=1"></script>
-
-<script>
-  const menuButton = document.querySelector('.menu');
-  const navigation = document.querySelector('.site-header nav');
-
-  menuButton?.addEventListener('click', () => {
-    const isOpen = navigation.classList.toggle('open');
-    menuButton.setAttribute('aria-expanded', String(isOpen));
-  });
-</script>
-
+  <script src="care.js?v=6"></script>
 </body>
 </html>
