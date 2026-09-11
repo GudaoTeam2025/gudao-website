@@ -1,480 +1,183 @@
-/* ==================================================
-   GUDAO 養護資訊
-   care-window-fix.css
-   Mobile Interaction Stable Version
-   ================================================== */
+/* =========================================================
+GUDAO Care - Window / Mobile Interaction Fix
+Version: 2
+Purpose:
 
-/* --------------------------------------------------
-   1. Modal 外層
-   -------------------------------------------------- */
+1. Fix mobile drawer / modal touch blocking
+2. Fix mobile button click
+3. Fix light / wind / water range touch
+4. Prevent hidden overlay from intercepting pointer events
+   ========================================================= */
+
+/* =========================================================
+01. GLOBAL INTERACTION
+========================================================= */
+
+button,
+input,
+select,
+textarea {
+-webkit-tap-highlight-color: transparent;
+}
+
+button {
+cursor: pointer;
+touch-action: manipulation;
+}
+
+.factor-node,
+.stage-button,
+.knowledge-card {
+touch-action: manipulation;
+-webkit-user-select: none;
+user-select: none;
+}
+
+/* =========================================================
+02. RANGE INPUT
+========================================================= */
+
+.control-card input[type="range"] {
+position: relative;
+z-index: 20;
+
+display: block;
+width: 100%;
+
+margin: 18px 0 6px;
+
+cursor: pointer;
+
+/* 允許手機左右拖曳 */
+touch-action: pan-x;
+
+/* iOS / Android */
+-webkit-user-select: none;
+user-select: none;
+
+/* 保留瀏覽器原生 range 行為 */
+-webkit-appearance: auto;
+appearance: auto;
+}
+
+/* =========================================================
+03. DRAWER / DIAGNOSIS BASE
+========================================================= */
 
 .drawer,
 .diagnosis-modal {
-  position: fixed !important;
-  inset: 0 !important;
+position: fixed !important;
 
-  z-index: 10000 !important;
+inset: 0 !important;
 
-  display: block;
+z-index: 1000 !important;
 
-  margin: 0 !important;
-  padding: 0 !important;
+width: 100%;
+height: 100%;
 
-  overflow: hidden;
+margin: 0;
+padding: 0;
 
-  pointer-events: auto;
+overflow: hidden;
+
+box-sizing: border-box;
 }
+
+/* =========================================================
+04. VERY IMPORTANT
+Hidden overlay MUST NOT block the page
+========================================================= */
 
 .drawer[hidden],
 .diagnosis-modal[hidden] {
-  display: none !important;
-  pointer-events: none !important;
+display: none !important;
+
+visibility: hidden !important;
+
+pointer-events: none !important;
+
+opacity: 0 !important;
 }
 
+/*
+Prevent hidden children from receiving touches
+even if another CSS rule accidentally changes display.
+*/
 
-/* --------------------------------------------------
-   2. 遮罩
-   -------------------------------------------------- */
+.drawer[hidden] *,
+.diagnosis-modal[hidden] * {
+pointer-events: none !important;
+}
+
+/* =========================================================
+05. ACTIVE MODAL
+========================================================= */
+
+.drawer:not([hidden]),
+.diagnosis-modal:not([hidden]) {
+display: block !important;
+
+visibility: visible !important;
+
+pointer-events: auto !important;
+
+opacity: 1;
+}
+
+/* =========================================================
+06. BACKDROP
+========================================================= */
 
 .drawer-backdrop,
 .diagnosis-backdrop {
-  position: absolute !important;
+position: absolute !important;
 
-  inset: 0 !important;
+inset: 0 !important;
 
-  z-index: 0 !important;
+display: block !important;
 
-  display: block !important;
+width: 100% !important;
+height: 100% !important;
 
-  width: 100% !important;
-  height: 100% !important;
+margin: 0 !important;
+padding: 0 !important;
 
-  margin: 0 !important;
-  padding: 0 !important;
+border: 0 !important;
 
-  border: 0 !important;
+background: rgba(0, 0, 0, 0.68);
 
-  background: rgba(20, 24, 27, 0.72) !important;
+cursor: pointer;
 
-  appearance: none !important;
-  -webkit-appearance: none !important;
+pointer-events: auto;
 
-  cursor: pointer;
-
-  touch-action: manipulation;
-
-  pointer-events: auto !important;
+touch-action: manipulation;
 }
 
+/* =========================================================
+07. DRAWER PANEL
+========================================================= */
 
-/* --------------------------------------------------
-   3. Drawer / Diagnosis Panel
-   -------------------------------------------------- */
+.drawer-panel {
+position: absolute !important;
 
-.drawer-panel,
-.diagnosis-panel {
-  position: absolute !important;
+top: 50% !important;
+right: 24px !important;
 
-  z-index: 1 !important;
+bottom: auto !important;
+left: auto !important;
 
-  box-sizing: border-box !important;
+transform: translateY(-50%);
 
-  top: 50% !important;
-  right: 24px !important;
-  left: auto !important;
-  bottom: auto !important;
+width: min(560px, calc(100vw - 48px)) !important;
 
-  width: min(520px, calc(100vw - 48px)) !important;
+max-width: 560px !important;
 
-  min-width: 0 !important;
-  max-width: 520px !important;
+height: auto !important;
 
-  height: auto !important;
-  min-height: 0 !important;
+max-height: calc(100dvh - 48px) !important;
 
-  max-height: calc(100dvh - 48px) !important;
+margin: 0 !important;
 
-  margin: 0 !important;
+padding: 28px !important;
 
-  padding: 58px 32px 30px !important;
-
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-
-  background: var(--care-sand, #EBEBE9) !important;
-
-  border: 0 !important;
-  border-top: 8px solid var(--care-orange, #FF8510) !important;
-
-  border-radius: 0 !important;
-
-  box-shadow:
-    0 22px 70px rgba(0, 0, 0, 0.35) !important;
-
-  transform: translateY(-50%) !important;
-
-  overscroll-behavior: contain;
-
-  -webkit-overflow-scrolling: touch;
-
-  touch-action: pan-y;
-
-  pointer-events: auto !important;
-}
-
-
-/* --------------------------------------------------
-   4. Diagnosis 視窗桌面尺寸
-   -------------------------------------------------- */
-
-.diagnosis-panel {
-  right: 50% !important;
-
-  width: min(840px, calc(100vw - 48px)) !important;
-
-  max-width: 840px !important;
-
-  transform: translate(50%, -50%) !important;
-}
-
-
-/* --------------------------------------------------
-   5. Drawer 關閉按鈕
-   -------------------------------------------------- */
-
-.drawer-close {
-  position: absolute !important;
-
-  z-index: 10 !important;
-
-  top: 12px !important;
-  right: 12px !important;
-
-  display: flex !important;
-
-  align-items: center !important;
-  justify-content: center !important;
-
-  box-sizing: border-box !important;
-
-  width: 42px !important;
-  min-width: 42px !important;
-  max-width: 42px !important;
-
-  height: 42px !important;
-  min-height: 42px !important;
-  max-height: 42px !important;
-
-  margin: 0 !important;
-  padding: 0 0 2px !important;
-
-  border: 1px solid var(--care-rock, #262C31) !important;
-
-  border-radius: 0 !important;
-
-  background: transparent !important;
-
-  color: var(--care-rock, #262C31) !important;
-
-  box-shadow: none !important;
-
-  font-family: Arial, sans-serif !important;
-
-  font-size: 26px !important;
-  font-weight: 700 !important;
-
-  line-height: 1 !important;
-
-  text-align: center !important;
-
-  appearance: none !important;
-  -webkit-appearance: none !important;
-
-  cursor: pointer;
-
-  touch-action: manipulation;
-
-  pointer-events: auto !important;
-}
-
-.drawer-close:hover,
-.drawer-close:focus-visible,
-.drawer-close:active {
-  border-color: var(--care-orange, #FF8510) !important;
-
-  background: var(--care-orange, #FF8510) !important;
-
-  color: var(--care-rock, #262C31) !important;
-
-  outline: none !important;
-}
-
-
-/* --------------------------------------------------
-   6. 標題避免被 X 擋住
-   -------------------------------------------------- */
-
-.drawer-panel > .label,
-.drawer-panel > h2,
-.diagnosis-panel > .label,
-.diagnosis-panel > h2 {
-  padding-right: 54px !important;
-}
-
-.drawer-panel h2,
-.diagnosis-panel h2 {
-  margin: 5px 0 12px !important;
-
-  font-size: clamp(42px, 5vw, 62px) !important;
-
-  line-height: 1.08 !important;
-}
-
-
-/* --------------------------------------------------
-   7. Drawer 內容
-   -------------------------------------------------- */
-
-.drawer-intro,
-.diagnosis-panel > p {
-  font-size: 15px;
-
-  line-height: 1.75;
-}
-
-.drawer-points {
-  display: grid;
-
-  gap: 10px;
-
-  margin-top: 24px;
-}
-
-.drawer-points article {
-  display: grid;
-
-  grid-template-columns: 44px minmax(0, 1fr);
-
-  gap: 12px;
-
-  padding: 15px;
-}
-
-.drawer-points h3 {
-  margin: 0;
-}
-
-.drawer-points p {
-  margin: 5px 0 0;
-
-  line-height: 1.7;
-}
-
-
-/* --------------------------------------------------
-   8. Diagnosis
-   -------------------------------------------------- */
-
-.symptom-list {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 8px;
-
-  margin: 22px 0;
-}
-
-.symptom-list button {
-  min-height: 42px;
-
-  padding: 8px 13px;
-
-  touch-action: manipulation;
-
-  pointer-events: auto;
-}
-
-.diagnosis-result {
-  padding: 20px !important;
-}
-
-.diagnosis-result h3 {
-  margin: 5px 0 18px;
-
-  font-size: clamp(26px, 4vw, 38px) !important;
-}
-
-.diagnosis-columns {
-  grid-template-columns: 1fr !important;
-
-  gap: 15px !important;
-}
-
-
-/* ==================================================
-   9. 手機版
-   ================================================== */
-
-@media (max-width: 720px) {
-
-  .drawer,
-  .diagnosis-modal {
-    inset: 0 !important;
-
-    padding: 0 !important;
-
-    overflow: hidden !important;
-
-    touch-action: none;
-  }
-
-
-  /* Drawer */
-
-  .drawer-panel,
-  .diagnosis-panel {
-    top: 50% !important;
-
-    right: 14px !important;
-    left: 14px !important;
-
-    width: auto !important;
-
-    max-width: none !important;
-
-    max-height: calc(100dvh - 56px) !important;
-
-    padding: 58px 18px 22px !important;
-
-    transform: translateY(-50%) !important;
-
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-
-    touch-action: pan-y !important;
-
-    -webkit-overflow-scrolling: touch;
-  }
-
-
-  /* Diagnosis */
-
-  .diagnosis-panel {
-    right: 14px !important;
-  }
-
-
-  /* 標題 */
-
-  .drawer-panel h2,
-  .diagnosis-panel h2 {
-    margin-top: 3px !important;
-
-    padding-right: 52px !important;
-
-    font-size: clamp(36px, 10vw, 48px) !important;
-
-    line-height: 1.12 !important;
-  }
-
-
-  /* X */
-
-  .drawer-close {
-    top: 12px !important;
-    right: 12px !important;
-
-    width: 42px !important;
-    min-width: 42px !important;
-
-    height: 42px !important;
-    min-height: 42px !important;
-
-    padding: 0 0 2px !important;
-
-    font-size: 25px !important;
-
-    touch-action: manipulation !important;
-  }
-
-
-  /* Drawer */
-
-  .drawer-points article {
-    grid-template-columns: 38px minmax(0, 1fr);
-
-    gap: 10px;
-
-    padding: 14px;
-  }
-
-  .drawer-points p,
-  .drawer-note,
-  .diagnosis-panel > p,
-  .diagnosis-result {
-    font-size: 14px;
-
-    line-height: 1.7;
-  }
-
-
-  /* Diagnosis symptom */
-
-  .symptom-list {
-    display: flex !important;
-
-    flex-wrap: nowrap !important;
-
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-
-    gap: 8px !important;
-
-    margin: 18px 0 !important;
-
-    padding-bottom: 7px !important;
-
-    -webkit-overflow-scrolling: touch;
-
-    touch-action: pan-x !important;
-  }
-
-  .symptom-list button {
-    flex: 0 0 auto !important;
-
-    min-height: 42px !important;
-
-    padding: 8px 13px !important;
-
-    white-space: nowrap !important;
-
-    touch-action: manipulation !important;
-  }
-
-  .diagnosis-result {
-    padding: 17px !important;
-  }
-}
-
-
-/* --------------------------------------------------
-   10. 小手機
-   -------------------------------------------------- */
-
-@media (max-width: 420px) {
-
-  .drawer-panel,
-  .diagnosis-panel {
-    right: 10px !important;
-
-    left: 10px !important;
-
-    max-height: calc(100dvh - 40px) !important;
-  }
-
-  .drawer-panel h2,
-  .diagnosis-panel h2 {
-    font-size: clamp(32px, 9.5vw, 42px) !important;
-  }
-}
+box-sizing: bor
