@@ -139,12 +139,92 @@
       ? '水分負荷偏高且乾燥較慢：觀察植株狀況，避免染菌風險'
       : water < 25 && waterDemand > 55 ? '水分設定偏低：請觀察植株狀態與盆重，避免根系異常' : '以介質乾燥、盆重與近期新葉狀態共同判斷';
 
-    let balance = { title: '平衡觀察', short: '目前設定接近中間值', copy: '請同時觀察葉片表現、介質乾燥速度', name: 'balanced' };
-    if (light > 72 && wind < 55) balance = { title: '高光・通風待觀察', short: '光照提高，散熱也要留意', copy: '建議先觀察植株狀態表現，不宜持續增加光量', name: 'warning' };
-    else if (water > 72 && wind < 55) balance = { title: '水分偏高', short: '環境偏濕或流動較弱', copy: '確認環境是否過濕，並避免葉心與根系長時間潮濕造成敗根', name: 'warning' };
-    else if (light > 72 && wind >= 60) balance = { title: '偏高光環境', short: '水與風可同步提升', copy: '水分消耗與乾燥速度可能增加，請依植株表現觀察微調', name: 'active' };
-    else if (wind > 78 && water < 30) balance = { title: '乾燥速度偏快', short: '風量高、偏向控水養護', copy: '留意介質是否乾得過快，以及植株給水後根系有無吸水表現', name: 'active' };
-    else if (light < 28) balance = { title: '偏低光環境', short: '光量設定較低', copy: '留意新葉是否拉長、葉色改變或植株朝單側尋光。', name: 'soft' };
+let balance = {
+  title: '平衡觀察',
+  short: '目前設定接近中間值',
+  copy: '請同時觀察葉片表現、空氣流動與介質乾燥速度。',
+  name: 'balanced'
+};
+
+/* 1. 光、風、水三項都偏高，最精確的條件要放最前面 */
+if (light >= 85 && wind >= 85 && water >= 85) {
+  balance = {
+    title: '三項指標偏高',
+    short: '光、風、水目前都設定在較高區間',
+    copy: '目前屬於較高環境負荷設定，請同步觀察葉片表現、植株適應狀況與介質乾燥速度',
+    name: 'active'
+  };
+}
+
+/* 2. 高光，但通風沒有同步提高 */
+else if (light > 72 && wind < 55) {
+  balance = {
+    title: '高光・通風待觀察',
+    short: '光照提高，散熱與空氣流動也要同步留意',
+    copy: '建議先觀察葉片溫度與植株適應狀況，不宜持續增加光量',
+    name: 'warning'
+  };
+}
+
+/* 3. 水分偏高，而且通風較弱 */
+else if (water > 72 && wind < 55) {
+  balance = {
+    title: '水分偏高',
+    short: '環境偏濕且空氣流動較弱',
+    copy: '請確認介質是否長時間潮濕，並避免葉心與根系持續處於悶濕環境',
+    name: 'warning'
+  };
+}
+
+/* 4. 高光與通風同步提高 */
+else if (light > 72 && wind >= 60) {
+  balance = {
+    title: '偏高光環境',
+    short: '光照與空氣流動已同步提高',
+    copy: '水分消耗與介質乾燥速度可能增加，請依植株表現與盆內乾燥狀況逐步微調',
+    name: 'active'
+  };
+}
+
+/* 5. 風量高，而且水分設定偏低 */
+else if (wind > 78 && water < 30) {
+  balance = {
+    title: '乾燥速度偏快',
+    short: '風量較高，環境偏向乾燥',
+    copy: '請留意介質是否乾燥過快，並觀察給水後植株與根系是否有正常吸水表現',
+    name: 'active'
+  };
+}
+
+/* 6. 水分偏高，但通風不算低 */
+else if (water > 78) {
+  balance = {
+    title: '水分負荷偏高',
+    short: '目前水分設定高於其他環境因素',
+    copy: '請觀察介質內部乾燥狀況、盆器排水與葉心是否長時間積水',
+    name: 'warning'
+  };
+}
+
+/* 7. 通風偏低 */
+else if (wind < 25) {
+  balance = {
+    title: '空氣流動偏低',
+    short: '目前環境較為靜止',
+    copy: '請觀察植株周圍是否有熱與水氣停滯，並以柔和、穩定的空氣交換逐步改善',
+    name: 'soft'
+  };
+}
+
+/* 8. 光照偏低 */
+else if (light < 28) {
+  balance = {
+    title: '偏低光環境',
+    short: '目前光量設定較低',
+    copy: '請留意新葉是否拉長、葉色改變，或植株是否朝單一方向尋光',
+    name: 'soft'
+  };
+}
 
     const stageDeviation = Math.abs(light - target.light) + Math.abs(wind - target.wind) + Math.abs(water - target.water);
     if (stageDeviation < 28) balance.copy += ` 目前也接近「${stages[state.stage].label}」的示意觀察區間。`;
