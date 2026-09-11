@@ -295,3 +295,9 @@
   font-size: 10px;
   overflow-wrap: anywhere;
 }
+.triangle-panel .plant-stage-visual {
+display: none !important;
+}
+.triangle-panel .plant-glow {
+display: none !important;
+}
