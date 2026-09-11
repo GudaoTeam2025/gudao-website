@@ -184,3 +184,68 @@
     bottom: 7%;
   }
 }
+/* ==================================================
+   光、風、水正三角形比例修正
+   必須放在 CSS 最下方
+   ================================================== */
+
+/* 電腦與平板 */
+.triangle-column .triangle-panel {
+  min-height: 570px !important;
+}
+
+/* 手機 */
+@media (max-width: 720px) {
+  .triangle-column .triangle-panel {
+    min-height: 360px !important;
+    height: 360px !important;
+  }
+
+  .triangle-panel .factor-light {
+    top: 4% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .triangle-panel .factor-wind {
+    bottom: 6% !important;
+    left: 5% !important;
+  }
+
+  .triangle-panel .factor-water {
+    right: 5% !important;
+    bottom: 6% !important;
+  }
+}
+
+/* 小型手機 */
+@media (max-width: 520px) {
+  .triangle-column .triangle-panel {
+    min-height: 330px !important;
+    height: 330px !important;
+  }
+
+  .triangle-panel .factor-node {
+    width: 72px !important;
+    min-width: 72px !important;
+    max-width: 72px !important;
+
+    height: 72px !important;
+    min-height: 72px !important;
+    max-height: 72px !important;
+  }
+
+  .triangle-panel .factor-light {
+    top: 5% !important;
+  }
+
+  .triangle-panel .factor-wind {
+    bottom: 5% !important;
+    left: 5% !important;
+  }
+
+  .triangle-panel .factor-water {
+    right: 5% !important;
+    bottom: 5% !important;
+  }
+}
