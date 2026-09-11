@@ -415,3 +415,7 @@
     transition: none;
   }
 }
+/* 隱藏照片左上角的分類標籤 */
+.appreciation-category {
+  display: none;
+}
