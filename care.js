@@ -11,9 +11,9 @@
   };
 
   const topics = {
-    light:{label:'LIGHT',title:'光',intro:'光照不過度追求馬上強光，真正重要的是植株階段需求的光量、每天照射時間，以及是否有適應。',points:[['01','光照強度','燈具瓦數、光譜與強度各品牌不同，距離與角度都會改變結果。'],['02','每日照射時間','高強度短時間與低強度長時間都可嘗試，但仍要觀察植株表現，建議照射 12–16 小時。'],['03','成長階段','芽苗、小苗、中株與成株的耐受及調整速度不同，換環境時要逐步增加光照強度或時長。']],note:'若提高光照，請同步觀察葉片表現，避免植株出現異狀。'},
-    wind:{label:'AIRFLOW',title:'風',intro:'風不只是降溫，也是在室內環境中協助帶走熱與降低染菌風險，維持穩定空氣交換。',points:[['01','帶走熱','協助降低葉片與燈具附近的熱停滯。'],['02','協助蒸散','空氣流動會影響葉面與介質周圍的水分交換。'],['03','減少悶濕','降低葉心、盆面及植株間長時間潮濕染菌的機會。']],note:'風量提高後，介質可能更快乾燥；請觀察盆重與介質狀態，靈活調整給水節奏。'},
-    water:{label:'WATER',title:'水',intro:'初期建立給水頻率，隨著植株成長，光照、通風、植株大小與季節都會影響水分需求。',points:[['01','先看介質','確認介質表面的乾燥程度、植株盆重與環境濕度狀態。'],['02','再看環境','光、風、溫度與濕度改變後，原本的給水週期可能不再適合。'],['03','最後看植株','新葉、葉片硬度、根系狀況與近期生長，可提供更多判斷線索。']],note:'澆水後也要確認多餘水分能排出，避免長時間積水；腰水或泡盆培育請評估環境合適再進行。'}
+    light:{label:'LIGHT',title:'光',intro:'光照不過度追求馬上強光，真正重要的是植株階段需求的光量、每天照射時間，以及是否有適應',points:[['01','光照強度','燈具瓦數、光譜與強度各品牌不同，距離與角度都會改變結果'],['02','每日照射時間','高強度短時間與低強度長時間都可嘗試，但仍要觀察植株表現，建議照射 12–16 小時'],['03','成長階段','芽苗、小苗、中株與成株的耐受及調整速度不同，換環境時要逐步增加光照強度或時長']],note:'若提高光照，請同步觀察葉片表現，避免植株出現異狀'},
+    wind:{label:'AIRFLOW',title:'風',intro:'風不只是降溫，也是在室內環境中協助帶走熱與降低染菌風險，維持穩定空氣交換',points:[['01','帶走熱','協助降低葉片與燈具附近的熱停滯'],['02','協助蒸散','空氣流動會影響葉面與介質周圍的水分交換'],['03','減少悶濕','降低葉心、盆面及植株間長時間潮濕染菌的機會']],note:'風量提高後，介質可能更快乾燥；請觀察盆重與介質狀態，靈活調整給水節奏'},
+    water:{label:'WATER',title:'水',intro:'初期建立給水頻率，隨著植株成長，光照、通風、植株大小與季節都會影響水分需求',points:[['01','先看介質','確認介質表面的乾燥程度、植株盆重與環境濕度狀態'],['02','再看環境','光、風、溫度與濕度改變後，原本的給水週期可能不再適合'],['03','最後看植株','新葉、葉片硬度、根系狀況與近期生長，可提供更多判斷線索']],note:'澆水後也要確認多餘水分能排出，避免長時間積水；腰水或泡盆培育請評估環境合適再進行'}
   };
 
   const symptoms = {
@@ -53,31 +53,31 @@
     const drying=Math.max(5,Math.min(95,26+light*.38+wind*.42-water*.32));
     $('#drying-bar').style.width=`${drying}%`;$('#drying-label').textContent=drying>72?'較快':drying<38?'較慢':'中等';
     const airflowNeed=light*.72+12,dryingDemand=light*.48+wind*.28;
-    $('#light-suggestion').textContent=light>70?'光照偏高：請同步觀察葉片溫度、植株適應狀況與介質乾燥速度。':light<30?'光照偏低：觀察新葉是否拉長、變薄，或植株是否出現明顯尋光表現。':'維持穩定光照時數，調整後保留觀察期。';
-    $('#wind-suggestion').textContent=wind+10<airflowNeed?'相對目前光照，空氣流動可能不足；建議先改善環境交換，避免只用強風直吹。':wind>80?'空氣流動偏高：同步觀察介質是否乾燥過快與植株失水表現。':'目前風量可作為觀察起點，留意植株與介質後續變化。';
-    $('#water-suggestion').textContent=water>72&&drying<55?'水分設定偏高且乾燥較慢：觀察介質是否長時間潮濕，並留意葉心與根系環境。':water<25&&dryingDemand>55?'水分設定偏低且乾燥傾向較高：請搭配盆重、介質乾燥程度與葉片狀態判斷是否需要調整。':'以介質乾燥、盆重與近期新葉狀態共同判斷。';
+    $('#light-suggestion').textContent=light>70?'光照偏高：請同步觀察葉片溫度、植株適應狀況與介質乾燥速度':light<30?'光照偏低：觀察新葉是否拉長、變薄，或植株是否出現明顯尋光表現':'維持穩定光照時數，調整後保留觀察期';
+    $('#wind-suggestion').textContent=wind+10<airflowNeed?'相對目前光照，空氣流動可能不足；建議先改善環境交換，避免只用強風直吹':wind>80?'空氣流動偏高：同步觀察介質是否乾燥過快與植株失水表現':'目前風量可作為觀察起點，留意植株與介質後續變化';
+    $('#water-suggestion').textContent=water>72&&drying<55?'水分設定偏高且乾燥較慢：觀察介質是否長時間潮濕，並留意葉心與根系環境':water<25&&dryingDemand>55?'水分設定偏低且乾燥傾向較高：請搭配盆重、介質乾燥程度與葉片狀態判斷是否需要調整':'以介質乾燥、盆重與近期新葉狀態共同判斷';
 
-    let balance={title:'平衡觀察',short:'三項環境條件目前沒有明顯失衡',copy:'建議同步觀察葉片表現、空氣流動與介質乾燥速度，依植株反應逐步調整。',name:'balanced'};
-    if(light>=85&&wind>=85&&water>=85)balance={title:'三項指標偏高',short:'光、風、水目前皆處於較高設定',copy:'目前屬於較高強度的環境設定，請同步觀察葉片表現、植株適應狀況與介質乾燥速度。',name:'active'};
-    else if(light>=73&&wind<55)balance={title:'高光・通風待觀察',short:'光照較高，但空氣流動未同步提高',copy:'建議優先觀察葉片溫度與植株適應狀況，並確認環境是否有足夠的空氣交換。',name:'warning'};
-    else if(water>=73&&wind<55)balance={title:'水分偏高・通風待觀察',short:'水分較高，空氣流動相對不足',copy:'請觀察介質是否長時間保持潮濕，以及盆內與植株周圍的水氣是否不易散去。',name:'warning'};
-    else if(wind>=79&&water<30)balance={title:'乾燥速度偏快',short:'風量較高，水分設定相對偏低',copy:'介質乾燥速度可能加快，請搭配盆重、介質狀態與葉片表現判斷是否需要調整。',name:'active'};
-    else if(water>=79&&drying<55)balance={title:'水分負荷偏高',short:'水分設定較高，環境乾燥速度相對較慢',copy:'請觀察介質是否長時間潮濕，並確認盆器排水與通風狀況。',name:'warning'};
-    else if(light>=73&&wind>=60&&water>=30)balance={title:'光風同步提高',short:'光照提高，空氣流動也有同步配置',copy:'環境中的水分消耗可能增加，請持續觀察介質乾燥速度與植株適應狀況。',name:'active'};
-    else if(light>=73&&water<30)balance={title:'高光・水分待觀察',short:'光照較高，水分設定相對偏低',copy:'請觀察介質乾燥速度與葉片狀態，避免僅依固定週期給水。',name:'warning'};
-    else if(light>=79)balance={title:'光照設定偏高',short:'目前光照強度處於較高區間',copy:'請搭配觀察葉片狀態、葉色與植株適應狀況。',name:'active'};
-    else if(water>=79)balance={title:'水分設定偏高',short:'目前水分設定處於較高區間',copy:'實際影響仍需搭配通風與介質乾燥速度觀察，並確認多餘水分能正常排出。',name:'warning'};
-    else if(wind<25)balance={title:'空氣流動偏低',short:'目前環境的空氣交換較弱',copy:'請留意植株周圍是否有熱與水氣停滯，建議以穩定空氣流動逐步改善環境。',name:'soft'};
-    else if(light<28)balance={title:'光照設定偏低',short:'目前光量處於較低區間',copy:'請留意新葉是否拉長、變薄或植株是否朝單一方向尋光。',name:'soft'};
-    else if(water<28)balance={title:'水分設定偏低',short:'目前水分設定處於較低區間',copy:'請觀察介質乾燥速度、盆重與葉片狀態，確認給水頻率是否符合植株實際消耗。',name:'soft'};
-    const ref=stages[state.stage].target,deviation=Math.abs(light-ref.light)+Math.abs(wind-ref.wind)+Math.abs(water-ref.water);if(deviation<28)balance.copy+=` 目前也接近「${stages[state.stage].label}」的示意觀察區間。`;
+    let balance={title:'平衡觀察',short:'三項環境條件目前沒有明顯失衡',copy:'建議同步觀察葉片表現、空氣流動與介質乾燥速度，依植株反應逐步調整',name:'balanced'};
+    if(light>=85&&wind>=85&&water>=85)balance={title:'三項指標偏高',short:'光、風、水目前皆處於較高設定',copy:'目前屬於較高強度的環境設定，請同步觀察葉片表現、植株適應狀況與介質乾燥速度',name:'active'};
+    else if(light>=73&&wind<55)balance={title:'高光・通風待觀察',short:'光照較高，但空氣流動未同步提高',copy:'建議優先觀察葉片溫度與植株適應狀況，並確認環境是否有足夠的空氣交換',name:'warning'};
+    else if(water>=73&&wind<55)balance={title:'水分偏高・通風待觀察',short:'水分較高，空氣流動相對不足',copy:'請觀察介質是否長時間保持潮濕，以及盆內與植株周圍的水氣是否不易散去',name:'warning'};
+    else if(wind>=79&&water<30)balance={title:'乾燥速度偏快',short:'風量較高，水分設定相對偏低',copy:'介質乾燥速度可能加快，請搭配盆重、介質狀態與葉片表現判斷是否需要調整',name:'active'};
+    else if(water>=79&&drying<55)balance={title:'水分負荷偏高',short:'水分設定較高，環境乾燥速度相對較慢',copy:'請觀察介質是否長時間潮濕，並確認盆器排水與通風狀況',name:'warning'};
+    else if(light>=73&&wind>=60&&water>=30)balance={title:'光風同步提高',short:'光照提高，空氣流動也有同步配置',copy:'環境中的水分消耗可能增加，請持續觀察介質乾燥速度與植株適應狀況',name:'active'};
+    else if(light>=73&&water<30)balance={title:'高光・水分待觀察',short:'光照較高，水分設定相對偏低',copy:'請觀察介質乾燥速度與葉片狀態，避免僅依固定週期給水',name:'warning'};
+    else if(light>=79)balance={title:'光照設定偏高',short:'目前光照強度處於較高區間',copy:'請搭配觀察葉片狀態、葉色與植株適應狀況',name:'active'};
+    else if(water>=79)balance={title:'水分設定偏高',short:'目前水分設定處於較高區間',copy:'實際影響仍需搭配通風與介質乾燥速度觀察，並確認多餘水分能正常排出',name:'warning'};
+    else if(wind<25)balance={title:'空氣流動偏低',short:'目前環境的空氣交換較弱',copy:'請留意植株周圍是否有熱與水氣停滯，建議以穩定空氣流動逐步改善環境',name:'soft'};
+    else if(light<28)balance={title:'光照設定偏低',short:'目前光量處於較低區間',copy:'請留意新葉是否拉長、變薄或植株是否朝單一方向尋光',name:'soft'};
+    else if(water<28)balance={title:'水分設定偏低',short:'目前水分設定處於較低區間',copy:'請觀察介質乾燥速度、盆重與葉片狀態，確認給水頻率是否符合植株實際消耗',name:'soft'};
+    const ref=stages[state.stage].target,deviation=Math.abs(light-ref.light)+Math.abs(wind-ref.wind)+Math.abs(water-ref.water);if(deviation<28)balance.copy+=` 目前也接近「${stages[state.stage].label}」的示意觀察區間`;
     $('#balance-title').textContent=balance.title;$('#balance-short').textContent=balance.short;$('#balance-copy').textContent=balance.copy;$('#balance-badge').dataset.state=balance.name;
   }
 
   function openTopic(key){const topic=topics[key];if(!topic)return;$('#drawer-label').textContent=topic.label;$('#drawer-title').textContent=topic.title;$('#drawer-intro').textContent=topic.intro;$('#drawer-points').innerHTML=topic.points.map(([n,t,c])=>`<article><span>${n}</span><div><h3>${t}</h3><p>${c}</p></div></article>`).join('');$('#drawer-note').textContent=topic.note;$('#topic-drawer').hidden=false;document.body.classList.add('modal-open');setTimeout(()=>$('#close-drawer').focus(),0);}
   function closeTopic(){const modal=$('#topic-drawer');if(modal)modal.hidden=true;unlockBody();}
   function openDiagnosis(){const list=$('#symptom-list');list.innerHTML=Object.keys(symptoms).map((symptom,index)=>`<button type="button" data-symptom="${symptom}" class="${index===0?'active':''}">${symptom}</button>`).join('');$$('#symptom-list button').forEach(button=>button.addEventListener('click',()=>selectSymptom(button.dataset.symptom)));$('#diagnosis-modal').hidden=false;document.body.classList.add('modal-open');selectSymptom(Object.keys(symptoms)[0]);setTimeout(()=>$('#close-diagnosis').focus(),0);}
-  function selectSymptom(symptom){const item=symptoms[symptom];if(!item)return;$$('#symptom-list button').forEach(button=>button.classList.toggle('active',button.dataset.symptom===symptom));$('#diagnosis-result').innerHTML=`<p class="diagnosis-label">目前觀察</p><h3>${symptom}</h3><div class="diagnosis-columns"><section><h4>可能相關因素</h4><ul>${item.causes.map(text=>`<li>${text}</li>`).join('')}</ul></section><section><h4>建議先檢查</h4><ul>${item.checks.map(text=>`<li>${text}</li>`).join('')}</ul></section></div><p class="diagnosis-warning">症狀可能有多種原因，若問題持續惡化，請先隔離植株或向孤島討論交流。</p>`;}
+  function selectSymptom(symptom){const item=symptoms[symptom];if(!item)return;$$('#symptom-list button').forEach(button=>button.classList.toggle('active',button.dataset.symptom===symptom));$('#diagnosis-result').innerHTML=`<p class="diagnosis-label">目前觀察</p><h3>${symptom}</h3><div class="diagnosis-columns"><section><h4>可能相關因素</h4><ul>${item.causes.map(text=>`<li>${text}</li>`).join('')}</ul></section><section><h4>建議先檢查</h4><ul>${item.checks.map(text=>`<li>${text}</li>`).join('')}</ul></section></div><p class="diagnosis-warning">症狀可能有多種原因，若問題持續惡化，請先隔離植株或向孤島討論交流</p>`;}
   function closeDiagnosis(){const modal=$('#diagnosis-modal');if(modal)modal.hidden=true;unlockBody();}
   function unlockBody(){if($('#topic-drawer')?.hidden&&$('#diagnosis-modal')?.hidden)document.body.classList.remove('modal-open');}
 
