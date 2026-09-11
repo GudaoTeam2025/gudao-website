@@ -1,0 +1,186 @@
+/* ==================================================
+   GUDAO 養護三角排版修正 v1
+   1. 三角形在上方
+   2. 狀態說明獨立放在三角形下方
+   3. 完全移除手機左側白色風流線
+   ================================================== */
+
+/* 左側白線來源，所有尺寸都直接停用 */
+.triangle-panel .airflow,
+.triangle-panel #airflow,
+.airflow {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  animation: none !important;
+}
+
+.triangle-panel .airflow i,
+.triangle-panel #airflow i,
+.airflow i {
+  display: none !important;
+  animation: none !important;
+}
+
+/* 左欄改成：三角形 + 獨立狀態卡 */
+.triangle-column {
+  display: grid;
+  min-width: 0;
+  gap: 12px;
+  align-content: start;
+}
+
+/* 三角形內只保留光、風、水與連線 */
+.triangle-column .triangle-panel {
+  width: 100%;
+  min-height: 620px;
+}
+
+/* 舊的絕對定位摘要失效，改由下方狀態卡承接 */
+.triangle-column .triangle-panel > .triangle-summary {
+  display: none !important;
+}
+
+/* 三角形下方的獨立狀態說明 */
+.triangle-status-card {
+  position: static;
+  display: grid;
+  gap: 7px;
+  min-height: 116px;
+  padding: 20px 22px;
+  background: var(--g-rock, #262C31);
+  border-top: 4px solid var(--g-orange, #FF8510);
+  box-shadow: 0 12px 30px rgba(38, 44, 49, 0.12);
+  color: #FFFFFF;
+  text-align: left;
+}
+
+.triangle-status-card::before {
+  content: "ENVIRONMENT STATUS";
+  color: rgba(255, 255, 255, 0.52);
+  font-family: "Khand", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.triangle-status-card strong {
+  display: block;
+  color: var(--g-orange, #FF8510);
+  font-size: clamp(18px, 2.4vw, 24px);
+  line-height: 1.35;
+}
+
+.triangle-status-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* 確保底邊沒有文字覆蓋，節點與線條保持清楚 */
+.triangle-panel .factor-wind,
+.triangle-panel .factor-water {
+  bottom: 8%;
+}
+
+/* 動態 SVG 維持在節點後方 */
+.triangle-panel .care-triangle-svg {
+  z-index: 1 !important;
+}
+
+.triangle-panel .factor-node {
+  z-index: 6 !important;
+}
+
+/* 桌面：左側為三角形＋狀態，右側為控制卡 */
+.lab-layout > .triangle-column {
+  grid-column: auto;
+}
+
+@media (max-width: 980px) {
+  /* 單欄順序：三角形、狀態說明、光風水控制 */
+  .lab-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .triangle-column {
+    order: 1;
+  }
+
+  .control-board {
+    order: 2;
+  }
+
+  .triangle-column .triangle-panel {
+    min-height: 590px;
+  }
+}
+
+@media (max-width: 720px) {
+  .triangle-column {
+    gap: 10px;
+  }
+
+  .triangle-column .triangle-panel {
+    min-height: 520px;
+  }
+
+  /* 手機節點向內收，避免貼邊或被裁切 */
+  .triangle-panel .factor-light {
+    top: 4%;
+  }
+
+  .triangle-panel .factor-wind {
+    bottom: 8%;
+    left: 6%;
+  }
+
+  .triangle-panel .factor-water {
+    right: 6%;
+    bottom: 8%;
+  }
+
+  .triangle-status-card {
+    min-height: 0;
+    padding: 17px 18px;
+  }
+
+  .triangle-status-card strong {
+    font-size: 19px;
+  }
+
+  .triangle-status-card p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 520px) {
+  .triangle-column .triangle-panel {
+    min-height: 470px;
+  }
+
+  .triangle-panel .factor-node {
+    width: 72px !important;
+    min-width: 72px !important;
+    height: 72px !important;
+    min-height: 72px !important;
+  }
+
+  .triangle-panel .factor-light {
+    top: 5%;
+  }
+
+  .triangle-panel .factor-wind {
+    bottom: 7%;
+    left: 5%;
+  }
+
+  .triangle-panel .factor-water {
+    right: 5%;
+    bottom: 7%;
+  }
+}
