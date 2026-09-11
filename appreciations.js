@@ -11,42 +11,45 @@
 window.GUDAO_APPRECIATIONS = [
   {
     code: "GuDao Team",
-    name: "寬血蟹 × 大鋼牙",
+    name: "未來生力軍",
     category: "培育紀錄",
-    description: "血斑加入狂刺，經典嚴龍披上血色紋理，持續記錄個體後續表現。",
+    description: "孤島持續培育的未來生力軍，感受個體帶來的強悍張力",
     cultivation: "室內燈養",
     record: "持續記錄",
     images: [
       "images/appreciation/appreciation-001-01.png",
       "images/appreciation/appreciation-001-02.png",
       "images/appreciation/appreciation-001-03.png",
-      "images/appreciation/appreciation-001-04.png"
+      "images/appreciation/appreciation-001-04.png",
+      "images/appreciation/appreciation-001-05.png",
+      "images/appreciation/appreciation-001-06.png"
     ],
     instagram: "https://www.instagram.com/gudao.team/"
   },
   {
     code: "GuDao Team",
     name: "三宅雷神 × 妖炎",
-    category: "培育紀錄",
-    description: "孤島團隊精心培育交種個體，依不同階段持續保存葉型與刺型變化。",
+    category: "個體賞析",
+    description: "三宅妖在燈養培育後，部分個體會是紫紅刺搭配灰冷的葉色，協調且美麗",
     cultivation: "室內燈養",
-    record: "持續記錄",
+    record: "新品登場",
     images: [
       "images/appreciation/appreciation-002-01.png",
       "images/appreciation/appreciation-002-02.png",
       "images/appreciation/appreciation-002-03.png",
       "images/appreciation/appreciation-002-04.png",
-      "images/appreciation/appreciation-002-05.png"
+      "images/appreciation/appreciation-002-05.png",
+      "images/appreciation/appreciation-002-06.png"
     ],
     instagram: "https://www.instagram.com/gudao.team/"
   },
   {
     code: "GuDao Team",
-    name: "妖炎 × 美系嚴龍",
+    name: "妖炎 × 鰲頭嚴龍",
     category: "個體賞析",
-    description: "特選個體表現，主刺曲、葉片緊湊，記錄不同角度下的完整型態。",
+    description: "妖炎豐富的葉片堆疊層次，嚴龍主刺與邊刺的特色結合",
     cultivation: "孤島收藏",
-    record: "典藏個體",
+    record: "新品登場",
     images: [
       "images/appreciation/appreciation-003-01.png",
       "images/appreciation/appreciation-003-02.png",
@@ -59,16 +62,18 @@ window.GUDAO_APPRECIATIONS = [
   },
   {
     code: "GuDao Team",
-    name: "孤島綠皮實生",
-    category: "個體賞析",
-    description: "表現穩定的實生個體，透過多角度影像呈現葉幅、株型與刺座細節。",
-    cultivation: "孤島收藏",
-    record: "典藏個體",
+    name: "待更新",
+    category: "待更新",
+    description: "待更新",
+    cultivation: "待更新",
+    record: "待更新",
     images: [
       "images/appreciation/appreciation-004-01.png",
       "images/appreciation/appreciation-004-02.png",
       "images/appreciation/appreciation-004-03.png",
-      "images/appreciation/appreciation-004-04.png"
+      "images/appreciation/appreciation-004-04.png",
+      "images/appreciation/appreciation-004-05.png",
+      "images/appreciation/appreciation-004-06.png"
     ],
     instagram: "https://www.instagram.com/gudao.team/"
   }
