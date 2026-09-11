@@ -1,0 +1,52 @@
+/* ==================================================
+   GUDAO 養護三角對齊修正
+   使用動態 SVG 取代原本的旋轉線段
+   ================================================== */
+
+/* 隱藏原本容易偏移的三條 CSS 線 */
+.triangle-panel .triangle-lines {
+  display: none !important;
+}
+
+/* 動態三角線圖層 */
+.care-triangle-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.care-triangle-svg line {
+  fill: none;
+  stroke: var(--g-orange, #FF8510);
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.72;
+}
+
+/* 三個節點置於連線上方 */
+.triangle-panel .factor-node {
+  z-index: 6;
+}
+
+/* 中央植株置於連線上方，避免線條穿過植株照片 */
+.triangle-panel .plant-stage-visual {
+  z-index: 4;
+}
+
+/* 讓線條接到圓形節點外緣時保持乾淨 */
+.triangle-panel .factor-node {
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+@media (max-width: 720px) {
+  .care-triangle-svg line {
+    stroke-width: 1.5;
+    opacity: 0.68;
+  }
+}
