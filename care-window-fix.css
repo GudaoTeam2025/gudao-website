@@ -1,0 +1,299 @@
+/* ==================================================
+   GUDAO 養護資訊：說明視窗統一修正版
+   光、風、水與植株問題使用相同視窗尺寸
+   此檔必須在所有 care CSS 最後載入
+   ================================================== */
+
+/* 遮罩容器 */
+.drawer,
+.diagnosis-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1000 !important;
+  display: block;
+  padding: 0 !important;
+}
+
+.drawer[hidden],
+.diagnosis-modal[hidden] {
+  display: none !important;
+}
+
+/* 背景遮罩，點擊仍可關閉 */
+.drawer-backdrop,
+.diagnosis-backdrop {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(20, 24, 27, 0.72) !important;
+  box-shadow: none !important;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/*
+   兩種視窗共用完全相同的外框設定。
+   桌面寬度 520px，手機左右保留空間。
+*/
+.drawer-panel,
+.diagnosis-panel {
+  position: absolute !important;
+  inset: auto !important;
+  top: 50% !important;
+  right: 24px !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  box-sizing: border-box !important;
+  width: min(520px, calc(100vw - 48px)) !important;
+  min-width: 0 !important;
+  max-width: 520px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: calc(100dvh - 48px) !important;
+
+  margin: 0 !important;
+  padding: 58px 32px 30px !important;
+
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+
+  background: var(--care-sand, #EBEBE9) !important;
+  border: 0 !important;
+  border-top: 8px solid var(--care-orange, #FF8510) !important;
+  border-radius: 0 !important;
+
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.35) !important;
+  transform: translateY(-50%) !important;
+
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 關閉按鈕：強制正方形及完全置中 */
+.drawer-close {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-sizing: border-box !important;
+  width: 42px !important;
+  min-width: 42px !important;
+  max-width: 42px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+
+  margin: 0 !important;
+  padding: 0 0 2px !important;
+
+  border: 1px solid var(--care-rock, #262C31) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--care-rock, #262C31) !important;
+  box-shadow: none !important;
+
+  font-family: Arial, sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  text-indent: 0 !important;
+
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.drawer-close:hover,
+.drawer-close:focus-visible {
+  border-color: var(--care-orange, #FF8510) !important;
+  background: var(--care-orange, #FF8510) !important;
+  color: var(--care-rock, #262C31) !important;
+  outline: none !important;
+}
+
+/* 標題右側保留關閉按鈕空間 */
+.drawer-panel > .label,
+.drawer-panel > h2,
+.diagnosis-panel > .label,
+.diagnosis-panel > h2 {
+  padding-right: 54px !important;
+}
+
+/* 兩種視窗標題比例一致 */
+.drawer-panel h2,
+.diagnosis-panel h2 {
+  margin: 5px 0 12px !important;
+  font-size: clamp(42px, 5vw, 62px) !important;
+  line-height: 1.08 !important;
+}
+
+.drawer-intro,
+.diagnosis-panel > p {
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* 光、風、水資訊項目 */
+.drawer-points {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.drawer-points article {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 12px;
+  padding: 15px;
+}
+
+.drawer-points h3 {
+  margin: 0;
+}
+
+.drawer-points p {
+  margin: 5px 0 0;
+  line-height: 1.7;
+}
+
+/* 植株問題症狀按鈕 */
+.symptom-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0;
+}
+
+.symptom-list button {
+  min-height: 42px;
+  padding: 8px 13px;
+}
+
+/* 植株問題內容 */
+.diagnosis-result {
+  padding: 20px !important;
+}
+
+.diagnosis-result h3 {
+  margin: 5px 0 18px;
+  font-size: clamp(26px, 4vw, 38px) !important;
+}
+
+.diagnosis-columns {
+  grid-template-columns: 1fr !important;
+  gap: 15px !important;
+}
+
+/* ==================================================
+   手機：兩種視窗完全相同寬高與位置
+   ================================================== */
+@media (max-width: 720px) {
+  .drawer-panel,
+  .diagnosis-panel {
+    top: 50% !important;
+    right: 14px !important;
+    bottom: auto !important;
+    left: 14px !important;
+
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: calc(100dvh - 56px) !important;
+
+    padding: 58px 18px 22px !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .drawer-panel h2,
+  .diagnosis-panel h2 {
+    margin-top: 3px !important;
+    padding-right: 52px !important;
+    font-size: clamp(36px, 10vw, 48px) !important;
+    line-height: 1.12 !important;
+  }
+
+  .drawer-close {
+    top: 12px !important;
+    right: 12px !important;
+    width: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+    padding: 0 0 2px !important;
+    font-size: 25px !important;
+  }
+
+  .drawer-points article {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .drawer-points p,
+  .drawer-note,
+  .diagnosis-panel > p,
+  .diagnosis-result {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* 症狀按鈕橫向滑動，避免把視窗撐得過高 */
+  .symptom-list {
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    margin: 18px 0 !important;
+    padding-bottom: 7px !important;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .symptom-list button {
+    flex: 0 0 auto !important;
+    min-height: 42px !important;
+    padding: 8px 13px !important;
+    white-space: nowrap !important;
+  }
+
+  .diagnosis-result {
+    padding: 17px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .drawer-panel,
+  .diagnosis-panel {
+    right: 10px !important;
+    left: 10px !important;
+    max-height: calc(100dvh - 40px) !important;
+  }
+
+  .drawer-panel h2,
+  .diagnosis-panel h2 {
+    font-size: clamp(32px, 9.5vw, 42px) !important;
+  }
+}
