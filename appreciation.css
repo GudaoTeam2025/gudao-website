@@ -331,3 +331,12 @@
     transition: none;
   }
 }
+/* 手機版：將圖片切換圓點往下移 */
+@media (max-width: 820px) {
+.gallery-dots {
+bottom: 4px;
+padding: 5px 8px;
+border-radius: 20px;
+background: rgba(38, 44, 49, 0.7);
+}
+}
