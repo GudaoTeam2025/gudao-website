@@ -4,11 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#262C31">
+  <meta name="description" content="孤島 GUDAO 室內燈養龍舌蘭光、風、水互動養護工具">
   <title>養護資訊｜孤島 GUDAO</title>
   <link rel="stylesheet" href="style.css?v=13">
   <link rel="stylesheet" href="brand-system-v14.css?v=14">
   <link rel="stylesheet" href="contour-hero-v15.css?v=15">
-  <link rel="stylesheet" href="care.css?v=3">
+  <link rel="stylesheet" href="care.css?v=4">
 </head>
 <body>
   <header class="site-header">
@@ -16,14 +17,12 @@
       <img src="assets/brand/logo.png" alt="孤島標誌">
       <span>孤島 GUDAO</span>
     </a>
-
     <button class="menu" type="button" aria-label="開啟選單" aria-expanded="false">☰</button>
-
     <nav aria-label="主要導覽">
       <a href="index.html">首頁</a>
       <a href="stock.html">現貨販售</a>
       <a href="event.html">近期活動</a>
-      <a href="appreciation.html">孤島植賞</a>
+      <a href="appreciation.html">孤島賞析</a>
       <a href="merchandise.html">周邊商品</a>
       <a class="active" href="care.html">養護資訊</a>
       <a href="raffle.html">孤島抽獎</a>
@@ -33,36 +32,164 @@
 
   <main class="care-page">
     <section class="page-hero care-hero">
-      <p class="label">GUDAO CULTIVATION GUIDE</p>
+      <p class="label">GUDAO CULTIVATION LAB</p>
       <h1>養護資訊</h1>
-      <p>從環境、光照、給水到日常養護，整理孤島的培育經驗。</p>
+      <p>不是光越強越好，而是光、風、水需要一起找到適合植物的平衡。</p>
     </section>
 
     <section class="care-intro wrap">
       <div>
-        <p class="label">CARE JOURNAL</p>
-        <h2>孤島養護筆記</h2>
+        <p class="label">INTERACTIVE CARE TOOL</p>
+        <h2>操作環境，理解平衡</h2>
       </div>
-      <p>圖片可使用左右按鈕、圓點、鍵盤方向鍵或手機滑動切換。</p>
+      <p>調整下方示意性環境指標，觀察光、風、水與植株階段如何互相影響。這不是精密農業公式，實際養護仍需觀察植株、根系、介質乾燥與季節環境。</p>
     </section>
 
-    <section id="care-list" class="care-list wrap" aria-live="polite"></section>
+    <section class="care-lab wrap" aria-labelledby="lab-title">
+      <div class="lab-heading">
+        <div><p class="label">LIGHT × AIR × WATER</p><h2 id="lab-title">養護三角</h2></div>
+        <div id="balance-badge" class="balance-badge" data-state="balanced">
+          <span>目前環境傾向</span>
+          <strong id="balance-title">平衡觀察</strong>
+        </div>
+      </div>
+
+      <div class="lab-layout">
+        <section class="triangle-panel" aria-label="光風水互動視覺">
+          <div class="triangle-lines" aria-hidden="true">
+            <span class="line line-light-wind"></span>
+            <span class="line line-light-water"></span>
+            <span class="line line-wind-water"></span>
+          </div>
+
+          <button class="factor-node factor-light" type="button" data-topic="light" aria-label="開啟光照說明">
+            <span class="factor-icon">☀</span><b>光</b><small id="light-node-value">50</small>
+          </button>
+          <button class="factor-node factor-wind" type="button" data-topic="wind" aria-label="開啟通風說明">
+            <span class="factor-icon wind-icon">≋</span><b>風</b><small id="wind-node-value">50</small>
+          </button>
+          <button class="factor-node factor-water" type="button" data-topic="water" aria-label="開啟水分說明">
+            <span class="factor-icon">●</span><b>水</b><small id="water-node-value">50</small>
+          </button>
+
+          <div id="airflow" class="airflow" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+
+          <div id="plant-stage-visual" class="plant-stage-visual" data-stage="seedling">
+            <div class="plant-glow"></div>
+            <img src="assets/care/agave-center.jpg" alt="中央龍舌蘭植株示意">
+            <span id="stage-visual-label">芽苗</span>
+          </div>
+
+          <div class="triangle-summary">
+            <strong id="balance-short">目前設定接近中間值</strong>
+            <p id="balance-copy">請同時觀察葉片表現、介質乾燥速度與空氣流動。</p>
+          </div>
+        </section>
+
+        <section class="control-board" aria-label="環境控制">
+          <article class="control-card light-card">
+            <div class="control-title"><span>☀</span><div><b>光照指標</b><small>強度與時間的綜合示意</small></div><output id="light-output">50</output></div>
+            <input id="light-range" type="range" min="0" max="100" value="50" aria-label="光照指標">
+            <div class="range-labels"><span>柔和</span><span>提高</span></div>
+            <p id="light-suggestion">逐步建立光照，避免突然提高環境負荷。</p>
+          </article>
+
+          <article class="control-card wind-card">
+            <div class="control-title"><span>≋</span><div><b>空氣流動</b><small>不是直吹強風，而是帶走悶熱</small></div><output id="wind-output">50</output></div>
+            <input id="wind-range" type="range" min="0" max="100" value="50" aria-label="空氣流動指標">
+            <div class="range-labels"><span>較靜</span><span>流動</span></div>
+            <p id="wind-suggestion">保持穩定空氣交換，避免葉心與介質長時間悶濕。</p>
+          </article>
+
+          <article class="control-card water-card">
+            <div class="control-title"><span>●</span><div><b>水分指標</b><small>表示環境與介質中的水分負荷</small></div><output id="water-output">50</output></div>
+            <input id="water-range" type="range" min="0" max="100" value="50" aria-label="水分指標">
+            <div class="range-labels"><span>偏乾</span><span>偏濕</span></div>
+            <p id="water-suggestion">不要只看日曆，先檢查介質、盆重與植株狀態。</p>
+          </article>
+
+          <article class="drying-card">
+            <div class="drying-head"><div><b>介質乾燥趨勢</b><small>依目前光與風的示意變化</small></div><strong id="drying-label">中等</strong></div>
+            <div class="drying-track"><span id="drying-bar"></span></div>
+            <div class="drying-steps"><span>剛澆水</span><span>逐步乾燥</span><span>觀察補水</span></div>
+          </article>
+        </section>
+      </div>
+    </section>
+
+    <section class="growth-section wrap" aria-labelledby="growth-title">
+      <div class="section-heading"><p class="label">GROWTH STAGE</p><h2 id="growth-title">植株成長階段</h2><p>不同階段的耐受與反應不同，調整環境時應逐步建立，不以固定數值套用所有植株。</p></div>
+      <div class="stage-selector" role="tablist" aria-label="選擇植株成長階段">
+        <button class="stage-button active" type="button" data-stage="seedling" role="tab" aria-selected="true"><span>01</span><b>芽苗</b></button>
+        <button class="stage-button" type="button" data-stage="small" role="tab" aria-selected="false"><span>02</span><b>小苗</b></button>
+        <button class="stage-button" type="button" data-stage="medium" role="tab" aria-selected="false"><span>03</span><b>中株</b></button>
+        <button class="stage-button" type="button" data-stage="mature" role="tab" aria-selected="false"><span>04</span><b>成株</b></button>
+      </div>
+      <div class="stage-advice">
+        <div><span>階段提醒</span><h3 id="stage-title">芽苗：先建立穩定環境</h3><p id="stage-copy">光量逐步建立，同時保持適度空氣流動；根系與介質尚在建立時，更應避免長時間積水與環境突然改變。</p></div>
+        <div class="suggested-ranges"><div><span>光</span><b id="stage-light">低至中</b></div><div><span>風</span><b id="stage-wind">柔和流動</b></div><div><span>水</span><b id="stage-water">小量觀察</b></div></div>
+      </div>
+    </section>
+
+    <section class="knowledge-section wrap" aria-labelledby="knowledge-title">
+      <div class="section-heading"><p class="label">CARE ESSENTIALS</p><h2 id="knowledge-title">點選理解每個因素</h2></div>
+      <div class="knowledge-grid">
+        <button class="knowledge-card" type="button" data-topic="light"><span>☀</span><small>LIGHT</small><b>光</b><p>強度、照射時間與成長階段要一起看。</p></button>
+        <button class="knowledge-card" type="button" data-topic="wind"><span>≋</span><small>AIRFLOW</small><b>風</b><p>帶走葉片周圍熱與水氣，降低悶濕停滯。</p></button>
+        <button class="knowledge-card" type="button" data-topic="water"><span>●</span><small>WATER</small><b>水</b><p>從介質乾燥、盆重與環境變化判斷。</p></button>
+        <button class="knowledge-card diagnose-card" type="button" id="open-diagnosis"><span>＋</span><small>PLANT CHECK</small><b>植株診療</b><p>從症狀開始，整理可能原因與檢查方向。</p></button>
+      </div>
+    </section>
+
+    <section class="principles wrap" aria-label="養護原則">
+      <div><span>01</span><h3>改變要逐步</h3><p>提高光照或更換環境時，先讓植株有適應過程，避免一次大幅調整。</p></div>
+      <div><span>02</span><h3>觀察比日曆重要</h3><p>給水前先確認介質乾燥、盆重、葉片與近期環境，而不是只依固定天數。</p></div>
+      <div><span>03</span><h3>異常先隔離檢查</h3><p>若中心軟爛、異味或斑點快速擴大，先停止例行操作並隔離觀察，必要時尋求專業協助。</p></div>
+    </section>
+
+    <section class="care-disclaimer wrap">
+      <strong>使用提醒</strong>
+      <p>本頁為養護理解與初步檢查工具，不構成病害診斷或精密栽培指令。品種、根系、盆器、介質、溫濕度與設備都會影響結果；若植株出現快速腐爛、惡臭、蟲害擴散或大範圍病斑，請隔離並諮詢有經驗的栽培者或植物病理專業人員。</p>
+    </section>
   </main>
 
   <footer>
     <img src="assets/brand/logo.png" alt="孤島標誌">
-    <div>
-      <b>PASSION TO THE ISLAND</b>
-      <p>© 2026 GUDAO TEAM</p>
-    </div>
+    <div><b>PASSION TO THE ISLAND</b><p>© 2026 GUDAO TEAM</p></div>
   </footer>
 
-  <script src="care-data.js?v=2"></script>
-  <script src="care.js?v=3"></script>
+  <div id="topic-drawer" class="drawer" hidden>
+    <button class="drawer-backdrop" type="button" aria-label="關閉說明"></button>
+    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <button id="close-drawer" class="drawer-close" type="button" aria-label="關閉">×</button>
+      <p id="drawer-label" class="label">CARE FACTOR</p>
+      <h2 id="drawer-title">光</h2>
+      <p id="drawer-intro" class="drawer-intro"></p>
+      <div id="drawer-points" class="drawer-points"></div>
+      <div id="drawer-note" class="drawer-note"></div>
+    </aside>
+  </div>
+
+  <div id="diagnosis-modal" class="diagnosis-modal" hidden>
+    <button class="diagnosis-backdrop" type="button" aria-label="關閉植株診療"></button>
+    <section class="diagnosis-panel" role="dialog" aria-modal="true" aria-labelledby="diagnosis-title">
+      <button id="close-diagnosis" class="drawer-close" type="button" aria-label="關閉">×</button>
+      <p class="label">PLANT CHECK</p>
+      <h2 id="diagnosis-title">植株診療</h2>
+      <p>先選擇觀察到的症狀。系統只整理可能相關因素，不會直接判定病因。</p>
+      <div id="symptom-list" class="symptom-list"></div>
+      <div id="diagnosis-result" class="diagnosis-result">
+        <p>請先選擇一個症狀。</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="care.js?v=4"></script>
   <script>
     const menuButton = document.querySelector('.menu');
     const navigation = document.querySelector('.site-header nav');
-
     menuButton?.addEventListener('click', () => {
       const isOpen = navigation.classList.toggle('open');
       menuButton.setAttribute('aria-expanded', String(isOpen));
