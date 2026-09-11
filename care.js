@@ -113,36 +113,78 @@
     update();
   }
 
-  function update() {
-    const { light, wind, water } = state;
-    const target = stages[state.stage].target;
+ function update() {
+  const { light, wind, water } = state;
+  const target = stages[state.stage].target;
 
-    ['light', 'wind', 'water'].forEach(key => {
-      $(`#${key}-output`).textContent = state[key];
-      $(`#${key}-node-value`).textContent = state[key];
-      document.documentElement.style.setProperty(`--${key}-level`, state[key] / 100);
-    });
+  ['light', 'wind', 'water'].forEach(key => {
+    $(`#${key}-output`).textContent = state[key];
+    $(`#${key}-node-value`).textContent = state[key];
+    document.documentElement.style.setProperty(`--${key}-level`, state[key] / 100);
+  });
 
-    const drying = Math.max(5, Math.min(95, 26 + light * .38 + wind * .42 - water * .32));
-    $('#drying-bar').style.width = `${drying}%`;
-    $('#drying-label').textContent = drying > 72 ? '較快' : drying < 38 ? '較慢' : '中等';
+  /*
+   * 乾燥傾向
+   * 光照、通風提高 → 乾燥傾向增加
+   * 水分提高 → 乾燥傾向降低
+   * 此數值為環境條件推估，不代表實際介質乾燥時間
+   */
+  const drying = Math.max(
+    5,
+    Math.min(95, 26 + light * 0.38 + wind * 0.42 - water * 0.32)
+  );
 
-    const heatNeed = light * .72 + 12;
-    const waterDemand = light * .48 + wind * .28;
-    $('#light-suggestion').textContent = light > 70
-      ? '光照偏高：請同步確認給水、通風與植株適應狀況'
-      : light < 30 ? '光照偏低：觀察新葉是否拉長、變薄或朝刺型表現較弱' : '維持穩定光照時數，調整後保留觀察期';
-    $('#wind-suggestion').textContent = wind + 10 < heatNeed
-      ? '相對目前光照，空氣流動可能不足；先改善環境交換，避免只用強風直吹'
-      : wind > 80 ? '空氣流動偏高：同步注意介質是否乾得過快。' : '目前風量可作為觀察起點，留意植株後續表現';
-    $('#water-suggestion').textContent = water > 72 && drying < 55
-      ? '水分負荷偏高且乾燥較慢：觀察植株狀況，避免染菌風險'
-      : water < 25 && waterDemand > 55 ? '水分設定偏低：請觀察植株狀態與盆重，避免根系異常' : '以介質乾燥、盆重與近期新葉狀態共同判斷';
+  $('#drying-bar').style.width = `${drying}%`;
+  $('#drying-label').textContent =
+    drying > 72 ? '較快' :
+    drying < 38 ? '較慢' :
+    '中等';
+
+  /*
+   * 光照提高時，對空氣交換與散熱的需求也會提高
+   */
+  const airflowNeed = light * 0.72 + 12;
+
+  /*
+   * 光照、通風提高時，水分消耗與乾燥傾向通常也會增加
+   */
+  const dryingDemand = light * 0.48 + wind * 0.28;
+
+  /*
+   * 光照觀察
+   */
+  $('#light-suggestion').textContent =
+    light > 70
+      ? '光照偏高：請同步觀察葉片溫度、植株適應狀況與介質乾燥速度'
+      : light < 30
+        ? '光照偏低：觀察新葉是否拉長、變薄，或植株是否出現明顯尋光表現'
+        : '維持穩定光照時數，調整後保留觀察期';
+
+  /*
+   * 通風觀察
+   */
+  $('#wind-suggestion').textContent =
+    wind + 10 < airflowNeed
+      ? '相對目前光照，空氣流動可能不足；建議先改善環境交換，避免只用強風直吹'
+      : wind > 80
+        ? '空氣流動偏高：同步觀察介質是否乾燥過快與植株失水表現'
+        : '目前風量可作為觀察起點，留意植株與介質後續變化';
+
+  /*
+   * 水分觀察
+   */
+  $('#water-suggestion').textContent =
+    water > 72 && drying < 55
+      ? '水分設定偏高且乾燥較慢：觀察介質是否長時間潮濕，並留意葉心與根系環境'
+      : water < 25 && dryingDemand > 55
+        ? '水分設定偏低且乾燥傾向較高：請搭配盆重、介質乾燥程度與葉片狀態判斷是否需要調整'
+        : '以介質乾燥、盆重與近期新葉狀態共同判斷';
+}
 
 let balance = {
   title: '平衡觀察',
   short: '三項環境條件目前接近中間區間',
-  copy: '建議同步觀察葉片表現、空氣流動與介質乾燥速度，依植株反應逐步調整。',
+  copy: '建議同步觀察葉片表現、空氣流動與介質乾燥速度，依植株反應逐步調整',
   name: 'balanced'
 };
 
@@ -151,7 +193,7 @@ if (light >= 85 && wind >= 85 && water >= 85) {
   balance = {
     title: '三項指標偏高',
     short: '光、風、水目前皆處於較高設定',
-    copy: '目前屬於較高強度的環境設定，光照、空氣流動與水分供應皆較充足，請同步觀察葉片表現、植株適應狀況與介質乾燥速度。',
+    copy: '目前屬於較高強度的環境設定，光照、空氣流動與水分供應皆較充足，請同步觀察葉片表現、植株適應狀況與介質乾燥速度',
     name: 'active'
   };
 }
@@ -161,7 +203,7 @@ else if (light > 72 && wind < 55) {
   balance = {
     title: '高光・通風待觀察',
     short: '光照較高，但空氣流動未同步提高',
-    copy: '光照提高後，植株周圍的熱與水氣也較需要留意，建議先觀察葉片溫度與植株適應狀況，不宜僅持續增加光量。',
+    copy: '光照提高後，植株周圍的熱與水氣也較需要留意，建議先觀察葉片溫度與植株適應狀況，不宜僅持續增加光量',
     name: 'warning'
   };
 }
@@ -171,7 +213,7 @@ else if (water > 72 && wind < 55) {
   balance = {
     title: '水分偏高・通風待觀察',
     short: '水分較高，空氣流動相對不足',
-    copy: '請觀察介質是否長時間保持潮濕，以及盆內與植株周圍的水氣是否不易散去，避免根系與葉心長時間處於悶濕環境。',
+    copy: '請觀察介質是否長時間保持潮濕，以及盆內與植株周圍的水氣是否不易散去，避免根系與葉心長時間處於悶濕環境',
     name: 'warning'
   };
 }
@@ -181,7 +223,7 @@ else if (light > 72 && wind >= 60) {
   balance = {
     title: '光風同步提高',
     short: '光照提高，空氣流動也有同步配置',
-    copy: '較高光照通常會伴隨較快的水分消耗，請持續觀察葉片表現與介質乾燥速度，再依植株狀態微調水分與光照。',
+    copy: '較高光照通常會伴隨較快的水分消耗，請持續觀察葉片表現與介質乾燥速度，再依植株狀態微調水分與光照',
     name: 'active'
   };
 }
@@ -191,7 +233,7 @@ else if (wind > 78 && water < 30) {
   balance = {
     title: '乾燥速度偏快',
     short: '風量較高，水分設定相對偏低',
-    copy: '空氣流動較強且水分供應偏低，介質乾燥速度可能加快，請留意盆內乾燥狀況與植株是否出現缺水反應。',
+    copy: '空氣流動較強且水分供應偏低，介質乾燥速度可能加快，請留意盆內乾燥狀況與植株是否出現缺水反應',
     name: 'active'
   };
 }
@@ -201,7 +243,7 @@ else if (water > 78) {
   balance = {
     title: '水分設定偏高',
     short: '目前水分設定高於其他環境條件',
-    copy: '單看水分設定屬於較高區間，實際影響仍需搭配通風與介質乾燥速度觀察，並確認排水是否順暢。',
+    copy: '單看水分設定屬於較高區間，實際影響仍需搭配通風與介質乾燥速度觀察，並確認排水是否正常',
     name: 'warning'
   };
 }
@@ -211,7 +253,7 @@ else if (light > 78) {
   balance = {
     title: '光照設定偏高',
     short: '目前光照強度處於較高區間',
-    copy: '請搭配觀察葉片溫度、葉色與植株適應狀況，並確認空氣流動與水分消耗是否能跟上目前的光照強度。',
+    copy: '請搭配觀察葉片狀態、葉色與植株適應狀況，並確認空氣流動與水分消耗是否能跟上目前的光照強度',
     name: 'active'
   };
 }
@@ -221,7 +263,7 @@ else if (wind < 25) {
   balance = {
     title: '空氣流動偏低',
     short: '目前環境的空氣交換較弱',
-    copy: '請留意植株周圍是否有熱與水氣停滯，建議以柔和、穩定的空氣流動逐步改善，而非一次提高過強的風量。',
+    copy: '請留意植株周圍是否過濕，建議以穩定的空氣流動逐步改善',
     name: 'soft'
   };
 }
@@ -231,7 +273,7 @@ else if (light < 28) {
   balance = {
     title: '光照設定偏低',
     short: '目前光量處於較低區間',
-    copy: '請留意新葉是否出現拉長、葉色變淡或植株朝單一方向尋光等表現，再依植株狀態逐步增加光照。',
+    copy: '請留意新葉是否出現拉長、葉刺變弱或植株朝單一方向尋光等表現，再依植株狀態逐步增加光照',
     name: 'soft'
   };
 }
@@ -241,7 +283,7 @@ else if (water < 28) {
   balance = {
     title: '水分設定偏低',
     short: '目前水分設定處於較低區間',
-    copy: '請觀察介質乾燥速度與植株葉片狀態，確認目前給水頻率是否能符合植株的實際消耗。',
+    copy: '請觀察介質乾燥速度與植株葉片狀態，確認目前給水頻率是否能符合植株的實際需求',
     name: 'soft'
   };
 }
