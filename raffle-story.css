@@ -1,0 +1,43 @@
+/* GUDAO 抽獎結果 IG 限動輸出 */
+.story-export-button {
+  min-height: 46px;
+  padding: 10px 17px;
+  border: 1px solid #FF8510;
+  background: #262C31;
+  color: #FFFFFF;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.story-export-button:hover:not(:disabled),
+.story-export-button:focus-visible:not(:disabled) {
+  background: #FF8510;
+  color: #262C31;
+}
+
+.story-export-button:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+}
+
+.story-export-message {
+  margin: 10px 0 0;
+  color: #667078;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.story-export-message.success { color: #345339; }
+.story-export-message.error { color: #823B35; }
+
+@media (max-width: 560px) {
+  .results-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .results-head .story-export-button,
+  .results-head #export-results {
+    width: 100%;
+  }
+}
