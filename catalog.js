@@ -1,1 +1,61 @@
-const IG="https://www.instagram.com/gudao.team/";function card(x,type){return `<article class="card"><div class="poster"><img src="${x.image}" alt="${x.name}" onerror="this.hidden=true"><span>${type==='product'?x.status:x.date}</span></div><div class="card-body"><small>${x.code||'GUDAO EVENT'}</small><h2>${x.name}</h2><p>${x.description}</p>${type==='product'?`<div class="meta"><i>${x.size}</i><b>${x.price}</b></div>`:''}<a href="${IG}" target="_blank" rel="noopener">INSTAGRAM 私訊 ↗</a></div></article>`}const pg=document.querySelector('#product-grid'),eg=document.querySelector('#event-grid');if(pg){function draw(f='全部'){pg.innerHTML=GUDAO_PRODUCTS.filter(x=>f==='全部'||x.status===f).map(x=>card(x,'product')).join('')}draw();document.querySelector('#filters').onclick=e=>{if(e.target.tagName!=='BUTTON')return;document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));e.target.classList.add('active');draw(e.target.dataset.f)}}if(eg)eg.innerHTML=GUDAO_EVENTS.map(x=>card(x,'event')).join('');
+const IG = "https://www.instagram.com/gudao.team/";
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function card(item, type) {
+  const isProduct = type === "product";
+
+  const badgeText = isProduct
+    ? item.status
+    : item.date;
+
+  const productMeta = isProduct
+    ? `
+      <div class="meta">
+        <i>${escapeHtml(item.size)}</i>
+        <b>${escapeHtml(item.price)}</b>
+      </div>
+    `
+    : "";
+
+  return `
+    <article class="card">
+      <div class="poster">
+        ${escapeHtml(item.image)}"
+          loading="lazy"
+          onerror="this.hidden=true"
+        >
+
+        <span>${escapeHtml(badgeText)}</span>
+      </div>
+
+      <div class="card-body">
+        <small>${escapeHtml(item.code || "GUDAO EVENT")}</small>
+
+        ${
+          isProduct && item.category
+            ? `<p class="product-category">${escapeHtml(item.category)}</p>`
+            : ""
+        }
+
+        <h2>${escapeHtml(item.name)}</h2>
+        <p>${escapeHtml(item.description)}</p>
+
+        ${productMeta}
+
+        ${IG}
+          INSTAGRAM 私訊 ↗
+        </a>
+      </div>
+    </article>
+  `;
+}
+
+const productGrid 
