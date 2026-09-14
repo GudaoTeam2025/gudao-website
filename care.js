@@ -18,6 +18,7 @@
 
   const symptoms = {
     '剛入盆植株':{causes:['根系功能未建立','換盆後立即進入強光環境','可視情況適度遮光'],checks:['觀察中心葉是否開始成長','手指輕微推動植株，確認是否已逐漸固定','持續觀察植株狀態，長時間未開葉可能與根系未建立有關']},
+    '該如何發根':{causes:['頂芽或是側芽拆下','要怎麼加快發根速度','發根留意事項'],checks:['一般介質即可','保持濕潤觀察有無發霉','散光通風處靜置','一週檢查一次就好','耐心是發根最好的朋友']},
     '葉片變軟':{causes:['根系功能受影響','過度控水造成失水','環境溫度或根系狀況不良'],checks:['確認給水間隔是否過長','檢查葉片是否皺褶明顯或變色','回顧近期是否換盆、降溫或大幅改變光照']},
     '葉片變長':{causes:['光量不足','燈具位置或照射方向不均','植株朝單一方向尋光或徒長'],checks:['檢查燈具距離與覆蓋範圍','確認每日照射時間是否過少','比較近期新葉與舊葉的長度及株型']},
     '葉片發紅':{causes:['光環境突然改變','光照突然過強','根系、養分或過熱等環境壓力'],checks:['確認變色位置是新葉、舊葉或受光面','回顧燈距、時數與近期調整','檢查根系環境與介質排水']},
@@ -60,16 +61,16 @@
     let balance={title:'平衡觀察',short:'三項環境條件目前沒有明顯失衡',copy:'建議同步觀察葉片表現、空氣流動與介質乾燥速度，依植株反應逐步調整',name:'balanced'};
     if(light>=85&&wind>=85&&water>=85)balance={title:'三項指標偏高',short:'光、風、水目前皆處於較高設定',copy:'目前屬於較高強度的環境設定，請同步觀察葉片表現、植株適應狀況與介質乾燥速度',name:'active'};
     else if(light>=73&&wind<55)balance={title:'高光・通風待觀察',short:'光照較高，但空氣流動未同步提高',copy:'建議優先觀察葉片溫度與植株適應狀況，並確認環境是否有足夠的空氣交換',name:'warning'};
-    else if(water>=73&&wind<55)balance={title:'水分偏高・通風待觀察',short:'水分較高，空氣流動相對不足',copy:'請觀察介質是否長時間保持潮濕，以及盆內與植株周圍的水氣是否不易散去',name:'warning'};
+    else if(water>=73&&wind<55)balance={title:'水分偏高・通風待觀察',short:'可能泡盆或是腰水養護，空氣流動相對不足',copy:'請觀察介質是否長時間保持潮濕，加強環境通風或是風扇輔助',name:'warning'};
     else if(wind>=79&&water<30)balance={title:'乾燥速度偏快',short:'風量較高，水分設定相對偏低',copy:'介質乾燥速度可能加快，請搭配盆重、介質狀態與葉片表現判斷是否需要調整',name:'active'};
-    else if(water>=79&&drying<55)balance={title:'水分負荷偏高',short:'水分設定較高，環境乾燥速度相對較慢',copy:'請觀察介質是否長時間潮濕，並確認盆器排水與通風狀況',name:'warning'};
+    else if(water>=79&&drying<55)balance={title:'水分負荷偏高',short:'水分設定可能泡盆或是腰水養護，環境乾燥速度相對較慢',copy:'請觀察介質是否長時間潮濕，並確認盆器排水與通風狀況',name:'warning'};
     else if(light>=73&&wind>=60&&water>=30)balance={title:'光風同步提高',short:'光照提高，空氣流動也有同步配置',copy:'環境中的水分消耗可能增加，請持續觀察介質乾燥速度與植株適應狀況',name:'active'};
     else if(light>=73&&water<30)balance={title:'高光・水分待觀察',short:'光照較高，水分設定相對偏低',copy:'請觀察介質乾燥速度與葉片狀態，避免僅依固定週期給水',name:'warning'};
     else if(light>=79)balance={title:'光照設定偏高',short:'目前光照強度處於較高區間',copy:'請搭配觀察葉片狀態、葉色與植株適應狀況',name:'active'};
-    else if(water>=79)balance={title:'水分設定偏高',short:'目前水分設定處於較高區間',copy:'實際影響仍需搭配通風與介質乾燥速度觀察，並確認多餘水分能正常排出',name:'warning'};
+    else if(water>=79)balance={title:'給水頻率設定偏高',short:'目前水分設定處於較高區間',copy:'實際影響仍需搭配通風與介質乾燥速度觀察，並確認多餘水分能正常排出',name:'warning'};
     else if(wind<25)balance={title:'空氣流動偏低',short:'目前環境的空氣交換較弱',copy:'請留意植株周圍是否有熱與水氣停滯，建議以穩定空氣流動逐步改善環境',name:'soft'};
     else if(light<28)balance={title:'光照設定偏低',short:'目前光量處於較低區間',copy:'請留意新葉是否拉長、變薄或植株是否朝單一方向尋光',name:'soft'};
-    else if(water<28)balance={title:'水分設定偏低',short:'目前水分設定處於較低區間',copy:'請觀察介質乾燥速度、盆重與葉片狀態，確認給水頻率是否符合植株實際消耗',name:'soft'};
+    else if(water<28)balance={title:'給水頻率設定偏低',short:'目前水分設定處於較低區間',copy:'請觀察介質乾燥速度、盆重與葉片狀態，確認給水頻率是否符合植株實際消耗',name:'soft'};
     const ref=stages[state.stage].target,deviation=Math.abs(light-ref.light)+Math.abs(wind-ref.wind)+Math.abs(water-ref.water);if(deviation<28)balance.copy+=` 目前也接近「${stages[state.stage].label}」的示意觀察區間`;
     $('#balance-title').textContent=balance.title;$('#balance-short').textContent=balance.short;$('#balance-copy').textContent=balance.copy;$('#balance-badge').dataset.state=balance.name;
   }
