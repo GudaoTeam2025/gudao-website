@@ -40,30 +40,29 @@
 
     <section class="wrap section">
       <div class="toolbar">
-        <p>有任何個體挑選或是培育問題，歡迎聯繫孤島IG</p>
+        <p>有任何個體挑選或培育問題，歡迎聯繫孤島 IG</p>
 
-        <div id="filters">
-          <button class="active" data-f="全部">全部</button>
-          <button data-f="品種類">品種類</button>
-          <button data-f="實生類">實生類</button>
+        <div id="filters" aria-label="植株分類篩選">
+          <button class="active" type="button" data-f="全部">全部</button>
+          <button type="button" data-f="品種類">品種類</button>
+          <button type="button" data-f="實生類">實生類</button>
         </div>
       </div>
 
-      <div id="product-grid" class="card-grid"></div>
+      <div id="product-grid" class="card-grid" aria-live="polite"></div>
     </section>
-
-    <script src="products.js?v=7"></script>
-    <script src="catalog.js?v=7"></script>
   </main>
 
   <footer>
     <img src="assets/brand/logo.png" alt="孤島標誌">
     <div>
       <b>PASSION TO THE ISLAND</b>
-      <p>© 2025 GUDAO TEAM</p>
+      <p>© 2026 GUDAO TEAM</p>
     </div>
   </footer>
 
+  <script src="products.js?v=8"></script>
+  <script src="catalog.js?v=8"></script>
   <script>
     const menuButton = document.querySelector('.menu');
     const navigation = document.querySelector('.site-header nav');

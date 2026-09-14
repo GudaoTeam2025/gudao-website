@@ -2,14 +2,15 @@
   孤島植株商品資料
 
   category 分類只能填：
-  1. 品種區
-  2. 實生區
+  1. 品種類
+  2. 實生類
 
   status 狀態可填：
   1. 現貨
   2. 已售出
-*/
 
+  圖片請放在 images/products/
+*/
 window.GUDAO_PRODUCTS = [
   {
     code: "2026.09.14",
