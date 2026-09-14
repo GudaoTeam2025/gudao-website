@@ -14,7 +14,7 @@
   storyButton.className = 'story-export-button';
   storyButton.type = 'button';
   storyButton.disabled = true;
-  storyButton.textContent = '產生 IG 限動圖';
+  storyButton.textContent = '獲獎名單圖';
   exportCsvButton.insertAdjacentElement('afterend', storyButton);
 
   const message = document.createElement('p');
