@@ -663,3 +663,40 @@ footer p {
     width: 100%;
   }
 }
+/* 商品資訊複製與私訊按鈕 */
+.product-inquiry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+  margin-top: 18px;
+  padding: 9px 0;
+
+  border: 0;
+  border-bottom: 2px solid var(--orange, #FF8510);
+
+  background: transparent;
+  color: var(--green, #345339);
+
+  font-family:
+    "Khand",
+    "GenSekiGothicTC",
+    sans-serif;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.product-inquiry:hover,
+.product-inquiry:focus-visible {
+  color: var(--orange, #FF8510);
+  outline: none;
+}
+
+.product-inquiry:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
