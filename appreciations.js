@@ -9,6 +9,23 @@
   6. instagram 只填純網址，不要貼入 <a> HTML 標籤
 */
 window.GUDAO_APPRECIATIONS = [
+   {
+    code: "GuDao Team",
+    name: "綠皮實生",
+    category: "培育紀錄",
+    description: "整體輪廓沉穩俐落，表現出粗獷的蓋紋，而未展的新葉，已等不及展現他的鋒芒",
+    cultivation: "室內燈養",
+    record: "持續記錄",
+    images: [
+      "images/appreciation/appreciation-004-01.png",
+      "images/appreciation/appreciation-004-02.png",
+      "images/appreciation/appreciation-004-03.png",
+      "images/appreciation/appreciation-004-04.png",
+      "images/appreciation/appreciation-004-05.png",
+      "images/appreciation/appreciation-004-06.png"
+    ],
+    instagram: "https://www.instagram.com/gudao.team/"
+  },
   {
     code: "GuDao Team",
     name: "未來生力軍",
@@ -68,12 +85,12 @@ window.GUDAO_APPRECIATIONS = [
     cultivation: "待更新",
     record: "待更新",
     images: [
-      "images/appreciation/appreciation-004-01.png",
-      "images/appreciation/appreciation-004-02.png",
-      "images/appreciation/appreciation-004-03.png",
-      "images/appreciation/appreciation-004-04.png",
-      "images/appreciation/appreciation-004-05.png",
-      "images/appreciation/appreciation-004-06.png"
+      "images/appreciation/appreciation-00-01.png",
+      "images/appreciation/appreciation-00-02.png",
+      "images/appreciation/appreciation-00-03.png",
+      "images/appreciation/appreciation-00-04.png",
+      "images/appreciation/appreciation-00-05.png",
+      "images/appreciation/appreciation-00-06.png"
     ],
     instagram: "https://www.instagram.com/gudao.team/"
   }
