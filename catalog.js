@@ -44,7 +44,7 @@
           type="button"
           data-product-index="${itemIndex}"
         >
-          複製商品資訊並私訊孤島 ↗
+          複製植株資訊並私訊孤島 ↗
         </button>
       `
       : `
