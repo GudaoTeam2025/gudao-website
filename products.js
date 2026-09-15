@@ -43,7 +43,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-003.jpg"
   },
     {
-    code: "2026.09.14",
+    code: "2026.09.15",
     name: "圓葉拇指-1",
     category: "品種類",
     description: "販售植株",
@@ -63,7 +63,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-005.jpg"
   },
     {
-    code: "2026.09.14",
+    code: "2026.09.15",
     name: "凱撒",
     category: "品種類",
     description: "販售植株兩種角度參考",
