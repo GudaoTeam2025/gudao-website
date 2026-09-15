@@ -17,7 +17,7 @@ window.GUDAO_PRODUCTS = [
     name: "妖炎 × 姬嚴龍",
     category: "實生類",
     description: "母本參考與販售植株",
-    size: "請私訊確認",
+    size: "已入3寸盆",
     price: "DM for Price",
     status: "現貨",
     image: "images/products/agave-001.jpg"
@@ -27,7 +27,7 @@ window.GUDAO_PRODUCTS = [
     name: "甲蟹 × 妖炎",
     category: "實生類",
     description: "母本參考與販售植株",
-    size: "請私訊確認",
+    size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
     image: "images/products/agave-002.jpg"
@@ -37,7 +37,7 @@ window.GUDAO_PRODUCTS = [
     name: "屈原 × 嚴龍(026)",
     category: "品種類",
     description: "母本參考與販售植株",
-    size: "請私訊確認",
+    size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
     image: "images/products/agave-003.jpg"
@@ -56,8 +56,8 @@ window.GUDAO_PRODUCTS = [
     code: "2026.09.15",
     name: "圓葉拇指-2",
     category: "品種類",
-    description: "販售植株",
-    size: "請私訊確認",
+    description: "販售植株兩種角度參考",
+    size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
     image: "images/products/agave-005.jpg"
@@ -66,8 +66,8 @@ window.GUDAO_PRODUCTS = [
     code: "2026.09.14",
     name: "凱撒",
     category: "品種類",
-    description: "販售植株",
-    size: "請私訊確認",
+    description: "販售植株兩種角度參考",
+    size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
     image: "images/products/agave-006.jpg"
@@ -76,8 +76,8 @@ window.GUDAO_PRODUCTS = [
     code: "2026.09.15",
     name: "胖鯨",
     category: "品種類",
-    description: "販售植株",
-    size: "請私訊確認",
+    description: "販售植株兩種角度參考",
+    size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
     image: "images/products/agave-007.jpg"
@@ -86,8 +86,8 @@ window.GUDAO_PRODUCTS = [
     code: "2026.09.15",
     name: "正鱟",
     category: "品種類",
-    description: "販售植株",
-    size: "請私訊確認",
+    description: "販售植株兩種角度參考",
+    size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
     image: "images/products/agave-008.jpg"
