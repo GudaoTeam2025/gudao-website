@@ -14,7 +14,7 @@
 window.GUDAO_PRODUCTS = [
   {
     code: "2026.09.14",
-    name: "圓葉拇指",
+    name: "妖炎 × 姬嚴龍",
     category: "品種類",
     description: "母本參考與販售植株",
     size: "請私訊確認",
@@ -23,6 +23,76 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-001.jpg"
   },
   {
+    code: "2026.09.14",
+    name: "甲蟹 × 妖炎",
+    category: "實生類",
+    description: "母本參考與販售植株",
+    size: "請私訊確認",
+    price: "DM for Price",
+    status: "現貨",
+    image: "images/products/agave-002.jpg"
+  },
+    {
+    code: "2026.09.14",
+    name: "屈原 × 嚴龍(026)",
+    category: "實生類",
+    description: "母本參考與販售植株",
+    size: "請私訊確認",
+    price: "DM for Price",
+    status: "現貨",
+    image: "images/products/agave-003.jpg"
+  },
+    {
+    code: "2026.09.14",
+    name: "圓葉拇指",
+    category: "實生類",
+    description: "母本參考與販售植株",
+    size: "請私訊確認",
+    price: "DM for Price",
+    status: "現貨",
+    image: "images/products/agave-002.jpg"
+  },
+    {
+    code: "2026.09.14",
+    name: "甲蟹 × 妖炎",
+    category: "實生類",
+    description: "母本參考與販售植株",
+    size: "請私訊確認",
+    price: "DM for Price",
+    status: "現貨",
+    image: "images/products/agave-002.jpg"
+  },
+    {
+    code: "2026.09.14",
+    name: "甲蟹 × 妖炎",
+    category: "實生類",
+    description: "母本參考與販售植株",
+    size: "請私訊確認",
+    price: "DM for Price",
+    status: "現貨",
+    image: "images/products/agave-002.jpg"
+  },
+    {
+    code: "2026.09.14",
+    name: "甲蟹 × 妖炎",
+    category: "實生類",
+    description: "母本參考與販售植株",
+    size: "請私訊確認",
+    price: "DM for Price",
+    status: "現貨",
+    image: "images/products/agave-002.jpg"
+  },
+    {
+    code: "2026.09.14",
+    name: "甲蟹 × 妖炎",
+    category: "實生類",
+    description: "母本參考與販售植株",
+    size: "請私訊確認",
+    price: "DM for Price",
+    status: "現貨",
+    image: "images/products/agave-002.jpg"
+  },
+    {
     code: "2026.09.14",
     name: "日系甲蟹 × 妖炎",
     category: "實生類",
