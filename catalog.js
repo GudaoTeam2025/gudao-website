@@ -44,7 +44,7 @@
           type="button"
           data-product-index="${itemIndex}"
         >
-          複製商品資訊並私訊 ↗
+          複製商品資訊並私訊孤島 ↗
         </button>
       `
       : `
@@ -53,7 +53,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          INSTAGRAM 查看更多 ↗
+          前往INSTAGRAM 查看更多 ↗
         </a>
       `;
 
