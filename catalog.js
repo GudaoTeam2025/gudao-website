@@ -102,7 +102,7 @@
       "",
       `品名：${product.name || "未提供"}`,
       `分類：${product.category || "未提供"}`,
-      `編號：${product.code || "未提供"}`,
+      `日期：${product.code || "未提供"}`,
       `尺寸：${product.size || "請私訊確認"}`,
       `價格：${product.price || "DM for Price"}`,
       `狀態：${product.status || "未提供"}`,
