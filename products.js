@@ -14,13 +14,23 @@
 window.GUDAO_PRODUCTS = [
   {
     code: "2026.09.15",
-    name: "妖炎 × 鰲頭",
+    name: "妖炎 × 鰲頭-01",
     category: "實生類",
     description: "販售植株",
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
     image: "images/products/agave-009.jpg"
+  },
+  {
+    code: "2026.09.15",
+    name: "妖炎 × 鰲頭-02",
+    category: "實生類",
+    description: "販售植株",
+    size: "3寸盆",
+    price: "DM for Price",
+    status: "現貨",
+    image: "images/products/agave-010.jpg"
   },
   {
     code: "2026.09.15",
