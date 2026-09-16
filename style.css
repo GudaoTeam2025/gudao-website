@@ -700,3 +700,199 @@ footer p {
   cursor: wait;
   opacity: 0.65;
 }
+/* ===============================*==================
+   商品資訊複製完成提示
+ * =================================*================ */
+
+.copy-notice-*pen {
+  overflow: hidden;
+}
+
+.prod*ct-copy-notice {
+  position: fixed*
+  inset: 0;
+  z-index: 10000;
+
+  *isplay: grid;
+  place-items: cente*;
+
+  padding: 18px;
+}
+
+.copy-notic*-backdrop {
+  position: absolute;
+* inset: 0;
+
+ *width* 100%;
+  height: 100%;
+
+  margin: *;
+  padding: 0;
+
+  border: 0;
+  bo*der-radius: 0;
+
+  background: rgba*20, 24, 27, 0.76);
+
+  cursor: poin*er;
+}
+
+.copy-notice-card {
+  posit*on: relative;
+  z-index: 1;
+
+  wid*h: min(100%, 430px);
+  padding: 48*x 26px 26px;
+
+  background: #EBEBE*;
+  border*top: 7px solid #FF8510;
+
+  box*shadow: 0 *4px 70px rgba(0, 0, 0, *.38);
+
+  animation* copy-notice-show 0.22s ease both;*}
+
+.copy-notice-close {
+  position* absolute;
+  top: 10px;
+  right: 1*px;
+
+  display: flex;
+  align-item*: center;
+  justify-content: cente*;
+
+  width: 40px;
+  min-width: 40p*;
+  height: 40px;
+  min-height: 40*x;
+
+  margin: 0;
+  padding: 0 0 2p*;
+
+  border* 1px solid #262C31;
+  border-radiu*: 0;
+
+  background: transparent;
+ *color: #262C31;
+
+  font-family: Ar*al, sans-serif;
+  font-size: 25px;*  font-weight: 700;
+  line-height:*1;
+
+  cursor: pointer;
+}
+
+.copy-no*ice-close:hover,
+.copy-notice-clos*:focus-visible {
+  border-color: #*F8510;
+  background: #FF8510;
+  ou*line* none;
+*
+
+*copy*notice-label {
+  margin: 0 0 5px;
+*  color: #823B35;
+
+  font-family: *Khand", Arial, sans-serif;
+  font-*ize: 12px;
+  font-weight: 700;
+  l*tter-spacing: 0.14em;
+}
+
+.copy-not*ce-card h2 {
+  margin: 0 0 12px;
+
+* color: #262C31;
+
+  font-size: cla*p(27px, 7vw, 37px);
+  line-height:*1.2;
+}
+
+.copy-notice-product {
+  m*rgin: 0;
+  padding: 12px 14px;
+
+  *ackground: #FFFFFF;
+  border-left:*5px solid #FF8510;
+
+  color: #262C*1;
+
+  font-size: 19px;
+  font-weig*t: 800;
+}
+
+.copy-notice-descriptio* {
+  margin: 16px 0;
+
+  color* #5D666B;
+
+  font-size: 14px;
+  li*e*height: 1.75;
+}
+
+.copy-notice-conf*rm {
+  width: 100%;
+  min-height: *0px;
+
+  padding* 10px 16px;
+
+  border* 1px solid #FF8510;
+
+  background* #FF8510;
+  color: #262C31;
+
+  fon*-weight: 900;
+
+ *cursor: pointer;
+}
+
+.copy-notice-c*nfirm:hover,
+.copy-notice-confirm:*ocus-visible {
+  background: #262C*1;
+  color: #FFFFFF;
+  outline: no*e;
+}
+
+.product-copy-notice.is-clos*ng .copy-notice-card {
+  animation* copy-notice-hide 0.18s ease both;*}
+
+**eyframes copy-notice-show {
+  from*{
+    opacity: 0;
+    transform: t*anslateY(18px) scale(0.97);
+  }
+
+ *to {
+    opacity: 1;
+    transform* translateY(0) scale(1);
+  }
+}
+
+@k*yframes copy-notice-hide {
+  from *
+    opacity: 1;
+    transform: tr*nslateY(0) scale(1);
+  }
+
+  to {
+ *  opacity: 0;
+    transform: trans*ateY(12px) scale(0.98);
+  }
+}
+
+@me*ia (max-width: 520px) {
+  .product*copy-notice {
+    padding: 12px;
+* }
+
+  .copy-notice-card {
+    widt*: 100%;
+    padding* 48px 20px 22px;
+  }
+*
+
+*media (prefers-reduced-motion: red*ce) {
+  .*opy-notice-card,
+ *.*roduct-copy-notice.is-closing .cop*-notice-card {
+    animation: none*
+  }
+}
