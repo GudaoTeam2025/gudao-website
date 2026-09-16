@@ -127,26 +127,37 @@
     }
   }
 
-  async function contactGudao(product, button) {
-    if (!product || !button) return;
+async function contactGudao(product, button) {
+  if (!product || !button) {
+    return;
+  }
 
-    const originalText = button.textContent;
-    button.disabled = true;
+  const originalText = button.textContent;
+  button.disabled = true;
 
-    try {
-      await copyText(createInquiryMessage(product));
-      button.textContent = "已複製，正在前往 IG";
-    } catch (error) {
-      console.error("複製商品資訊失敗：", error);
-      button.textContent = "無法複製，前往 IG";
-    }
+  try {
+    const message = createInquiryMessage(product);
+
+    await copyText(message);
+
+    button.textContent = "已複製";
+
+    showCopyNotice(product.name);
+  } catch (error) {
+    console.error("複製商品資訊失敗：", error);
+
+    button.textContent = "複製失敗，前往 IG";
 
     window.setTimeout(() => {
-      window.location.href = IG_MESSAGE_URL;
+      openInstagramMessage();
+    }, 700);
+  } finally {
+    window.setTimeout(() => {
       button.textContent = originalText;
       button.disabled = false;
-    }, 500);
+    }, 1800);
   }
+}
 
   const productGrid = document.querySelector("#product-grid");
   const eventGrid = document.querySelector("#event-grid");
@@ -199,4 +210,84 @@
       ? events.map((item, index) => createCard(item, "event", index)).join("")
       : `<div class="empty-state">目前尚無活動</div>`;
   }
+  function showCopyNotice(productName) {
+  const oldNotice = document.querySelector("#product-copy-notice");
+
+  if (oldNotice) {
+    oldNotice.remove();
+  }
+
+  const notice = document.createElement("div");
+
+  notice.id = "product-copy-notice";
+  notice.className = "product-copy-notice";
+  notice.setAttribute("role", "dialog");
+  notice.setAttribute("aria-modal", "true");
+  notice.setAttribute("aria-labelledby", "copy-notice-title");
+
+  notice.innerHTML = `
+    <button
+      class="copy-notice-backdrop"
+      type="button"
+      aria-label="關閉並前往 Instagram 私訊"
+    ></button>
+
+    <section class="copy-notice-card">
+      <button
+        class="copy-notice-close"
+        type="button"
+        aria-label="關閉並前往 Instagram 私訊"
+      >
+        ×
+      </button>
+
+      <p class="copy-notice-label">GUDAO INQUIRY</p>
+
+      <h2 id="copy-notice-title">已複製植株資訊</h2>
+
+      <p class="copy-notice-product">
+        ${escapeHtml(productName || "目前植株")}
+      </p>
+
+      <p class="copy-notice-description">
+        即將前往孤島 Instagram 聊天室，進入後請長按訊息輸入框並選擇「貼上」。
+      </p>
+
+      <button
+        class="copy-notice-confirm"
+        type="button"
+      >
+        前往 IG 私訊 ↗
+      </button>
+    </section>
+  `;
+
+  document.body.appendChild(notice);
+  document.body.classList.add("copy-notice-open");
+
+  const closeButton = notice.querySelector(".copy-notice-close");
+  const confirmButton = notice.querySelector(".copy-notice-confirm");
+  const backdrop = notice.querySelector(".copy-notice-backdrop");
+
+  function closeAndOpenInstagram() {
+    notice.classList.add("is-closing");
+
+    window.setTimeout(() => {
+      notice.remove();
+      document.body.classList.remove("copy-notice-open");
+
+      openInstagramMessage();
+    }, 180);
+  }
+
+  closeButton.addEventListener("click", closeAndOpenInstagram);
+  confirmButton.addEventListener("click", closeAndOpenInstagram);
+  backdrop.addEventListener("click", closeAndOpenInstagram);
+
+  confirmButton.focus();
+}
+
+function openInstagramMessage() {
+  window.location.href = IG_MESSAGE_URL;
+}
 })();
