@@ -1,0 +1,8 @@
+/* 植株選購：每頁 15 棵分頁控制 */
+.product-pagination{display:flex;align-items:center;justify-content:center;gap:12px;margin:42px 0 0;padding:22px 0 0;border-top:1px solid rgba(38,44,49,.18)}
+.product-pagination[hidden]{display:none!important}.product-page-numbers{display:flex;align-items:center;justify-content:center;gap:7px}
+.product-pagination button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;margin:0;border:1px solid var(--rock,#262C31);background:transparent;color:var(--rock,#262C31);font-weight:700;cursor:pointer}
+.product-page-number{width:42px;min-width:42px;padding:0}.product-page-direction{min-width:104px;padding:8px 14px}
+.product-pagination button:hover:not(:disabled),.product-pagination button:focus-visible:not(:disabled),.product-pagination button.active{border-color:var(--orange,#FF8510);background:var(--orange,#FF8510);color:var(--rock,#262C31);outline:none}
+.product-pagination button:disabled{cursor:not-allowed;opacity:.35}
+@media(max-width:520px){.product-pagination{gap:7px;margin-top:30px}.product-page-numbers{gap:5px;overflow-x:auto;max-width:46vw;padding:3px 0}.product-page-number{flex:0 0 36px;width:36px;min-width:36px;min-height:38px}.product-page-direction{min-width:82px;min-height:38px;padding:7px 9px;font-size:13px}}
