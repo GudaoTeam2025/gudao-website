@@ -12,8 +12,28 @@
   圖片請放在 images/products/
 */
 window.GUDAO_PRODUCTS = [
+    {
+    code: "2026.10.06",
+    name: "笹之雪 × 屈原-01",
+    category: "實生類",
+    description: "販售植株",
+    size: "3寸盆",
+    price: "DM for Price",
+    status: "現貨",
+    image: "images/products/agave-010.jpg"
+   },
+   {
+    code: "2026.10.06",
+    name: "笹之雪 × 屈原-02",
+    category: "實生類",
+    description: "販售植株",
+    size: "3寸盆",
+    price: "DM for Price",
+    status: "現貨",
+    image: "images/products/agave-011.jpg"
+  },
   {
-    code: "2026.09.15",
+    code: "2026.10.06",
     name: "妖炎 × 鰲頭-01",
     category: "實生類",
     description: "販售植株",
@@ -23,7 +43,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-009.jpg"
   },
   {
-    code: "2026.09.15",
+    code: "2026.10.06",
     name: "妖炎 × 鰲頭-02",
     category: "實生類",
     description: "販售植株",
@@ -33,7 +53,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-010.jpg"
   },
   {
-    code: "2026.09.15",
+    code: "2026.10.06",
     name: "妖炎 × 姬嚴龍",
     category: "實生類",
     description: "母本參考與販售植株",
@@ -43,7 +63,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-001.jpg"
   },
   {
-    code: "2026.09.15",
+    code: "2026.10.06",
     name: "甲蟹 × 妖炎",
     category: "實生類",
     description: "母本參考與販售植株",
@@ -53,7 +73,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-002.jpg"
   },
     {
-    code: "2026.09.15",
+    code: "2026.10.06",
     name: "屈原 × 嚴龍(026)",
     category: "品種類",
     description: "母本參考與販售植株",
@@ -63,7 +83,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-003.jpg"
   },
     {
-    code: "2026.09.15",
+    code: "2026.10.06",
     name: "圓葉拇指-1",
     category: "品種類",
     description: "販售植株",
@@ -73,7 +93,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-004.jpg"
   },
     {
-    code: "2026.09.15",
+    code: "2026.10.06",
     name: "圓葉拇指-2",
     category: "品種類",
     description: "販售植株兩種角度參考",
@@ -83,7 +103,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-005.jpg"
   },
     {
-    code: "2026.09.15",
+    code: "2026.10.06",
     name: "凱撒",
     category: "品種類",
     description: "販售植株兩種角度參考",
@@ -93,7 +113,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-006.jpg"
   },
     {
-    code: "2026.09.15",
+    code: "2026.10.06",
     name: "胖鯨",
     category: "品種類",
     description: "販售植株兩種角度參考",
@@ -103,7 +123,7 @@ window.GUDAO_PRODUCTS = [
     image: "images/products/agave-007.jpg"
   },
     {
-    code: "2026.09.15",
+    code: "2026.10.06",
     name: "正鱟",
     category: "品種類",
     description: "販售植株兩種角度參考",
