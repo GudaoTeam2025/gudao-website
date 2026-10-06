@@ -9,6 +9,23 @@
   6. instagram 只填純網址，不要貼入 <a> HTML 標籤
 */
 window.GUDAO_APPRECIATIONS = [
+     {
+    code: "GuDao Team",
+    name: "EBO妖炎 × 黑帝斯",
+    category: "培育紀錄",
+    description: "葉粉讓葉片透著淡淡冷藍感，個體基因的刺色，如葡萄酒般深沉",
+    cultivation: "室內燈養",
+    record: "持續記錄",
+    images: [
+      "images/appreciation/appreciation-005-01.png",
+      "images/appreciation/appreciation-005-02.png",
+      "images/appreciation/appreciation-005-03.png",
+      "images/appreciation/appreciation-005-04.png",
+      "images/appreciation/appreciation-005-05.png",
+      "images/appreciation/appreciation-005-06.png"
+    ],
+    instagram: "https://www.instagram.com/gudao.team/"
+  },
    {
     code: "GuDao Team",
     name: "綠皮實生",
