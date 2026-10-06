@@ -20,7 +20,7 @@ window.GUDAO_PRODUCTS = [
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-010.jpg"
+    image: "images/products/agave-011.jpg"
    },
    {
     code: "2026.10.06",
@@ -30,7 +30,7 @@ window.GUDAO_PRODUCTS = [
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-011.jpg"
+    image: "images/products/agave-012.jpg"
   },
   {
     code: "2026.10.06",
