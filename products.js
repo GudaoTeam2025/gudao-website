@@ -20,7 +20,7 @@ window.GUDAO_PRODUCTS = [
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-011.jpg"
+    image: "images/products/agave-011.webp"
    },
    {
     code: "2026.10.06",
@@ -30,7 +30,7 @@ window.GUDAO_PRODUCTS = [
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-012.jpg"
+    image: "images/products/agave-012.webp"
   },
   {
     code: "2026.10.06",
@@ -40,7 +40,7 @@ window.GUDAO_PRODUCTS = [
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-009.jpg"
+    image: "images/products/agave-009.webp"
   },
   {
     code: "2026.10.06",
@@ -60,7 +60,7 @@ window.GUDAO_PRODUCTS = [
     size: "已入3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-001.jpg"
+    image: "images/products/agave-001.webp"
   },
   {
     code: "2026.10.06",
@@ -70,7 +70,7 @@ window.GUDAO_PRODUCTS = [
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-002.jpg"
+    image: "images/products/agave-002.webp"
   },
     {
     code: "2026.10.06",
@@ -80,7 +80,7 @@ window.GUDAO_PRODUCTS = [
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-003.jpg"
+    image: "images/products/agave-003.webp"
   },
     {
     code: "2026.10.06",
@@ -100,7 +100,7 @@ window.GUDAO_PRODUCTS = [
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-005.jpg"
+    image: "images/products/agave-005.webp"
   },
     {
     code: "2026.10.06",
@@ -120,7 +120,7 @@ window.GUDAO_PRODUCTS = [
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-007.jpg"
+    image: "images/products/agave-007.webp"
   },
     {
     code: "2026.10.06",
@@ -130,6 +130,6 @@ window.GUDAO_PRODUCTS = [
     size: "3寸盆",
     price: "DM for Price",
     status: "現貨",
-    image: "images/products/agave-008.jpg"
+    image: "images/products/agave-008.webp"
   }
 ];
