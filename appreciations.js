@@ -17,12 +17,12 @@ window.GUDAO_APPRECIATIONS = [
     cultivation: "室內燈養",
     record: "持續記錄",
     images: [
-      "images/appreciation/appreciation-005-01.png",
-      "images/appreciation/appreciation-005-02.png",
-      "images/appreciation/appreciation-005-03.png",
-      "images/appreciation/appreciation-005-04.png",
-      "images/appreciation/appreciation-005-05.png",
-      "images/appreciation/appreciation-005-06.png"
+      "images/appreciation/appreciation-005-01.webp",
+      "images/appreciation/appreciation-005-02.webp",
+      "images/appreciation/appreciation-005-03.webp",
+      "images/appreciation/appreciation-005-04.webp",
+      "images/appreciation/appreciation-005-05.webp",
+      "images/appreciation/appreciation-005-06.webp"
     ],
     instagram: "https://www.instagram.com/gudao.team/"
   },
@@ -34,12 +34,12 @@ window.GUDAO_APPRECIATIONS = [
     cultivation: "室內燈養",
     record: "持續記錄",
     images: [
-      "images/appreciation/appreciation-004-01.png",
-      "images/appreciation/appreciation-004-02.png",
-      "images/appreciation/appreciation-004-03.png",
-      "images/appreciation/appreciation-004-04.png",
-      "images/appreciation/appreciation-004-05.png",
-      "images/appreciation/appreciation-004-06.png"
+      "images/appreciation/appreciation-004-01.webp",
+      "images/appreciation/appreciation-004-02.webp",
+      "images/appreciation/appreciation-004-03.webp",
+      "images/appreciation/appreciation-004-04.webp",
+      "images/appreciation/appreciation-004-05.webp",
+      "images/appreciation/appreciation-004-06.webp"
     ],
     instagram: "https://www.instagram.com/gudao.team/"
   },
@@ -51,12 +51,12 @@ window.GUDAO_APPRECIATIONS = [
     cultivation: "室內燈養",
     record: "持續記錄",
     images: [
-      "images/appreciation/appreciation-001-01.png",
-      "images/appreciation/appreciation-001-02.png",
-      "images/appreciation/appreciation-001-03.png",
-      "images/appreciation/appreciation-001-04.png",
-      "images/appreciation/appreciation-001-05.png",
-      "images/appreciation/appreciation-001-06.png"
+      "images/appreciation/appreciation-001-01.webp",
+      "images/appreciation/appreciation-001-02.webp",
+      "images/appreciation/appreciation-001-03.webp",
+      "images/appreciation/appreciation-001-04.webp",
+      "images/appreciation/appreciation-001-05.webp",
+      "images/appreciation/appreciation-001-06.webp"
     ],
     instagram: "https://www.instagram.com/gudao.team/"
   },
@@ -68,12 +68,12 @@ window.GUDAO_APPRECIATIONS = [
     cultivation: "室內燈養",
     record: "新品登場",
     images: [
-      "images/appreciation/appreciation-002-01.png",
-      "images/appreciation/appreciation-002-02.png",
-      "images/appreciation/appreciation-002-03.png",
-      "images/appreciation/appreciation-002-04.png",
-      "images/appreciation/appreciation-002-05.png",
-      "images/appreciation/appreciation-002-06.png"
+      "images/appreciation/appreciation-002-01.webp",
+      "images/appreciation/appreciation-002-02.webp",
+      "images/appreciation/appreciation-002-03.webp",
+      "images/appreciation/appreciation-002-04.webp",
+      "images/appreciation/appreciation-002-05.webp",
+      "images/appreciation/appreciation-002-06.webp"
     ],
     instagram: "https://www.instagram.com/gudao.team/"
   },
@@ -85,12 +85,12 @@ window.GUDAO_APPRECIATIONS = [
     cultivation: "孤島收藏",
     record: "新品登場",
     images: [
-      "images/appreciation/appreciation-003-01.png",
-      "images/appreciation/appreciation-003-02.png",
-      "images/appreciation/appreciation-003-03.png",
-      "images/appreciation/appreciation-003-04.png",
-      "images/appreciation/appreciation-003-05.png",
-      "images/appreciation/appreciation-003-06.png"
+      "images/appreciation/appreciation-003-01.webp",
+      "images/appreciation/appreciation-003-02.webp",
+      "images/appreciation/appreciation-003-03.webp",
+      "images/appreciation/appreciation-003-04.webp",
+      "images/appreciation/appreciation-003-05.webp",
+      "images/appreciation/appreciation-003-06.webp"
     ],
     instagram: "https://www.instagram.com/gudao.team/"
   },
@@ -102,12 +102,12 @@ window.GUDAO_APPRECIATIONS = [
     cultivation: "待更新",
     record: "待更新",
     images: [
-      "images/appreciation/appreciation-00-01.png",
-      "images/appreciation/appreciation-00-02.png",
-      "images/appreciation/appreciation-00-03.png",
-      "images/appreciation/appreciation-00-04.png",
-      "images/appreciation/appreciation-00-05.png",
-      "images/appreciation/appreciation-00-06.png"
+      "images/appreciation/appreciation-00-01.webp",
+      "images/appreciation/appreciation-00-02.webp",
+      "images/appreciation/appreciation-00-03.webp",
+      "images/appreciation/appreciation-00-04.webp",
+      "images/appreciation/appreciation-00-05.webp",
+      "images/appreciation/appreciation-00-06.webp"
     ],
     instagram: "https://www.instagram.com/gudao.team/"
   }
