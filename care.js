@@ -251,47 +251,60 @@
     setTimeout(() => $("#close-diagnosis").focus(), 0);
   }
 
-  function selectSymptom(symptom) {
-    const item = symptoms[symptom];
-    if (!item) return;
+function selectSymptom(symptom) {
+  const item = symptoms[symptom];
 
-    $$("#symptom-list button").forEach((button) => {
-      button.classList.toggle("active", button.dataset.symptom === symptom);
-    });
+  if (!item) return;
 
-    const imageHtml = item.image
-      ? `<figure class="diagnosis-image"><img src="${item.image}" alt="${item.
-      : "";
+  $$("#symptom-list button").forEach((button) => {
+    button.classList.toggle(
+      "active",
+      button.dataset.symptom === symptom
+    );
+  });
 
-    $("#diagnosis-result").innerHTML = `
-      ${imageHtml}
-      <p class="diagnosis-label">目前觀察</p>
-      <h3>${symptom}</h3>
-      <div class="diagnosis-columns">
-        <section>
-          <h4>可能相關因素</h4>
-          <ul>${item.causes.map((text) => `<li>${text}</li>`).join("")}</ul>
-        </section>
-        <section>
-          <h4>建議先檢查</h4>
-          <ul>${item.checks.map((text) => `<li>${text}</li>`).join("")}</ul>
-        </section>
-      </div>
-      <p class="diagnosis-warning">症狀可能有多種原因，若問題持續惡化，請先隔離植株或向孤島討論交流</p>
-    `;
-  }
+  const imageHtml = item.image
+    ? `
+      <figure class="diagnosis-image">
+        ${item.image}
+      </figure>
+    `
+    : "";
 
-  function closeDiagnosis() {
-    const modal = $("#diagnosis-modal");
-    if (modal) modal.hidden = true;
-    unlockBody();
-  }
+  $("#diagnosis-result").innerHTML = `
+    ${imageHtml}
 
-  function unlockBody() {
-    if ($("#topic-drawer")?.hidden && $("#diagnosis-modal")?.hidden) {
-      document.body.classList.remove("modal-open");
-    }
-  }
+    <p class="diagnosis-label">
+      目前觀察
+    </p>
 
-  setStage("seedling");
-})();
+    <h3>${symptom}</h3>
+
+    <div class="diagnosis-columns">
+      <section>
+        <h4>可能相關因素</h4>
+
+        <ul>
+          ${item.causes
+            .map((text) => `<li>${text}</li>`)
+            .join("")}
+        </ul>
+      </section>
+
+      <section>
+        <h4>建議先檢查</h4>
+
+        <ul>
+          ${item.checks
+            .map((text) => `<li>${text}</li>`)
+            .join("")}
+        </ul>
+      </section>
+    </div>
+
+    <p class="diagnosis-warning">
+      症狀可能有多種原因，若問題持續惡化，
+      請先隔離植株或向孤島討論交流
+    </p>
+  `;
+}
