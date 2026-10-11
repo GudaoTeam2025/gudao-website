@@ -95,14 +95,12 @@
   $('#diagnosis-result').innerHTML = `
 
     ${
-      item.image
-      ? `
-      <div class="diagnosis-image">
-        ${item.image}
-      </div>
-      `
-      : ''
-    }
+  item.image
+  ? `
+  <div class="diagnosis-image">
+    <img
+      src="${item.image : ''
+}
 
     <p class="diagnosis-label">
       目前觀察
