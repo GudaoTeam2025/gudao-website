@@ -260,7 +260,7 @@
     });
 
     const imageHtml = item.image
-      ? `<figure class="diagnosis-image"><img src="${item.image}" alt="${item.imageAlt || `${symptom}參考圖片`}" loading="lazy"><figcaption>圖片僅供狀態參考，仍需搭配植株與環境條件綜合判斷</figcaption></figure>`
+      ? `<figure class="diagnosis-image"><img src="${item.image}" alt="${item.
       : "";
 
     $("#diagnosis-result").innerHTML = `
