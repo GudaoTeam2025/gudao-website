@@ -1,0 +1,30 @@
+/* GUDAO care diagnosis image add-on */
+.diagnosis-image {
+  display: block;
+  width: 100%;
+  margin: 0 0 22px;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+}
+
+.diagnosis-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 720px) {
+  .diagnosis-image {
+    margin-bottom: 18px;
+    border-radius: 8px;
+  }
+}
