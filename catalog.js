@@ -30,11 +30,18 @@
     const isProduct = type === "product";
     const image = safeImagePath(item.image);
     const action = isProduct
-      ? `<button class="product-inquiry" type="button" data-product-index="${itemIndex}">複製植株資訊並私訊孤島 ↗</button>`
+  ? item.status === "已售出"
+      ? `<button class="product-inquiry sold-button" type="button" disabled>已售出</button>`
+      : `<button class="product-inquiry" type="button" data-product-index="${itemIndex}">複製植株資訊並私訊孤島 ↗</button>`
       : `<a href="${escapeHtml(safeUrl(item.link))}" target="_blank" rel="noopener noreferrer">前往 INSTAGRAM 查看更多 ↗</a>`;
 
-    return `
-      <article class="card">
+const soldClass =
+  isProduct && item.status === "已售出"
+    ? "sold"
+    : "";
+
+return `
+  <article class="card ${soldClass}">
         <div class="poster">
           ${image ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}" loading="lazy" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">` : ""}
           <div class="poster-fallback" ${image ? "hidden" : ""}>GUDAO</div>
