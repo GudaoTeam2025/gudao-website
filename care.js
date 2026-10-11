@@ -79,7 +79,7 @@
   function openTopic(key){const topic=topics[key];if(!topic)return;$('#drawer-label').textContent=topic.label;$('#drawer-title').textContent=topic.title;$('#drawer-intro').textContent=topic.intro;$('#drawer-points').innerHTML=topic.points.map(([n,t,c])=>`<article><span>${n}</span><div><h3>${t}</h3><p>${c}</p></div></article>`).join('');$('#drawer-note').textContent=topic.note;$('#topic-drawer').hidden=false;document.body.classList.add('modal-open');setTimeout(()=>$('#close-drawer').focus(),0);}
   function closeTopic(){const modal=$('#topic-drawer');if(modal)modal.hidden=true;unlockBody();}
   function openDiagnosis(){const list=$('#symptom-list');list.innerHTML=Object.keys(symptoms).map((symptom,index)=>`<button type="button" data-symptom="${symptom}" class="${index===0?'active':''}">${symptom}</button>`).join('');$$('#symptom-list button').forEach(button=>button.addEventListener('click',()=>selectSymptom(button.dataset.symptom)));$('#diagnosis-modal').hidden=false;document.body.classList.add('modal-open');selectSymptom(Object.keys(symptoms)[0]);setTimeout(()=>$('#close-diagnosis').focus(),0);}
-  function selectSymptom(symptom){
+ function selectSymptom(symptom){
 
   const item = symptoms[symptom];
 
@@ -94,15 +94,15 @@
 
   $('#diagnosis-result').innerHTML = `
 
-${
-  item.image
-  ? `
-  <div class="diagnosis-image">
-    ${item.image}
-  </div>
-  `
-  : ''
-}
+    ${
+      item.image
+      ? `
+      <div class="diagnosis-image">
+        ${item.image}
+      </div>
+      `
+      : ''
+    }
 
     <p class="diagnosis-label">
       目前觀察
