@@ -79,7 +79,67 @@
   function openTopic(key){const topic=topics[key];if(!topic)return;$('#drawer-label').textContent=topic.label;$('#drawer-title').textContent=topic.title;$('#drawer-intro').textContent=topic.intro;$('#drawer-points').innerHTML=topic.points.map(([n,t,c])=>`<article><span>${n}</span><div><h3>${t}</h3><p>${c}</p></div></article>`).join('');$('#drawer-note').textContent=topic.note;$('#topic-drawer').hidden=false;document.body.classList.add('modal-open');setTimeout(()=>$('#close-drawer').focus(),0);}
   function closeTopic(){const modal=$('#topic-drawer');if(modal)modal.hidden=true;unlockBody();}
   function openDiagnosis(){const list=$('#symptom-list');list.innerHTML=Object.keys(symptoms).map((symptom,index)=>`<button type="button" data-symptom="${symptom}" class="${index===0?'active':''}">${symptom}</button>`).join('');$$('#symptom-list button').forEach(button=>button.addEventListener('click',()=>selectSymptom(button.dataset.symptom)));$('#diagnosis-modal').hidden=false;document.body.classList.add('modal-open');selectSymptom(Object.keys(symptoms)[0]);setTimeout(()=>$('#close-diagnosis').focus(),0);}
-  function selectSymptom(symptom){const item=symptoms[symptom];if(!item)return;$$('#symptom-list button').forEach(button=>button.classList.toggle('active',button.dataset.symptom===symptom));$('#diagnosis-result').innerHTML=`<p class="diagnosis-label">目前觀察</p><h3>${symptom}</h3><div class="diagnosis-columns"><section><h4>可能相關因素</h4><ul>${item.causes.map(text=>`<li>${text}</li>`).join('')}</ul></section><section><h4>建議先檢查</h4><ul>${item.checks.map(text=>`<li>${text}</li>`).join('')}</ul></section></div><p class="diagnosis-warning">症狀可能有多種原因，若問題持續惡化，請先隔離植株或向孤島討論交流</p>`;}
+  function selectSymptom(symptom){
+
+  const item = symptoms[symptom];
+
+  if(!item) return;
+
+  $$('#symptom-list button').forEach(button =>
+    button.classList.toggle(
+      'active',
+      button.dataset.symptom === symptom
+    )
+  );
+
+  $('#diagnosis-result').innerHTML = `
+
+    ${
+      item.image
+      ? `
+      <div class="diagnosis-image">
+        ${item.image}
+      </div>
+      `
+      : ''
+    }
+
+    <p class="diagnosis-label">
+      目前觀察
+    </p>
+
+    <h3>${symptom}</h3>
+
+    <div class="diagnosis-columns">
+
+      <section>
+        <h4>可能相關因素</h4>
+        <ul>
+          ${item.causes
+            .map(text => `<li>${text}</li>`)
+            .join('')}
+        </ul>
+      </section>
+
+      <section>
+        <h4>建議先檢查</h4>
+        <ul>
+          ${item.checks
+            .map(text => `<li>${text}</li>`)
+            .join('')}
+        </ul>
+      </section>
+
+    </div>
+
+    <p class="diagnosis-warning">
+      症狀可能有多種原因，
+      若問題持續惡化，
+      請先隔離植株或向孤島討論交流
+    </p>
+
+  `;
+}
   function closeDiagnosis(){const modal=$('#diagnosis-modal');if(modal)modal.hidden=true;unlockBody();}
   function unlockBody(){if($('#topic-drawer')?.hidden&&$('#diagnosis-modal')?.hidden)document.body.classList.remove('modal-open');}
 
