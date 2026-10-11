@@ -554,9 +554,35 @@ button.active {
   outline: none;
 }
 
-.product-inquiry:disabled {
-  cursor: wait;
-  opacity: 0.65;
+/* 已售出植株 */
+.card.sold .poster img {
+  filter: grayscale(100%);
+  opacity: 0.75;
+}
+
+.card.sold .poster::after {
+  content: "SOLD";
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 6px 12px;
+  background: rgba(0,0,0,.75);
+  color: #ffffff;
+  font-family: "Khand", sans-serif;
+  font-size: 14px;
+  letter-spacing: .08em;
+}
+
+.sold-button {
+  background: #777 !important;
+  color: #ffffff !important;
+  border-bottom: none !important;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.sold-button:hover {
+  color: #ffffff !important;
 }
 
 /* ===== 商品資訊複製完成提示 ===== */
