@@ -73,3 +73,31 @@
       calc(0.14 + 0.50 * var(--water-level))
     );
 }
+/* 診斷圖片 */
+
+.diagnosis-image{
+  margin-bottom:24px;
+  overflow:hidden;
+  border-radius:12px;
+  background:#000;
+}
+
+.diagnosis-image img{
+  display:block;
+  width:100%;
+  max-height:420px;
+  object-fit:cover;
+  transition:.3s;
+}
+
+.diagnosis-image img:hover{
+  transform:scale(1.02);
+}
+
+@media (max-width:768px){
+
+  .diagnosis-image img{
+    max-height:280px;
+  }
+
+}
