@@ -2,7 +2,7 @@
   "use strict";
 
   const symptomImages = {
-    "葉片變軟": {
+    "葉片變軟皺褶": {
       src: "images/care/soft-leaf.webp",
       alt: "葉片變軟與皺褶參考圖片"
     }
