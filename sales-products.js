@@ -18,4 +18,3 @@ window.GUDAO_SALES_PRODUCTS = [
     /* 優惠折抵 */
   { id: "GD-D001", name: "折抵-500元優惠", price: -500, active: true }
 ];
-];
