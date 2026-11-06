@@ -17,5 +17,6 @@ window.GUDAO_SALES_PRODUCTS = [
   { id: "GD-P007", name: "九重燼", price: 1500, active: true },
   { id: "GD-P008", name: "特選笹屈(大)", price: 2500, active: true },
   { id: "GD-P009", name: "特選笹屈(小)", price: 1800, active: true },
+  { id: "GD-P010", name: "品種龍", price: 100, active: true },
   { id: "GD-D001", name: "折抵-500元優惠", price: -500, active: true }
 ];
