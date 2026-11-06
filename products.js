@@ -44,16 +44,6 @@ window.GUDAO_PRODUCTS = [
   },
   {
     code: "2026.10.06",
-    name: "妖炎 × 鰲頭-02",
-    category: "實生類",
-    description: "已售出",
-    size: "3寸盆",
-    price: "DM for Price",
-    status: "已售出",
-    image: "images/products/agave-010.jpg"
-  },
-  {
-    code: "2026.10.06",
     name: "妖炎 × 姬嚴龍",
     category: "實生類",
     description: "母本參考與販售植株",
