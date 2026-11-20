@@ -29,7 +29,7 @@ window.GUDAO_PRODUCTS = [
     description: "販售植株",
     size: "3寸盆",
     price: "DM for Price",
-    status: "現貨",
+    status: "已售出",
     image: "images/products/agave-012.webp"
   },
   {
@@ -79,7 +79,7 @@ window.GUDAO_PRODUCTS = [
     description: "販售植株",
     size: "請私訊確認",
     price: "DM for Price",
-    status: "現貨",
+    status: "已售出",
     image: "images/products/agave-004.jpg"
   },
     {
@@ -89,7 +89,7 @@ window.GUDAO_PRODUCTS = [
     description: "販售植株兩種角度參考",
     size: "3寸盆",
     price: "DM for Price",
-    status: "現貨",
+    status: "已售出",
     image: "images/products/agave-005.webp"
   },
     {
@@ -119,7 +119,7 @@ window.GUDAO_PRODUCTS = [
     description: "販售植株兩種角度參考",
     size: "3寸盆",
     price: "DM for Price",
-    status: "現貨",
+    status: "已售出",
     image: "images/products/agave-008.webp"
   }
 ];
